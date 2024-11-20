@@ -13,7 +13,7 @@ namespace CreditCeleste
         // public string nomUtilisateur = "DTLA";      // un seul ;    attribut de l'objet
 
         // utilisateur et region
-        public static string nomUtilisateur = "DTLA";   // un seul ;    attribut de classe
+        public static string nomUtilisateur = "TLAD";   // un seul ;    attribut de classe
         public static string region = "Alsace";
 
         // forms
