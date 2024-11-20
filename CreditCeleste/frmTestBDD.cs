@@ -26,43 +26,129 @@ namespace CreditCeleste
         {
 
         }
+        private void cmdLire_Click(object sender, EventArgs e)
+        {
+            lstTest.Items.Clear(); // Nettoie la ListBox
 
-        private void button1_Click(object sender, EventArgs e)
+            using (SqlConnection oConnexion = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM ASSURANCE"; // Assurez-vous que la table est correcte
+                SqlCommand cmd = new SqlCommand(query, oConnexion);
+
+                try
+                {
+                    oConnexion.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        // Crée une chaîne lisible pour afficher dans la ListBox
+                        string creditInfo = $"Test1: {reader["idAssurance"]} - Test2: {reader["nomAssurance"]}" + "\n";
+
+                        lstTest.Items.Add(creditInfo); // Ajoute l'info à la ListBox
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erreur lors du chargement des crédits : {ex.Message}");
+                }
+            }
+        }
+
+        private void cmdEnregistrer_Click(object sender, EventArgs e)
         {
             try
             {
+                textBox1.Clear();
+                textBox2.Clear();
+
+                // Vérifiez et récupérez les valeurs des TextBox
+                if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
+                {
+                    MessageBox.Show("Veuillez remplir tous les champs avant d'enregistrer.");
+                    return;
+                }
+
+                // Conversion en entier pour idAssurance
+                if (!int.TryParse(textBox1.Text, out int value1))
+                {
+                    MessageBox.Show("L'identifiant doit être un nombre entier valide.");
+                    return;
+                }
+
+                string value2 = textBox2.Text;
+
+                // Requête SQL pour insérer les données
+                string query = "INSERT INTO ASSURANCE (idAssurance, nomAssurance) VALUES (@Value1, @Value2)";
+
                 using (SqlConnection oConnexion = new SqlConnection(connectionString))
                 {
-                    // Open the connection
                     oConnexion.Open();
 
-                    // SQL query to select data
-                    string query = "SELECT * FROM ASSURANCE";
-
-                    // Create the SqlCommand
-                    SqlCommand cmd = new SqlCommand(query, oConnexion);
-
-                    // Execute the query and fill the DataTable
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    using (SqlCommand cmd = new SqlCommand(query, oConnexion))
                     {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
+                        // Ajouter les paramètres avec les bons types
+                        cmd.Parameters.Add(new SqlParameter("@Value1", SqlDbType.Int) { Value = value1 });
+                        cmd.Parameters.Add(new SqlParameter("@Value2", SqlDbType.NVarChar, 50) { Value = value2 });
 
-                        // Example: Display first row's values in text boxes
-                        if (dataTable.Rows.Count > 0)
+                        // Exécuter la commande
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Retour utilisateur
+                        if (rowsAffected > 0)
                         {
-                            DataRow firstRow = dataTable.Rows[0];
-                            textBox1.Text = firstRow["idAssurance"].ToString(); // Replace ColumnName1 with your column name
-                            textBox2.Text = firstRow["nomAssurance"].ToString(); // Replace ColumnName2 with your column name
+                            MessageBox.Show("Les données ont été enregistrées avec succès !");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Aucune donnée n'a été enregistrée.");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors du chargement des crédits : {ex.Message}");
+                MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}");
             }
         }
+
+        private void cmdSupprimer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lstTest.Items.Clear(); // Nettoie la ListBox
+
+                // Requête SQL pour supprimer toutes les lignes de la table
+                string query = "DELETE FROM ASSURANCE";
+
+                using (SqlConnection oConnexion = new SqlConnection(connectionString))
+                {
+                    oConnexion.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(query, oConnexion))
+                    {
+                        // Exécute la commande
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Vérifie combien de lignes ont été supprimées
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show($"Toutes les données ont été supprimées. {rowsAffected} ligne(s) affectée(s).");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Aucune donnée n'a été supprimée.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la suppression des données : {ex.Message}");
+            }
+        }
+
+
 
     }
 }
