@@ -28,6 +28,7 @@ namespace CreditCeleste
         public static Concession uneConcession;
         public static Client unClient;
         public static Voiture uneVoiture;
+        public static VoitureOccasion uneVoitureOccasion;
         public static Assurance uneAssurance;
 
         public static string nomVendeur;

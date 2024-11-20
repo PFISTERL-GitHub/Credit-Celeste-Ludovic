@@ -59,15 +59,15 @@ namespace CreditCeleste
             {
                 // Si la saisie est valide, exécute le reste du code
                 string affichage = "Détails du Nouveau Véhicule : " +
-                                   //Environment.NewLine + "Nom du Véhicule : " + txtNouveauVhc.Text +
+                                   Environment.NewLine + "Choix Vehicule Occasion : " + txtChoixVhcOcca.Text +
                                    Environment.NewLine + "Date de Première Immatriculation : " + txtDate1ereImat.Text +
                                    Environment.NewLine + "Numéro d'Immatriculation : " + txtNumImmat.Text +
                                    Environment.NewLine + "Numéro de Série : " + txtNumSerie.Text +
                                    Environment.NewLine + "Puissance : " + txtPuissance.Text;
 
-                //string nvVehicule = txtNouveauVhc.Text;   // Modifier pour que ca soit txtChoixVhcOcca
-                string Date1erImma = txtDate1ereImat.Text;
-                string numImma = txtNumImmat.Text;
+                string nvVhcOcca = txtChoixVhcOcca.Text;
+                string Date1ereImmat = txtDate1ereImat.Text;
+                string numImmat = txtNumImmat.Text;
                 string numSerie = txtNumSerie.Text;
                 string Puissance = txtPuissance.Text;
 
@@ -85,7 +85,7 @@ namespace CreditCeleste
                     }
                 }
 
-                //Globales.uneVoiture = new Voiture(nvVehicule, Date1erImma, numImma, numSerie, Puissance, Globales.btnAgeCocher);
+                Globales.uneVoiture = new Voiture(nvVhcOcca, Date1ereImmat, numImmat, numSerie, Puissance, Globales.btnAgeCocher);
 
                 MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -115,14 +115,14 @@ namespace CreditCeleste
                     }
                 }
 
-                //txtNouveauVhc.Text = Globales.uneVoiture.getnomvehicule();
+                txtChoixVhcOcca.Text = Globales.uneVoitureOccasion.getNomVehicule();
 
-                if (Globales.uneVoiture.getNumImmat() != "44458884AE")
+                if (Globales.uneVoitureOccasion.getNumImmat() != "44458884AE")
                 {
-                    txtDate1ereImat.Text = Globales.uneVoiture.getDate1ereImmat();
-                    txtNumImmat.Text = Globales.uneVoiture.getNumImmat();
-                    txtNumSerie.Text = Globales.uneVoiture.getnumSerie();
-                    txtPuissance.Text = Globales.uneVoiture.getPuissance();
+                    txtDate1ereImat.Text = Globales.uneVoitureOccasion.getDate1ereImmat();
+                    txtNumImmat.Text = Globales.uneVoitureOccasion.getNumImmat();
+                    txtNumSerie.Text = Globales.uneVoitureOccasion.getnumSerie();
+                    txtPuissance.Text = Globales.uneVoitureOccasion.getPuissance();
 
                 }
 

@@ -14,8 +14,7 @@ namespace CreditCeleste
 {
     public partial class frmTestBDD : Form
     {
-
-        private string connectionString = "Data Source=HP-VICTUS16-DAN\\SQLEXPRESS;Initial Catalog=CreditCelesteProjet; Integrated Security=True; Encrypt=False";
+        private string connectionString = "Data Source=192.168.194.95; Initial Catalog=CreditCelesteProjet; User Id=BDDAdmin; password=root;";
 
         public frmTestBDD()
         {
