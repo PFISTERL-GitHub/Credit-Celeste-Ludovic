@@ -59,8 +59,7 @@ namespace CreditCeleste
         {
             try
             {
-                textBox1.Clear();
-                textBox2.Clear();
+
 
                 // Vérifiez et récupérez les valeurs des TextBox
                 if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
@@ -105,6 +104,9 @@ namespace CreditCeleste
                         }
                     }
                 }
+
+                textBox1.Clear();
+                textBox2.Clear();
             }
             catch (Exception ex)
             {
