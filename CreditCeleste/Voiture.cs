@@ -9,13 +9,12 @@ namespace CreditCeleste
 {
     class Voiture
     {
-        private string nvVehicule = "PG 208";
-        private string Date1erImma = "17/07/2005";
-        private string numImma = "44458884AE";
+        private string nouveauVhc = "PG 208";
+        private string date1ereImmat = "17/07/2005";
+        private string numImmat = "44458884AE";
         private string numSerie = "12345777";
-        private string Puissance = "17ch";
+        private string puissance = "17ch";
         private string rdAge;
-
 
         public Voiture()
         {
@@ -24,30 +23,27 @@ namespace CreditCeleste
 
         public Voiture(string nvVH, string rdAge)
         {
-            nvVehicule = nvVH;
+            nouveauVhc = nvVH;
 
             this.rdAge = rdAge;
         }
 
-        public Voiture(string nvVH, string Date1Imma, string numI, string numS, string xPuissance, string rdAge)
+        public Voiture(string nvVH, string date1Imma, string numI, string numS, string xPuissance, string rdAge)
         {
-            nvVehicule = nvVH;
-            Date1erImma = Date1Imma;
-            numImma = numI;
+            nouveauVhc = nvVH;
+            date1ereImmat = date1Imma;
+            numImmat = numI;
             numSerie = numS;
-            Puissance = xPuissance;
+            puissance = xPuissance;
 
             this.rdAge = rdAge;
         }
 
-        public string getnomvehicule() { return nvVehicule; }  
-        public string getDate1erImma() { return Date1erImma; }
+        public string getNomVehicule() { return nouveauVhc; }  
+        public string getDate1ereImmat() { return date1ereImmat; }
+        public string getNumImmat() { return numImmat; }
         public string getnumSerie() { return numSerie; }
-        public string getPuissance() { return Puissance; }
+        public string getPuissance() { return puissance; }
         public string getrdAge() { return rdAge; }
-        public string getNumImma() { return numImma; }
-        
     }
-
-
 }

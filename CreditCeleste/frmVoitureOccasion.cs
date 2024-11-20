@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace CreditCeleste
 {
     //                                     INFORMATION IMPORTANTE                                    //
-    // J'ai juste copié colé inteligament a la sauvegarde et validation il y a pas les bones valeurs //
+    // J'ai juste copié colé inteligament a la sauvegarde et validation il y a pas les bonnes valeurs //
     //                                     INFORMATION IMPORTANTE                                    //
 
     public partial class frmVoitureOccasion : Form
@@ -117,10 +117,10 @@ namespace CreditCeleste
 
                 //txtNouveauVhc.Text = Globales.uneVoiture.getnomvehicule();
 
-                if (Globales.uneVoiture.getNumImma() != "44458884AE")
+                if (Globales.uneVoiture.getNumImmat() != "44458884AE")
                 {
-                    txtDate1ereImat.Text = Globales.uneVoiture.getDate1erImma();
-                    txtNumImmat.Text = Globales.uneVoiture.getNumImma();
+                    txtDate1ereImat.Text = Globales.uneVoiture.getDate1ereImmat();
+                    txtNumImmat.Text = Globales.uneVoiture.getNumImmat();
                     txtNumSerie.Text = Globales.uneVoiture.getnumSerie();
                     txtPuissance.Text = Globales.uneVoiture.getPuissance();
 
@@ -173,7 +173,7 @@ namespace CreditCeleste
                     }
                 }
 
-                if (!String.IsNullOrEmpty(Globales.uneVoiture.getnomvehicule()))
+                if (!String.IsNullOrEmpty(Globales.uneVoiture.getNomVehicule()))
                 {
                     //txtNouvVhc.Text = Globales.uneVoiture.getnomvehicule();
                 }

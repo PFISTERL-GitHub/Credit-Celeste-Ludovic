@@ -34,9 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClientCC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ClientCC\ClientCC\bin\Debug\ClientCC.dll</HintPath>
+    <Reference Include="ClientCC">
+      <HintPath>..\..\ClientCC-Alexandru\ClientCC\bin\Debug\ClientCC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assurance.cs" />
     <Compile Include="Concession.cs" />
     <Compile Include="frmAccueil.cs">
       <SubType>Form</SubType>

@@ -36,12 +36,12 @@ namespace CreditCeleste
                 //    }
                 //}
 
-                txtNouveauVhc.Text = Globales.uneVoiture.getnomvehicule();
+                txtNouveauVhc.Text = Globales.uneVoiture.getNomVehicule();
 
-                if (Globales.uneVoiture.getNumImma() != "44458884AE")
+                if (Globales.uneVoiture.getNumImmat() != "44458884AE")
                 {
-                    txtDate1ereImat.Text = Globales.uneVoiture.getDate1erImma();
-                    txtNumImmat.Text = Globales.uneVoiture.getNumImma();
+                    txtDate1ereImmat.Text = Globales.uneVoiture.getDate1ereImmat();
+                    txtNumImmat.Text = Globales.uneVoiture.getNumImmat();
                     txtNumSerie.Text = Globales.uneVoiture.getnumSerie();
                     txtPuissance.Text = Globales.uneVoiture.getPuissance();
 
@@ -74,13 +74,14 @@ namespace CreditCeleste
         // Fonction pour vérifier si les saisies sont valides
         private bool VerifierSaisie()
         {
-            if (string.IsNullOrWhiteSpace(txtNouveauVhc.Text) || string.IsNullOrWhiteSpace(txtDate1ereImat.Text) || string.IsNullOrWhiteSpace(txtNumImmat.Text) ||  string.IsNullOrWhiteSpace(txtNumSerie.Text) || string.IsNullOrWhiteSpace(txtPuissance.Text))
+            if (string.IsNullOrWhiteSpace(txtNouveauVhc.Text) || string.IsNullOrWhiteSpace(txtDate1ereImmat.Text) || string.IsNullOrWhiteSpace(txtNumImmat.Text) ||  string.IsNullOrWhiteSpace(txtNumSerie.Text) || string.IsNullOrWhiteSpace(txtPuissance.Text))
             {
                 MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false; 
             }
   
-            bool radioSelected = false;
+            //bool radioSelected = false;
+
             //foreach (Control xControl in gpbAgeVehicule.Controls)
             //{
             //    if (xControl is RadioButton radioButton && radioButton.Checked)
@@ -90,11 +91,11 @@ namespace CreditCeleste
             //    }
             //}
 
-            if (!radioSelected)
-            {
-                MessageBox.Show("Veuillez sélectionner une option d'âge pour le véhicule.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false; 
-            }
+            // if (!radioSelected)
+            // {
+            //     MessageBox.Show("Veuillez sélectionner une option d'âge pour le véhicule.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //     return false; 
+            // }
 
             return true; 
         }
@@ -105,17 +106,17 @@ namespace CreditCeleste
             {
                 // Si la saisie est valide, exécute le reste du code
                 string affichage = "Détails du Nouveau Véhicule : " +
-                                   Environment.NewLine + "Nom du Véhicule : " + txtNouveauVhc.Text +
-                                   Environment.NewLine + "Date de Première Immatriculation : " + txtDate1ereImat.Text +
-                                   Environment.NewLine + "Numéro d'Immatriculation : " + txtNumImmat.Text +
-                                   Environment.NewLine + "Numéro de Série : " + txtNumSerie.Text +
+                                   Environment.NewLine + "Nom du véhicule : " + txtNouveauVhc.Text +
+                                   Environment.NewLine + "Date de première immatriculation : " + txtDate1ereImmat.Text +
+                                   Environment.NewLine + "Numéro d'immatriculation : " + txtNumImmat.Text +
+                                   Environment.NewLine + "Numéro de série : " + txtNumSerie.Text +
                                    Environment.NewLine + "Puissance : " + txtPuissance.Text;
 
-                string nvVehicule = txtNouveauVhc.Text;
-                string Date1erImma = txtDate1ereImat.Text;
-                string numImma = txtNumImmat.Text;
+                string nouveauVhc = txtNouveauVhc.Text;
+                string date1ereImmat = txtDate1ereImmat.Text;
+                string numImmat = txtNumImmat.Text;
                 string numSerie = txtNumSerie.Text;
-                string Puissance = txtPuissance.Text;
+                string puissance = txtPuissance.Text;
 
                 //foreach (Control xControl in gpbAgeVehicule.Controls)
                 //{
@@ -131,7 +132,7 @@ namespace CreditCeleste
                 //    }
                 //}
 
-                Globales.uneVoiture = new Voiture(nvVehicule, Date1erImma, numImma, numSerie, Puissance, Globales.btnAgeCocher);
+                Globales.uneVoiture = new Voiture(nouveauVhc, date1ereImmat, numImmat, numSerie, puissance, Globales.btnAgeCocher);
 
                 MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -171,9 +172,9 @@ namespace CreditCeleste
                 //    }
                 //}
 
-                if (!String.IsNullOrEmpty(Globales.uneVoiture.getnomvehicule()))
+                if (!String.IsNullOrEmpty(Globales.uneVoiture.getNomVehicule()))
                 {
-                    txtNouveauVhc.Text = Globales.uneVoiture.getnomvehicule();
+                    txtNouveauVhc.Text = Globales.uneVoiture.getNomVehicule();
                 }
             }
             else if (!String.IsNullOrEmpty(Globales.btnAgeCocher))
@@ -192,6 +193,11 @@ namespace CreditCeleste
                 //}
 
             }
+        }
+
+        private void txtDate1ereImmat_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

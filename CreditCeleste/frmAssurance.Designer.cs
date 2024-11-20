@@ -37,7 +37,7 @@ namespace CreditCeleste
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMarque = new System.Windows.Forms.TextBox();
-            this.txtNumIma = new System.Windows.Forms.TextBox();
+            this.txtNumImmat = new System.Windows.Forms.TextBox();
             this.gpbDureeAssurance = new System.Windows.Forms.GroupBox();
             this.rdbQuatreAns = new System.Windows.Forms.RadioButton();
             this.rdbTroisAns = new System.Windows.Forms.RadioButton();
@@ -55,8 +55,8 @@ namespace CreditCeleste
             this.txtDtp = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textTelGarage = new System.Windows.Forms.TextBox();
-            this.textAdrGarage = new System.Windows.Forms.TextBox();
+            this.txtTelGarage = new System.Windows.Forms.TextBox();
+            this.txtAdrGarage = new System.Windows.Forms.TextBox();
             this.gpbDureeAssurance.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,9 +129,9 @@ namespace CreditCeleste
             this.label5.Location = new System.Drawing.Point(318, 16);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 17);
+            this.label5.Size = new System.Drawing.Size(156, 17);
             this.label5.TabIndex = 39;
-            this.label5.Text = "Numero Imatriculation";
+            this.label5.Text = "Numero Immatriculation";
             // 
             // txtMarque
             // 
@@ -141,13 +141,13 @@ namespace CreditCeleste
             this.txtMarque.Size = new System.Drawing.Size(164, 22);
             this.txtMarque.TabIndex = 38;
             // 
-            // txtNumIma
+            // txtNumImmat
             // 
-            this.txtNumIma.Location = new System.Drawing.Point(471, 13);
-            this.txtNumIma.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNumIma.Name = "txtNumIma";
-            this.txtNumIma.Size = new System.Drawing.Size(164, 22);
-            this.txtNumIma.TabIndex = 37;
+            this.txtNumImmat.Location = new System.Drawing.Point(471, 13);
+            this.txtNumImmat.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNumImmat.Name = "txtNumImmat";
+            this.txtNumImmat.Size = new System.Drawing.Size(164, 22);
+            this.txtNumImmat.TabIndex = 37;
             // 
             // gpbDureeAssurance
             // 
@@ -163,6 +163,7 @@ namespace CreditCeleste
             this.gpbDureeAssurance.TabIndex = 36;
             this.gpbDureeAssurance.TabStop = false;
             this.gpbDureeAssurance.Text = "Duree Assurance";
+            this.gpbDureeAssurance.Enter += new System.EventHandler(this.gpbDureeAssurance_Enter);
             // 
             // rdbQuatreAns
             // 
@@ -323,21 +324,21 @@ namespace CreditCeleste
             this.label10.TabIndex = 52;
             this.label10.Text = "Adresse Garage";
             // 
-            // textTelGarage
+            // txtTelGarage
             // 
-            this.textTelGarage.Location = new System.Drawing.Point(471, 105);
-            this.textTelGarage.Margin = new System.Windows.Forms.Padding(4);
-            this.textTelGarage.Name = "textTelGarage";
-            this.textTelGarage.Size = new System.Drawing.Size(164, 22);
-            this.textTelGarage.TabIndex = 51;
+            this.txtTelGarage.Location = new System.Drawing.Point(471, 105);
+            this.txtTelGarage.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTelGarage.Name = "txtTelGarage";
+            this.txtTelGarage.Size = new System.Drawing.Size(164, 22);
+            this.txtTelGarage.TabIndex = 51;
             // 
-            // textAdrGarage
+            // txtAdrGarage
             // 
-            this.textAdrGarage.Location = new System.Drawing.Point(471, 75);
-            this.textAdrGarage.Margin = new System.Windows.Forms.Padding(4);
-            this.textAdrGarage.Name = "textAdrGarage";
-            this.textAdrGarage.Size = new System.Drawing.Size(164, 22);
-            this.textAdrGarage.TabIndex = 50;
+            this.txtAdrGarage.Location = new System.Drawing.Point(471, 75);
+            this.txtAdrGarage.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAdrGarage.Name = "txtAdrGarage";
+            this.txtAdrGarage.Size = new System.Drawing.Size(164, 22);
+            this.txtAdrGarage.TabIndex = 50;
             // 
             // frmAssurance
             // 
@@ -346,8 +347,8 @@ namespace CreditCeleste
             this.ClientSize = new System.Drawing.Size(648, 333);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textTelGarage);
-            this.Controls.Add(this.textAdrGarage);
+            this.Controls.Add(this.txtTelGarage);
+            this.Controls.Add(this.txtAdrGarage);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtDtp);
             this.Controls.Add(this.label4);
@@ -360,7 +361,7 @@ namespace CreditCeleste
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtMarque);
-            this.Controls.Add(this.txtNumIma);
+            this.Controls.Add(this.txtNumImmat);
             this.Controls.Add(this.gpbDureeAssurance);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -390,7 +391,7 @@ namespace CreditCeleste
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtMarque;
-        private System.Windows.Forms.TextBox txtNumIma;
+        private System.Windows.Forms.TextBox txtNumImmat;
         private System.Windows.Forms.GroupBox gpbDureeAssurance;
         private System.Windows.Forms.RadioButton rdbQuatreAns;
         private System.Windows.Forms.RadioButton rdbTroisAns;
@@ -408,7 +409,7 @@ namespace CreditCeleste
         private System.Windows.Forms.TextBox txtDtp;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textTelGarage;
-        private System.Windows.Forms.TextBox textAdrGarage;
+        private System.Windows.Forms.TextBox txtTelGarage;
+        private System.Windows.Forms.TextBox txtAdrGarage;
     }
 }
