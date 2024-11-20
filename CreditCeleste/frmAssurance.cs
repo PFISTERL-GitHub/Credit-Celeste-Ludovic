@@ -22,42 +22,71 @@ namespace CreditCeleste
             this.Close();
         }
 
+        private bool VerifierSaisie()
+        {
+            if (string.IsNullOrWhiteSpace(cboCiv.Text) || string.IsNullOrWhiteSpace(txtNom.Text) || string.IsNullOrWhiteSpace(txtPrenom.Text) || string.IsNullOrWhiteSpace(txtDtn.Text) || string.IsNullOrWhiteSpace(txtDtp.Text) || string.IsNullOrWhiteSpace(txtNumImmat.Text) || string.IsNullOrWhiteSpace(txtMarque.Text) || string.IsNullOrWhiteSpace(txtAdrGarage.Text) || string.IsNullOrWhiteSpace(txtTelGarage.Text))
+            {
+                MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            bool radioSelected = false;
+
+            foreach (Control xControl in gpbDureeAssurance.Controls)
+            {
+                if (xControl is RadioButton radioButton && radioButton.Checked)
+                {
+                    radioSelected = true;
+                    break;
+                }
+            }
+
+            if (!radioSelected)
+            {
+                MessageBox.Show("Veuillez sélectionner une option d'âge pour le véhicule.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false; 
+            }
+
+            return true;
+        }
+
         private void btnEnregistre_Click(object sender, EventArgs e)
         {
-            //if (VerifierSaisie())
-            //{
-            //    // Si la saisie est valide, exécute le reste du code
-            //    string affichage = "Détails du Nouveau Véhicule : " +
-            //                       Environment.NewLine + "Nom du Véhicule : " + txtNouveauVhc.Text +
-            //                       Environment.NewLine + "Date de Première Immatriculation : " + txtDate1ereImat.Text +
-            //                       Environment.NewLine + "Numéro d'Immatriculation : " + txtNumImmat.Text +
-            //                       Environment.NewLine + "Numéro de Série : " + txtNumSerie.Text +
-            //                       Environment.NewLine + "Puissance : " + txtPuissance.Text;
+            if (VerifierSaisie())
+            {
+                // Si la saisie est valide, exécute le reste du code
+                string affichage = "Détails : " +
+                                   Environment.NewLine + "Numero Immatriculation' : " + txtNumImmat.Text +
+                                   Environment.NewLine + "Numéro d'immatriculation : " + txtNumImmat.Text +
+                                   Environment.NewLine + "Marque du véhicule : " + txtMarque.Text +
+                                   Environment.NewLine + "Adresse du garage: " + txtAdrGarage.Text +
+                                   Environment.NewLine + "Téléphone du garage : " + txtTelGarage.Text;
 
-            //    string nvVehicule = txtNouveauVhc.Text;
-            //    string Date1erImma = txtDate1ereImat.Text;
-            //    string numImma = txtNumImmat.Text;
-            //    string numSerie = txtNumSerie.Text;
-            //    string Puissance = txtPuissance.Text;
+                string dateNaissance = txtDtn.Text;
+                string datePermis = txtDtp.Text;
+                string numImmat = txtNumImmat.Text;
+                string marque = txtMarque.Text;
+                string adresseGarage = txtAdrGarage.Text;
+                string telGarage = txtTelGarage.Text;
 
-            //    //foreach (Control xControl in gpbAgeVehicule.Controls)
-            //    //{
-            //    //    if (xControl is RadioButton)
-            //    //    {
-            //    //        RadioButton radioButton = xControl as RadioButton;
+                //foreach (Control xControl in gpbAgeVehicule.Controls)
+                //{
+                //    if (xControl is RadioButton)
+                //    {
+                //        RadioButton radioButton = xControl as RadioButton;
 
-            //    //        if (radioButton.Checked)
-            //    //        {
-            //    //            Globales.btnAgeCocher = radioButton.Name;
-            //    //            break;
-            //    //        }
-            //    //    }
-            //    //}
+                //        if (radioButton.Checked)
+                //        {
+                //            Globales.btnAgeCocher = radioButton.Name;
+                //            break;
+                //        }
+                //    }
+                //}
 
-            //    Globales.uneVoiture = new Voiture(nvVehicule, Date1erImma, numImma, numSerie, Puissance, Globales.btnAgeCocher);
+                Globales.uneAssurance = new Assurance(dateNaissance, datePermis, numImmat, marque, adresseGarage, telGarage);
 
-            //    MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+                MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnValider_Click(object sender, EventArgs e)
@@ -88,7 +117,7 @@ namespace CreditCeleste
 
             //    if (Globales.uneVoiture.getNumImma() != "44458884AE")
             //    {
-            //        txtDate1ereImat.Text = Globales.uneVoiture.getDate1erImma();
+            //        txtDate1ereImmat.Text = Globales.uneVoiture.getDate1erImma();
             //        txtNumImmat.Text = Globales.uneVoiture.getNumImma();
             //        txtNumSerie.Text = Globales.uneVoiture.getnumSerie();
             //        txtPuissance.Text = Globales.uneVoiture.getPuissance();
@@ -112,6 +141,11 @@ namespace CreditCeleste
             //    //}
 
             //}
+        }
+
+        private void gpbDureeAssurance_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

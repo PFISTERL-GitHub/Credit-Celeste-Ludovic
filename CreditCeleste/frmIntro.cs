@@ -62,10 +62,10 @@ namespace CreditCeleste
                 return; // Si la vérification échoue, on sort de la méthode
             }
 
-            string civ = cboCiv.Text;
+            string civilite = cboCiv.Text;
             string nom = txtNom.Text;
             string prenom = txtPrenom.Text;
-            Globales.unClient = new Client(civ, nom, prenom);
+            Globales.unClient = new Client(civilite, nom, prenom);
 
             lblVendeur.Text = cboVendeur.Text;
             Globales.nomVendeur = lblVendeur.Text;

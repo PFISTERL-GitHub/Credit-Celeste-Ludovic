@@ -30,7 +30,7 @@
         {
             this.txtNumImmat = new System.Windows.Forms.TextBox();
             this.txtNouveauVhc = new System.Windows.Forms.TextBox();
-            this.txtDate1ereImat = new System.Windows.Forms.TextBox();
+            this.txtDate1ereImmat = new System.Windows.Forms.TextBox();
             this.txtPuissance = new System.Windows.Forms.TextBox();
             this.txtNumSerie = new System.Windows.Forms.TextBox();
             this.btnValider = new System.Windows.Forms.Button();
@@ -62,13 +62,14 @@
             this.txtNouveauVhc.Size = new System.Drawing.Size(132, 22);
             this.txtNouveauVhc.TabIndex = 13;
             // 
-            // txtDate1ereImat
+            // txtDate1ereImmat
             // 
-            this.txtDate1ereImat.Location = new System.Drawing.Point(190, 13);
-            this.txtDate1ereImat.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDate1ereImat.Name = "txtDate1ereImat";
-            this.txtDate1ereImat.Size = new System.Drawing.Size(132, 22);
-            this.txtDate1ereImat.TabIndex = 12;
+            this.txtDate1ereImmat.Location = new System.Drawing.Point(190, 13);
+            this.txtDate1ereImmat.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDate1ereImmat.Name = "txtDate1ereImmat";
+            this.txtDate1ereImmat.Size = new System.Drawing.Size(132, 22);
+            this.txtDate1ereImmat.TabIndex = 12;
+            this.txtDate1ereImmat.TextChanged += new System.EventHandler(this.txtDate1ereImmat_TextChanged);
             // 
             // txtPuissance
             // 
@@ -219,7 +220,7 @@
             this.Controls.Add(this.txtNumSerie);
             this.Controls.Add(this.txtNumImmat);
             this.Controls.Add(this.txtNouveauVhc);
-            this.Controls.Add(this.txtDate1ereImat);
+            this.Controls.Add(this.txtDate1ereImmat);
             this.Controls.Add(this.txtPuissance);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -237,7 +238,7 @@
         #endregion
         private System.Windows.Forms.TextBox txtNumImmat;
         private System.Windows.Forms.TextBox txtNouveauVhc;
-        private System.Windows.Forms.TextBox txtDate1ereImat;
+        private System.Windows.Forms.TextBox txtDate1ereImmat;
         private System.Windows.Forms.TextBox txtPuissance;
         private System.Windows.Forms.TextBox txtNumSerie;
         private System.Windows.Forms.Button btnValider;

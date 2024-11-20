@@ -31,12 +31,17 @@ namespace CreditCeleste
             Vendeur un2Vendeur = new Vendeur("M.", "BELLER", "Thierry");
             Vendeur un3Vendeur = new Vendeur("M.", "PFISTER", "Ludo");
             Vendeur un4Vendeur = new Vendeur("M.", "CIOBOTARU", "Alexandru");
+            Vendeur un5Vendeur = new Vendeur("M.", "BIRD", "Gemini");
 
             // à stocker dans la liste des vendeurs.
             //      (une manière de faire)
             Globales.uneConcession.ajoutVendeur(unVendeur);
             Globales.uneConcession.ajoutVendeur(un2Vendeur);
             Globales.uneConcession.ajoutVendeur(un3Vendeur);
+            Globales.uneConcession.ajoutVendeur(un4Vendeur);
+            Globales.uneConcession.ajoutVendeur(un5Vendeur);
+
+            // boucle, select depuis la base de données ?
         }
 
         private void btnIntro_Click(object sender, EventArgs e)
