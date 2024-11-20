@@ -57,5 +57,20 @@ namespace CreditCeleste
         {
             this.Show();
         }
+
+        private void btnEtude_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdTest_Click(object sender, EventArgs e)
+        {
+            // creation et ouverture de Introduction
+            Globales.fenTestBDD = new frmTestBDD();
+            Globales.fenTestBDD.FormClosed += new FormClosedEventHandler(FenIntro_FormClosed);
+            Globales.fenTestBDD.Show();
+
+            this.Hide();
+        }
     }
 }

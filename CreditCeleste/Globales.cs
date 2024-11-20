@@ -22,6 +22,7 @@ namespace CreditCeleste
         public static frmVoiture fenVoiture;
         public static frmVoitureOccasion fenVoitureOccasion;
         public static frmAssurance fenAssurance;
+        public static frmTestBDD fenTestBDD;
 
         // autre
         public static Concession uneConcession;

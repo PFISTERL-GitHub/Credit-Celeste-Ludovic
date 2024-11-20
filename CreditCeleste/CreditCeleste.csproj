@@ -70,6 +70,12 @@
     <Compile Include="frmIntro.Designer.cs">
       <DependentUpon>frmIntro.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTestBDD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTestBDD.Designer.cs">
+      <DependentUpon>frmTestBDD.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVoiture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmIntro.resx">
       <DependentUpon>frmIntro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTestBDD.resx">
+      <DependentUpon>frmTestBDD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVoiture.resx">
       <DependentUpon>frmVoiture.cs</DependentUpon>
