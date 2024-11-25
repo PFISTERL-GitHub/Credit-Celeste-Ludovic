@@ -94,9 +94,9 @@
             this.label1.Location = new System.Drawing.Point(13, 16);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 17);
+            this.label1.Size = new System.Drawing.Size(53, 17);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Je m\'appelle";
+            this.label1.Text = "Civilité*";
             // 
             // label2
             // 
@@ -104,9 +104,9 @@
             this.label2.Location = new System.Drawing.Point(13, 48);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 17);
+            this.label2.Size = new System.Drawing.Size(42, 17);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Nom";
+            this.label2.Text = "Nom*";
             // 
             // label3
             // 
@@ -114,9 +114,9 @@
             this.label3.Location = new System.Drawing.Point(13, 78);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 17);
+            this.label3.Size = new System.Drawing.Size(62, 17);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Prénom";
+            this.label3.Text = "Prénom*";
             // 
             // label4
             // 
@@ -124,9 +124,9 @@
             this.label4.Location = new System.Drawing.Point(13, 108);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 17);
+            this.label4.Size = new System.Drawing.Size(67, 17);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Vendeur";
+            this.label4.Text = "Vendeur*";
             // 
             // txtNouvVhc
             // 
@@ -188,6 +188,7 @@
             // 
             // btnValider
             // 
+            this.btnValider.Enabled = false;
             this.btnValider.Location = new System.Drawing.Point(460, 285);
             this.btnValider.Margin = new System.Windows.Forms.Padding(4);
             this.btnValider.Name = "btnValider";

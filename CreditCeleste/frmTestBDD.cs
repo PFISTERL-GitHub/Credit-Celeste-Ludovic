@@ -14,7 +14,7 @@ namespace CreditCeleste
 {
     public partial class frmTestBDD : Form
     {
-        private string connectionString = "Data Source=192.168.194.95; Initial Catalog=CreditCelesteProjet; User Id=BDDAdmin; password=root;";
+        private string connectionString = "Data Source=192.168.194.65; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
 
         public frmTestBDD()
         {
@@ -25,13 +25,14 @@ namespace CreditCeleste
         {
 
         }
+
         private void cmdLire_Click(object sender, EventArgs e)
         {
             lstTest.Items.Clear(); // Nettoie la ListBox
 
             using (SqlConnection oConnexion = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM ASSURANCE"; // Assurez-vous que la table est correcte
+                string query = "SELECT * FROM TEST"; // Assurez-vous que la table est correcte
                 SqlCommand cmd = new SqlCommand(query, oConnexion);
 
                 try
@@ -42,7 +43,7 @@ namespace CreditCeleste
                     while (reader.Read())
                     {
                         // Crée une chaîne lisible pour afficher dans la ListBox
-                        string creditInfo = $"Test1: {reader["idAssurance"]} - Test2: {reader["nomAssurance"]}" + "\n";
+                        string creditInfo = $"Test1: {reader["test1"]} - Test2: {reader["test2"]}" + "\n";
 
                         lstTest.Items.Add(creditInfo); // Ajoute l'info à la ListBox
                     }
@@ -67,27 +68,22 @@ namespace CreditCeleste
                     return;
                 }
 
-                // Conversion en entier pour idAssurance
-                if (!int.TryParse(textBox1.Text, out int value1))
-                {
-                    MessageBox.Show("L'identifiant doit être un nombre entier valide.");
-                    return;
-                }
 
+                string value1 = textBox1.Text;
                 string value2 = textBox2.Text;
 
                 // Requête SQL pour insérer les données
-                string query = "INSERT INTO ASSURANCE (idAssurance, nomAssurance) VALUES (@Value1, @Value2)";
+                string query = "INSERT INTO TEST (test1, test2) VALUES (@Value1, @Value2)";
 
                 using (SqlConnection oConnexion = new SqlConnection(connectionString))
                 {
                     oConnexion.Open();
 
-                    using (SqlCommand cmd = new SqlCommand(query, oConnexion))
+                    using (SqlCommand cmd = new SqlCommand(query, oConnexion)) // VOIR AUTRE METHODE //
                     {
                         // Ajouter les paramètres avec les bons types
-                        cmd.Parameters.Add(new SqlParameter("@Value1", SqlDbType.Int) { Value = value1 });
-                        cmd.Parameters.Add(new SqlParameter("@Value2", SqlDbType.NVarChar, 50) { Value = value2 });
+                        cmd.Parameters.Add(new SqlParameter("@Value1", SqlDbType.NVarChar) { Value = value1 });
+                        cmd.Parameters.Add(new SqlParameter("@Value2", SqlDbType.NVarChar) { Value = value2 });
 
                         // Exécuter la commande
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -120,7 +116,7 @@ namespace CreditCeleste
                 lstTest.Items.Clear(); // Nettoie la ListBox
 
                 // Requête SQL pour supprimer toutes les lignes de la table
-                string query = "DELETE FROM ASSURANCE";
+                string query = "DELETE FROM TEST";
 
                 using (SqlConnection oConnexion = new SqlConnection(connectionString))
                 {
