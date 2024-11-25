@@ -38,9 +38,10 @@
             // 
             // btnIntro
             // 
-            this.btnIntro.Location = new System.Drawing.Point(10, 32);
+            this.btnIntro.Location = new System.Drawing.Point(13, 39);
+            this.btnIntro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnIntro.Name = "btnIntro";
-            this.btnIntro.Size = new System.Drawing.Size(75, 28);
+            this.btnIntro.Size = new System.Drawing.Size(100, 34);
             this.btnIntro.TabIndex = 0;
             this.btnIntro.Text = "&Introduction";
             this.btnIntro.UseVisualStyleBackColor = true;
@@ -48,9 +49,10 @@
             // 
             // btnEtude
             // 
-            this.btnEtude.Location = new System.Drawing.Point(172, 32);
+            this.btnEtude.Location = new System.Drawing.Point(229, 39);
+            this.btnEtude.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEtude.Name = "btnEtude";
-            this.btnEtude.Size = new System.Drawing.Size(75, 28);
+            this.btnEtude.Size = new System.Drawing.Size(100, 34);
             this.btnEtude.TabIndex = 1;
             this.btnEtude.Text = "&Etude";
             this.btnEtude.UseVisualStyleBackColor = true;
@@ -58,9 +60,10 @@
             // 
             // btnRelance
             // 
-            this.btnRelance.Location = new System.Drawing.Point(91, 32);
+            this.btnRelance.Location = new System.Drawing.Point(121, 39);
+            this.btnRelance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRelance.Name = "btnRelance";
-            this.btnRelance.Size = new System.Drawing.Size(75, 28);
+            this.btnRelance.Size = new System.Drawing.Size(100, 34);
             this.btnRelance.TabIndex = 2;
             this.btnRelance.Text = "&Relance";
             this.btnRelance.UseVisualStyleBackColor = true;
@@ -68,26 +71,29 @@
             // lblMonApplication
             // 
             this.lblMonApplication.AutoSize = true;
-            this.lblMonApplication.Location = new System.Drawing.Point(10, 7);
+            this.lblMonApplication.Location = new System.Drawing.Point(13, 9);
+            this.lblMonApplication.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMonApplication.Name = "lblMonApplication";
-            this.lblMonApplication.Size = new System.Drawing.Size(29, 13);
+            this.lblMonApplication.Size = new System.Drawing.Size(37, 17);
             this.lblMonApplication.TabIndex = 3;
             this.lblMonApplication.Text = "Nom";
             // 
             // lblRegion
             // 
             this.lblRegion.AutoSize = true;
-            this.lblRegion.Location = new System.Drawing.Point(126, 7);
+            this.lblRegion.Location = new System.Drawing.Point(168, 9);
+            this.lblRegion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRegion.Name = "lblRegion";
-            this.lblRegion.Size = new System.Drawing.Size(41, 13);
+            this.lblRegion.Size = new System.Drawing.Size(53, 17);
             this.lblRegion.TabIndex = 4;
             this.lblRegion.Text = "Région";
             // 
             // cmdTest
             // 
-            this.cmdTest.Location = new System.Drawing.Point(264, 32);
+            this.cmdTest.Location = new System.Drawing.Point(352, 39);
+            this.cmdTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdTest.Name = "cmdTest";
-            this.cmdTest.Size = new System.Drawing.Size(75, 28);
+            this.cmdTest.Size = new System.Drawing.Size(100, 34);
             this.cmdTest.TabIndex = 5;
             this.cmdTest.Text = "&Test";
             this.cmdTest.UseVisualStyleBackColor = true;
@@ -95,9 +101,9 @@
             // 
             // frmAccueil
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 72);
+            this.ClientSize = new System.Drawing.Size(468, 89);
             this.Controls.Add(this.cmdTest);
             this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblMonApplication);
@@ -105,11 +111,12 @@
             this.Controls.Add(this.btnEtude);
             this.Controls.Add(this.btnIntro);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "frmAccueil";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Credit Celeste - Acceuil";
+            this.Text = "Credit Celeste - Accueil";
             this.Load += new System.EventHandler(this.frmAccueil_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
