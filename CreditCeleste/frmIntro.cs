@@ -19,7 +19,7 @@ namespace CreditCeleste
         }
 
         // Ce lance a l'ouverture du le page
-        private void frmIntro_Load(object sender, EventArgs e) // FAIT AU PROPRE //
+        private void frmIntro_Load(object sender, EventArgs e)
         {
             // Recuperation des informations
             if (Globales.unClient != null)
@@ -52,9 +52,9 @@ namespace CreditCeleste
         }
 
         // Fonction pour le bouton Enregistrer
-        private void btnEnregistre_Click(object sender, EventArgs e) // FAIT AU PROPRE //
+        private void btnEnregistre_Click(object sender, EventArgs e)
         {
-            // Sauvegarde le texte saisi dans des variables
+            // Sauvegarde les saisie dans des variables
             string civilite = cboCiv.Text;
             string nom = txtNom.Text;
             string prenom = txtPrenom.Text;
@@ -64,25 +64,26 @@ namespace CreditCeleste
             string nouveauVehicule = txtNouvVhc.Text;
             string ancienVehicule = txtAncVhc.Text;
 
-            // On verifie la saisie avant de continuer
+            // Verification de la saisie
             if (verifierSaisie(civilite, nom, prenom, vendeur, nouveauVehicule, ancienVehicule))
             {
                 // Sauvegarde dans Globales
                 Globales.unClient = new Client(civilite, nom, prenom);
-
                 Globales.nomVendeur = vendeur;
 
-                // Création nouvelle voiture
+                // Sauvegarde voiture si existant
                 if (!string.IsNullOrEmpty(nouveauVehicule))
                 {
-                    Globales.uneVoiture = new Voiture(nouveauVehicule, Globales.btnAgeCocher); // Globales.btnAgeCocher ???
+                    Globales.uneVoiture = new Voiture(nouveauVehicule, Globales.btnAgeCocher);
                 }
-                else if (!string.IsNullOrEmpty(ancienVehicule))
+                
+                // PAS SUR //
+                if (!string.IsNullOrEmpty(ancienVehicule))
                 {
-                    Globales.uneVoiture = new Voiture(ancienVehicule, Globales.btnAgeCocher); // Globales.btnAgeCocher ???
+                    Globales.uneVoiture = new Voiture(ancienVehicule, Globales.btnAgeCocher);
                 }
 
-                // Affiche nom vendeur dans le label
+                // Affiche nom vendeur
                 lblVendeur.Text = vendeur;
 
                 // Affiche un message
@@ -100,30 +101,7 @@ namespace CreditCeleste
         }
 
         // Fonction pour vérifier si les saisies sont valides
-        private bool verifierSaisie(string civilite, string nom, string prenom, string vendeur, string nouveauVehicule, string ancienVehicule) // FAIT AU PROPRE //
-        {
-            // Variable
-            bool valeur = true;
-
-            // Verifie les champs obligatoires
-            if (!verifChampsClients(civilite, nom, prenom, vendeur))
-            {
-                // Affiche un message d'erreur
-                MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                valeur = false; // Retourne faux si une valeur n'est pas saisie
-            }
-            else if (!verifChampsVoitures(nouveauVehicule, ancienVehicule))
-            {
-                // Affiche un message d'erreur
-                MessageBox.Show("Veuillez entrer un véhicule (nouveau ou ancien).", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                valeur = false; // Retourne faux si une valeur n'est pas saisie
-            }
-
-            // Retourne la Variable
-            return valeur;
-        }
-
-        private bool verifChampsClients(string civilite, string nom, string prenom, string vendeur)
+        private bool verifierSaisie(string civilite, string nom, string prenom, string vendeur, string nouveauVehicule, string ancienVehicule)
         {
             // Variable
             bool valeur = true;
@@ -131,31 +109,22 @@ namespace CreditCeleste
             // Verifie les champs obligatoires
             if (string.IsNullOrWhiteSpace(civilite) || string.IsNullOrWhiteSpace(nom) || string.IsNullOrWhiteSpace(prenom) || string.IsNullOrWhiteSpace(vendeur))
             {
-                // Retourne faux si une valeur est pas saisie
-                valeur = false;
+                // Affiche un message d'erreur
+                MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valeur = false; // Retourne faux si une valeur n'est pas saisie
             }
-
-            // Retourne la Variable
-            return valeur;
-        }
-
-        private bool verifChampsVoitures(string nouveauVehicule, string ancienVehicule)
-        {
-            // Variable
-            bool valeur = true;
-
-            // Verifie les champs obligatoires
-            if (string.IsNullOrWhiteSpace(nouveauVehicule) && string.IsNullOrWhiteSpace(ancienVehicule))
+            else if (string.IsNullOrWhiteSpace(nouveauVehicule) && string.IsNullOrWhiteSpace(ancienVehicule))
             {
-                // Retourne faux si les deux valeur sont pas saisie
-                valeur = false;
+                // Affiche un message d'erreur
+                MessageBox.Show("Veuillez entrer un véhicule (nouveau ou ancien).", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valeur = false; // Retourne faux si les deux valeur sont pas saisie
             }
 
             // Retourne la Variable
             return valeur;
         }
 
-        private void btnVoiture_Click(object sender, EventArgs e) // FAIT AU PROPRE //
+        private void btnVoiture_Click(object sender, EventArgs e)
         {
             // Creation d'une page VoitureNeuve
             Globales.fenVoiture = new frmVoiture();
@@ -168,7 +137,7 @@ namespace CreditCeleste
             Globales.fenVoiture.Show();
         }
 
-        void FenVoiture_FormClosed(object sender, FormClosedEventArgs e) // FAIT AU PROPRE //
+        void FenVoiture_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Affiche intro a la fermeture de VoitureNeuve
             this.Show();
@@ -180,13 +149,11 @@ namespace CreditCeleste
             lblVendeur.Text = Globales.uneConcession.getLesVendeurs()[cboVendeur.SelectedIndex].getInfoVendeur(); // CA PEUT ETRE SIMPLIFIER?
         }
 
-
         //Fonction pour le bouton Valider
         private void btnValider_Click(object sender, EventArgs e) // A FAIRE //
         {
             CnxBDD();
         }
-
 
         //Fonction pour la connexion à la base de donnée
         private void CnxBDD()
