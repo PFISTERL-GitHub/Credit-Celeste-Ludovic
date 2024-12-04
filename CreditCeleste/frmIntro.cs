@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CreditCeleste
 {
@@ -28,12 +29,6 @@ namespace CreditCeleste
                 cboCiv.Text = Globales.unClient.getCivClient();
                 txtNom.Text = Globales.unClient.getNomClient();
                 txtPrenom.Text = Globales.unClient.getPrenomClient();
-            }
-
-            if (Globales.uneVoiture != null)
-            {
-                // récupération des éléments de voiture
-                txtNouvVhc.Text = Globales.uneVoiture.getNomVehicule();
             }
 
             // FAIRE AUSSI POUR ANCIEN VEHICULE //
@@ -61,27 +56,14 @@ namespace CreditCeleste
 
             string vendeur = cboVendeur.Text;
 
-            string nouveauVehicule = txtNouvVhc.Text;
-            string ancienVehicule = txtAncVhc.Text;
 
             // Verification de la saisie
-            if (verifierSaisie(civilite, nom, prenom, vendeur, nouveauVehicule, ancienVehicule))
+            if (verifierSaisie(civilite, nom, prenom, vendeur ))
             {
                 // Sauvegarde dans Globales
                 Globales.unClient = new Client(civilite, nom, prenom);
                 Globales.nomVendeur = vendeur;
 
-                // Sauvegarde voiture si existant
-                if (!string.IsNullOrEmpty(nouveauVehicule))
-                {
-                    Globales.uneVoiture = new Voiture(nouveauVehicule, Globales.btnAgeCocher);
-                }
-                
-                // PAS SUR //
-                if (!string.IsNullOrEmpty(ancienVehicule))
-                {
-                    Globales.uneVoiture = new Voiture(ancienVehicule, Globales.btnAgeCocher);
-                }
 
                 // Affiche nom vendeur
                 lblVendeur.Text = vendeur;
@@ -89,9 +71,7 @@ namespace CreditCeleste
                 // Affiche un message
                 string affichage =
                     "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
-                    "Vendeur: " + vendeur + Environment.NewLine +
-                    "Nouveau Vehicule: " + nouveauVehicule + Environment.NewLine +
-                    "Ancien Vehicule: " + ancienVehicule;
+                    "Vendeur: " + vendeur + Environment.NewLine; 
 
                 MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -101,7 +81,7 @@ namespace CreditCeleste
         }
 
         // Fonction pour vérifier si les saisies sont valides
-        private bool verifierSaisie(string civilite, string nom, string prenom, string vendeur, string nouveauVehicule, string ancienVehicule)
+        private bool verifierSaisie(string civilite, string nom, string prenom, string vendeur)
         {
             // Variable
             bool valeur = true;
@@ -112,12 +92,6 @@ namespace CreditCeleste
                 // Affiche un message d'erreur
                 MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 valeur = false; // Retourne faux si une valeur n'est pas saisie
-            }
-            else if (string.IsNullOrWhiteSpace(nouveauVehicule) && string.IsNullOrWhiteSpace(ancienVehicule))
-            {
-                // Affiche un message d'erreur
-                MessageBox.Show("Veuillez entrer un véhicule (nouveau ou ancien).", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                valeur = false; // Retourne faux si les deux valeur sont pas saisie
             }
 
             // Retourne la Variable
@@ -161,17 +135,14 @@ namespace CreditCeleste
             try
             {
                 // Sauvegarde le texte saisi dans des variables
-                string civilite = cboCiv.Text;
-                string nom = txtNom.Text;
-                string prenom = txtPrenom.Text;
+                string civiliteC = cboCiv.Text;
+                string nomC = txtNom.Text;
+                string prenomC = txtPrenom.Text;
+                int numV = cboVendeur.SelectedIndex + 1;
 
-                string vendeur = cboVendeur.Text;
-
-                string nouveauVehicule = txtNouvVhc.Text;
-                string ancienVehicule = txtAncVhc.Text;
 
                 // Requête SQL pour insérer les données
-                string query = "INSERT INTO TEST (civ, nom, prenom, vendeur, anVhc, nvVhc) Values (@civ, @nom, @prenom, @vendeur, @nvvhc, @anvhc)";
+                string query = "INSERT INTO CLIENT (civ, nom, prenom, numV) Values (@civC, @nomC, @prenomC, @numV) ";
 
                 using (SqlConnection oConnexion = new SqlConnection(Globales.connectionString))
                 {
@@ -180,23 +151,11 @@ namespace CreditCeleste
                     using (SqlCommand cmd = new SqlCommand(query, oConnexion))
                     {
 
-                        cmd.Parameters.Add(new SqlParameter("@civ", SqlDbType.NVarChar) { Value = civilite });
-                        cmd.Parameters.Add(new SqlParameter("@nom", SqlDbType.NVarChar) { Value = nom });
-                        cmd.Parameters.Add(new SqlParameter("@prenom", SqlDbType.NVarChar) { Value = prenom });
-                        cmd.Parameters.Add(new SqlParameter("@vendeur", SqlDbType.NVarChar) { Value = vendeur });
-                        cmd.Parameters.Add(new SqlParameter("@nvvhc", SqlDbType.NVarChar) { Value = nouveauVehicule });
-                        cmd.Parameters.Add(new SqlParameter("@anvhc", SqlDbType.NVarChar) { Value = ancienVehicule });
+                        cmd.Parameters.Add(new SqlParameter("@civC", SqlDbType.NVarChar) { Value = civiliteC });
+                        cmd.Parameters.Add(new SqlParameter("@nomC", SqlDbType.NVarChar) { Value = nomC });
+                        cmd.Parameters.Add(new SqlParameter("@prenomC", SqlDbType.NVarChar) { Value = prenomC });
+                        cmd.Parameters.Add(new SqlParameter("@numV", SqlDbType.Int) { Value = numV });
 
-
-                        //// Ajouter les paramètres avec les bons types
-                        //if (verifChampsClients(civilite, nom, prenom, vendeur))
-                        //{
-
-                        //}
-                        //else if (verifChampsVoitures(nouveauVehicule, ancienVehicule))
-                        //{
-
-                        //}
 
                         // Exécuter la commande
                         int rowsAffected = cmd.ExecuteNonQuery();

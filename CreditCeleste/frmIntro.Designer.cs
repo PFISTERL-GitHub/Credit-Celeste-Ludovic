@@ -36,10 +36,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtNouvVhc = new System.Windows.Forms.TextBox();
-            this.txtAncVhc = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnEnregistre = new System.Windows.Forms.Button();
             this.btnVoiture = new System.Windows.Forms.Button();
             this.btnValider = new System.Windows.Forms.Button();
@@ -56,120 +52,75 @@
             "M.",
             "Mme.",
             "Mlle."});
-            this.cboCiv.Location = new System.Drawing.Point(108, 13);
-            this.cboCiv.Margin = new System.Windows.Forms.Padding(4);
+            this.cboCiv.Location = new System.Drawing.Point(81, 11);
             this.cboCiv.Name = "cboCiv";
-            this.cboCiv.Size = new System.Drawing.Size(160, 24);
+            this.cboCiv.Size = new System.Drawing.Size(239, 21);
             this.cboCiv.TabIndex = 0;
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(108, 45);
-            this.txtNom.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNom.Location = new System.Drawing.Point(81, 37);
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(159, 22);
+            this.txtNom.Size = new System.Drawing.Size(239, 20);
             this.txtNom.TabIndex = 1;
             // 
             // txtPrenom
             // 
-            this.txtPrenom.Location = new System.Drawing.Point(108, 75);
-            this.txtPrenom.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPrenom.Location = new System.Drawing.Point(81, 61);
             this.txtPrenom.Name = "txtPrenom";
-            this.txtPrenom.Size = new System.Drawing.Size(159, 22);
+            this.txtPrenom.Size = new System.Drawing.Size(239, 20);
             this.txtPrenom.TabIndex = 2;
             // 
             // cboVendeur
             // 
             this.cboVendeur.FormattingEnabled = true;
-            this.cboVendeur.Location = new System.Drawing.Point(109, 105);
-            this.cboVendeur.Margin = new System.Windows.Forms.Padding(4);
+            this.cboVendeur.Location = new System.Drawing.Point(82, 85);
             this.cboVendeur.Name = "cboVendeur";
-            this.cboVendeur.Size = new System.Drawing.Size(159, 24);
+            this.cboVendeur.Size = new System.Drawing.Size(238, 21);
             this.cboVendeur.TabIndex = 3;
             this.cboVendeur.SelectedIndexChanged += new System.EventHandler(this.cboVendeur_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(10, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 17);
+            this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Civilité*";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 48);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(10, 39);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 17);
+            this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Nom*";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 78);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(10, 63);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 17);
+            this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Prénom*";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 108);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(10, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 17);
+            this.label4.Size = new System.Drawing.Size(51, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Vendeur*";
             // 
-            // txtNouvVhc
-            // 
-            this.txtNouvVhc.Location = new System.Drawing.Point(471, 13);
-            this.txtNouvVhc.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNouvVhc.Name = "txtNouvVhc";
-            this.txtNouvVhc.Size = new System.Drawing.Size(164, 22);
-            this.txtNouvVhc.TabIndex = 9;
-            // 
-            // txtAncVhc
-            // 
-            this.txtAncVhc.Location = new System.Drawing.Point(471, 43);
-            this.txtAncVhc.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAncVhc.Name = "txtAncVhc";
-            this.txtAncVhc.Size = new System.Drawing.Size(164, 22);
-            this.txtAncVhc.TabIndex = 10;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(309, 16);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(154, 17);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Mon Nouveau Vehicule";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(309, 46);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 17);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Mon Ancien Vehicule";
-            // 
             // btnEnregistre
             // 
-            this.btnEnregistre.Location = new System.Drawing.Point(352, 285);
-            this.btnEnregistre.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEnregistre.Location = new System.Drawing.Point(304, 196);
             this.btnEnregistre.Name = "btnEnregistre";
-            this.btnEnregistre.Size = new System.Drawing.Size(100, 35);
+            this.btnEnregistre.Size = new System.Drawing.Size(156, 28);
             this.btnEnregistre.TabIndex = 13;
             this.btnEnregistre.Text = "Enregistrer";
             this.btnEnregistre.UseVisualStyleBackColor = true;
@@ -177,22 +128,20 @@
             // 
             // btnVoiture
             // 
-            this.btnVoiture.Location = new System.Drawing.Point(13, 285);
-            this.btnVoiture.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVoiture.Location = new System.Drawing.Point(346, 73);
             this.btnVoiture.Name = "btnVoiture";
-            this.btnVoiture.Size = new System.Drawing.Size(100, 35);
+            this.btnVoiture.Size = new System.Drawing.Size(110, 28);
             this.btnVoiture.TabIndex = 14;
-            this.btnVoiture.Text = "Voiture";
+            this.btnVoiture.Text = "Voiture Neuve";
             this.btnVoiture.UseVisualStyleBackColor = true;
             this.btnVoiture.Click += new System.EventHandler(this.btnVoiture_Click);
             // 
             // btnValider
             // 
             this.btnValider.Enabled = false;
-            this.btnValider.Location = new System.Drawing.Point(460, 285);
-            this.btnValider.Margin = new System.Windows.Forms.Padding(4);
+            this.btnValider.Location = new System.Drawing.Point(304, 229);
             this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(175, 35);
+            this.btnValider.Size = new System.Drawing.Size(156, 28);
             this.btnValider.TabIndex = 15;
             this.btnValider.Text = "Valider";
             this.btnValider.UseVisualStyleBackColor = true;
@@ -201,29 +150,26 @@
             // lblVendeur
             // 
             this.lblVendeur.AutoSize = true;
-            this.lblVendeur.Location = new System.Drawing.Point(106, 183);
-            this.lblVendeur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblVendeur.Location = new System.Drawing.Point(80, 149);
             this.lblVendeur.Name = "lblVendeur";
-            this.lblVendeur.Size = new System.Drawing.Size(12, 17);
+            this.lblVendeur.Size = new System.Drawing.Size(12, 13);
             this.lblVendeur.TabIndex = 27;
             this.lblVendeur.Text = "/";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 183);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(10, 149);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 17);
+            this.label7.Size = new System.Drawing.Size(50, 13);
             this.label7.TabIndex = 26;
             this.label7.Text = "Vendeur:";
             // 
             // btnVoitureOccasion
             // 
-            this.btnVoitureOccasion.Location = new System.Drawing.Point(121, 285);
-            this.btnVoitureOccasion.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVoitureOccasion.Location = new System.Drawing.Point(346, 13);
             this.btnVoitureOccasion.Name = "btnVoitureOccasion";
-            this.btnVoitureOccasion.Size = new System.Drawing.Size(146, 35);
+            this.btnVoitureOccasion.Size = new System.Drawing.Size(110, 28);
             this.btnVoitureOccasion.TabIndex = 28;
             this.btnVoitureOccasion.Text = "Voiture Occassion";
             this.btnVoitureOccasion.UseVisualStyleBackColor = true;
@@ -231,10 +177,9 @@
             // 
             // btnInfo
             // 
-            this.btnInfo.Location = new System.Drawing.Point(13, 242);
-            this.btnInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnInfo.Location = new System.Drawing.Point(17, 231);
             this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(100, 35);
+            this.btnInfo.Size = new System.Drawing.Size(75, 28);
             this.btnInfo.TabIndex = 29;
             this.btnInfo.Text = "Retour";
             this.btnInfo.UseVisualStyleBackColor = true;
@@ -242,9 +187,9 @@
             // 
             // frmIntro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 333);
+            this.ClientSize = new System.Drawing.Size(472, 271);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.btnVoitureOccasion);
             this.Controls.Add(this.lblVendeur);
@@ -252,10 +197,6 @@
             this.Controls.Add(this.btnValider);
             this.Controls.Add(this.btnVoiture);
             this.Controls.Add(this.btnEnregistre);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtAncVhc);
-            this.Controls.Add(this.txtNouvVhc);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -265,7 +206,6 @@
             this.Controls.Add(this.txtNom);
             this.Controls.Add(this.cboCiv);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmIntro";
             this.ShowIcon = false;
@@ -287,10 +227,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtNouvVhc;
-        private System.Windows.Forms.TextBox txtAncVhc;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnEnregistre;
         private System.Windows.Forms.Button btnVoiture;
         private System.Windows.Forms.Button btnValider;
