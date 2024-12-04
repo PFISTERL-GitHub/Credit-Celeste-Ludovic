@@ -162,7 +162,7 @@ namespace CreditCeleste
             this.gpbDureeAssurance.Size = new System.Drawing.Size(313, 142);
             this.gpbDureeAssurance.TabIndex = 36;
             this.gpbDureeAssurance.TabStop = false;
-            this.gpbDureeAssurance.Text = "Duree Assurance";
+            this.gpbDureeAssurance.Text = "Duree Assurance*";
             this.gpbDureeAssurance.Enter += new System.EventHandler(this.gpbDureeAssurance_Enter);
             // 
             // rdbQuatreAns
