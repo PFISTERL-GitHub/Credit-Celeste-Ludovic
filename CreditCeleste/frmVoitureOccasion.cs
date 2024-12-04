@@ -25,70 +25,61 @@ namespace CreditCeleste
         {
             this.Close();
         }
-
-        private bool VerifierSaisie()
-        {
-            //if (string.IsNullOrWhiteSpace(txtNouveauVhc.Text) || string.IsNullOrWhiteSpace(txtDate1ereImat.Text) || string.IsNullOrWhiteSpace(txtNumImmat.Text) || string.IsNullOrWhiteSpace(txtNumSerie.Text) || string.IsNullOrWhiteSpace(txtPuissance.Text))
-            //{
-            //    MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return false;
-            //}
-
-            bool radioSelected = false;
-            foreach (Control xControl in gpbAgeVehicule.Controls)
-            {
-                if (xControl is RadioButton radioButton && radioButton.Checked)
-                {
-                    radioSelected = true;
-                    break;
-                }
-            }
-
-            if (!radioSelected)
-            {
-                MessageBox.Show("Veuillez sélectionner une option d'âge pour le véhicule.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
-        }
-
         private void btnEnregistre_Click(object sender, EventArgs e)
         {
-            if (VerifierSaisie())
+            // Sauvegarde le texte saisi dans des variables
+            string nvVhcOccasion = txtChoixVhcOcca.Text;
+            string Date1ereImmat = txtDate1ereImat.Text;
+            string numImmat = txtNumImmat.Text;
+            string numSerie = txtNumSerie.Text;
+            string Puissance = txtPuissance.Text;
+            string vendeur = Globales.nomVendeur;
+
+            // On verifie la saisie avant de continuer
+            if (verifierSaisie(nvVhcOccasion))
             {
-                // Si la saisie est valide, exécute le reste du code
-                string affichage = "Détails du Nouveau Véhicule : " +
-                                   Environment.NewLine + "Choix Vehicule Occasion : " + txtChoixVhcOcca.Text +
-                                   Environment.NewLine + "Date de Première Immatriculation : " + txtDate1ereImat.Text +
-                                   Environment.NewLine + "Numéro d'Immatriculation : " + txtNumImmat.Text +
-                                   Environment.NewLine + "Numéro de Série : " + txtNumSerie.Text +
-                                   Environment.NewLine + "Puissance : " + txtPuissance.Text;
+                // Sauvegarde dans Globales
+                Globales.uneVoitureOccasion = new VoitureOccasion(nvVhcOccasion, Date1ereImmat, numImmat, numSerie, Puissance, Globales.btnAgeCocher);
 
-                string nvVhcOcca = txtChoixVhcOcca.Text;
-                string Date1ereImmat = txtDate1ereImat.Text;
-                string numImmat = txtNumImmat.Text;
-                string numSerie = txtNumSerie.Text;
-                string Puissance = txtPuissance.Text;
-
-                foreach (Control xControl in gpbAgeVehicule.Controls)
+                // Création nouvelle voiture d'occasion
+                if (!string.IsNullOrEmpty(nvVhcOccasion))
                 {
-                    if (xControl is RadioButton)
-                    {
-                        RadioButton radioButton = xControl as RadioButton;
-
-                        if (radioButton.Checked)
-                        {
-                            Globales.btnAgeCocher = radioButton.Name;
-                            break;
-                        }
-                    }
+                    Globales.uneVoitureOccasion = new VoitureOccasion(nvVhcOccasion, Globales.btnAgeCocher); // Globales.btnAgeCocher ???
                 }
 
-                Globales.uneVoiture = new Voiture(nvVhcOcca, Date1ereImmat, numImmat, numSerie, Puissance, Globales.btnAgeCocher);
+                // Affiche nom vendeur dans le label
+                lblVendeur.Text = vendeur;
+
+                // Affiche un message
+                string affichage = "Détails du Nouveau Véhicule : " +
+                Environment.NewLine + "Choix Vehicule Occasion : " + txtChoixVhcOcca.Text +
+                Environment.NewLine + "Date de Première Immatriculation : " + txtDate1ereImat.Text +
+                Environment.NewLine + "Numéro d'Immatriculation : " + txtNumImmat.Text +
+                Environment.NewLine + "Numéro de Série : " + txtNumSerie.Text +
+                Environment.NewLine + "Puissance : " + txtPuissance.Text;
 
                 MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Active le bouton Valider
+                btnValider.Enabled = true;
             }
+        }
+
+        private bool verifierSaisie(string unNvVhcOcca) // FAIT AU PROPRE //
+        {
+            // Variable
+            bool valeur = true;
+
+            // Verifie les champs obligatoires
+            if (string.IsNullOrWhiteSpace(unNvVhcOcca))
+            {
+                // Affiche un message d'erreur
+                MessageBox.Show("Veuiller choisir un nouveau véhicule d'occasion.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valeur = false; // Retourne faux si une valeur n'est pas saisie
+            }
+
+            // Retourne la Variable
+            return valeur;
         }
 
         private void btnValider_Click(object sender, EventArgs e)
@@ -117,7 +108,8 @@ namespace CreditCeleste
 
                 txtChoixVhcOcca.Text = Globales.uneVoitureOccasion.getNomVehicule();
 
-                if (Globales.uneVoitureOccasion.getNumImmat() != "44458884AE")
+                // récupération des éléments du véhicule d'occasion
+                if (Globales.uneVoitureOccasion != null)
                 {
                     txtDate1ereImat.Text = Globales.uneVoitureOccasion.getDate1ereImmat();
                     txtNumImmat.Text = Globales.uneVoitureOccasion.getNumImmat();
@@ -141,7 +133,6 @@ namespace CreditCeleste
                         }
                     }
                 }
-
             }
         }
 
