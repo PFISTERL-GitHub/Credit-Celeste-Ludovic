@@ -33,6 +33,7 @@ namespace CreditCeleste
 
         public static string nomVendeur;
         public static string btnAgeCocher;
+        public static string btnDureeCocher;
         public static string connectionString = "Data Source=192.168.194.65; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
 
     }
