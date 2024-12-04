@@ -37,101 +37,64 @@ namespace CreditCeleste
             string adrGarage = txtAdrGarage.Text;
             string telGarage = txtTelGarage.Text;
 
-            // On verifie la saisie avant de continuer
-            if (!verifierSaisie(civilite, nom, prenom, dateNaissance, datePermis, numImmatriculation, marqueVoiture, adrGarage, telGarage))
+            // Verification de la saisie
+            if (verifierSaisie(civilite, nom, prenom, dateNaissance, datePermis, numImmatriculation, marqueVoiture, adrGarage, telGarage))
             {
-                // Si une des saisies est vide, on sort de la methode
-                return;
-            }
-
-            foreach (Control xControl in gpbDureeAssurance.Controls)
-            {
-                if (xControl is RadioButton)
+                // Sauvegarde radiobouton
+                foreach (Control xControl in gpbDureeAssurance.Controls)
                 {
-                    RadioButton radioButton = xControl as RadioButton;
-
-                    if (radioButton.Checked)
+                    if (xControl is RadioButton)
                     {
-                        Globales.btnDureeCocher = radioButton.Name;
-                        break;
+                        RadioButton radioButton = xControl as RadioButton;
+
+                        if (radioButton.Checked)
+                        {
+                            Globales.btnDureeCocher = radioButton.Name;
+                            break;
+                        }
                     }
                 }
+
+                // Sauvegarde dans Globales
+                Globales.unClient = new Client(civilite, nom, prenom);
+
+                // Création d'une assurance
+                Globales.uneAssurance = new Assurance(dateNaissance, datePermis, numImmatriculation, marqueVoiture, adrGarage, telGarage, Globales.btnDureeCocher);
+
+                // Affiche un message
+                string affichage =
+                    "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
+                    "Date de Naissance: " + dateNaissance + Environment.NewLine +
+                    "Info Voiture: " + datePermis + " " + numImmatriculation + " " + marqueVoiture + Environment.NewLine +
+                    "Infos Garage: " + adrGarage + " " + telGarage;
+
+                MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Active le bouton Valider
+                btnValider.Enabled = true;
             }
-
-            // Sauvegarde dans Globales
-            Globales.unClient = new Client(civilite, nom, prenom); // Modifier pour inclure dateNaissance
-
-            // Création d'une assurance
-            Globales.uneAssurance = new Assurance( dateNaissance, datePermis, numImmatriculation, marqueVoiture, adrGarage, telGarage, Globales.btnDureeCocher);
-
-            // Affiche un message
-            string affichage =
-                "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
-                "Date de Naissance: " + dateNaissance + Environment.NewLine +
-                "Info Voiture: " + datePermis + " " + numImmatriculation + " " + marqueVoiture + Environment.NewLine +
-                "Infos Garage: " + adrGarage + " " + telGarage;
-
-            MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Active le bouton Valider
-            btnValider.Enabled = true;
         }
 
-        private bool verifierSaisie(string civilite, string nom, string prenom, string dateNaissance, string datePermis, string numImmatriculation, string marqueVoiture, string adrGarage, string telGarage) // FAIT AU PROPRE //
+        // Fonction pour vérifier si les saisies sont valides
+        private bool verifierSaisie(string civilite, string nom, string prenom, string dateNaissance, string datePermis, string numImmatriculation, string marqueVoiture, string adrGarage, string telGarage)
         {
             // Variable
             bool valeur = true;
 
-            // A PATCH //
-            // Verifie les champs obligatoires
-            //if (verifChampsClients(civilite, nom, prenom, vendeur))
+            // A CHANGE //
+            //// Verifie les champs obligatoires
+            //if (string.IsNullOrWhiteSpace(civilite) || string.IsNullOrWhiteSpace(nom) || string.IsNullOrWhiteSpace(prenom) || string.IsNullOrWhiteSpace(vendeur))
             //{
             //    // Affiche un message d'erreur
             //    MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //    // Retourne faux si une valeur est pas saisie
-            //    valeur = false;
+            //    valeur = false; // Retourne faux si une valeur n'est pas saisie
             //}
-            //else if (verifChampsVoitures(nouveauVehicule, ancienVehicule))
+            //else if (string.IsNullOrWhiteSpace(nouveauVehicule) && string.IsNullOrWhiteSpace(ancienVehicule))
             //{
             //    // Affiche un message d'erreur
             //    MessageBox.Show("Veuillez entrer un véhicule (nouveau ou ancien).", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //    // Retourne faux si une valeur est pas saisie
-            //    valeur = false;
+            //    valeur = false; // Retourne faux si les deux valeur sont pas saisie
             //}
-
-            // Retourne la Variable
-            return valeur;
-        }
-
-        private bool verifChampsClients(string civilite, string nom, string prenom, string vendeur)
-        {
-            // Variable
-            bool valeur = true;
-
-            // Verifie les champs obligatoires
-            if (string.IsNullOrWhiteSpace(civilite) || string.IsNullOrWhiteSpace(nom) || string.IsNullOrWhiteSpace(prenom) || string.IsNullOrWhiteSpace(vendeur))
-            {
-                // Retourne faux si une valeur est pas saisie
-                valeur = false;
-            }
-
-            // Retourne la Variable
-            return valeur;
-        }
-
-        private bool verifChampsVoitures(string nouveauVehicule, string ancienVehicule)
-        {
-            // Variable
-            bool valeur = true;
-
-            // Verifie les champs obligatoires
-            if (string.IsNullOrWhiteSpace(nouveauVehicule) && string.IsNullOrWhiteSpace(ancienVehicule))
-            {
-                // Retourne faux si une valeur est pas saisie
-                valeur = false;
-            }
 
             // Retourne la Variable
             return valeur;
