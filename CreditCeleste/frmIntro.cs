@@ -65,41 +65,38 @@ namespace CreditCeleste
             string ancienVehicule = txtAncVhc.Text;
 
             // On verifie la saisie avant de continuer
-            if (!verifierSaisie(civilite, nom, prenom, vendeur, nouveauVehicule, ancienVehicule))
+            if (verifierSaisie(civilite, nom, prenom, vendeur, nouveauVehicule, ancienVehicule))
             {
-                // Si une des saisies est vide, on sort de la methode
-                return;
+                // Sauvegarde dans Globales
+                Globales.unClient = new Client(civilite, nom, prenom);
+
+                Globales.nomVendeur = vendeur;
+
+                // Création nouvelle voiture
+                if (!string.IsNullOrEmpty(nouveauVehicule))
+                {
+                    Globales.uneVoiture = new Voiture(nouveauVehicule, Globales.btnAgeCocher); // Globales.btnAgeCocher ???
+                }
+                else if (!string.IsNullOrEmpty(ancienVehicule))
+                {
+                    Globales.uneVoiture = new Voiture(ancienVehicule, Globales.btnAgeCocher); // Globales.btnAgeCocher ???
+                }
+
+                // Affiche nom vendeur dans le label
+                lblVendeur.Text = vendeur;
+
+                // Affiche un message
+                string affichage =
+                    "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
+                    "Vendeur: " + vendeur + Environment.NewLine +
+                    "Nouveau Vehicule: " + nouveauVehicule + Environment.NewLine +
+                    "Ancien Vehicule: " + ancienVehicule;
+
+                MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Active le bouton Valider
+                btnValider.Enabled = true;
             }
-
-            // Sauvegarde dans Globales
-            Globales.unClient = new Client(civilite, nom, prenom);
-
-            Globales.nomVendeur = vendeur;
-
-            // Création nouvelle voiture
-            if (!string.IsNullOrEmpty(nouveauVehicule))
-            {
-                Globales.uneVoiture = new Voiture(nouveauVehicule, Globales.btnAgeCocher); // Globales.btnAgeCocher ???
-            }
-            else if (!string.IsNullOrEmpty(ancienVehicule))
-            {
-                Globales.uneVoiture = new Voiture(ancienVehicule, Globales.btnAgeCocher); // Globales.btnAgeCocher ???
-            }
-
-            // Affiche nom vendeur dans le label
-            lblVendeur.Text = vendeur;
-
-            // Affiche un message
-            string affichage =
-                "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
-                "Vendeur: " + vendeur + Environment.NewLine +
-                "Nouveau Vehicule: " + nouveauVehicule + Environment.NewLine +
-                "Ancien Vehicule: " + ancienVehicule;
-
-            MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Active le bouton Valider
-            btnValider.Enabled = true;
         }
 
         // Fonction pour vérifier si les saisies sont valides
@@ -108,24 +105,19 @@ namespace CreditCeleste
             // Variable
             bool valeur = true;
 
-            // A PATCH //
             // Verifie les champs obligatoires
-            //if (verifChampsClients(civilite, nom, prenom, vendeur))
-            //{
-            //    // Affiche un message d'erreur
-            //    MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //    // Retourne faux si une valeur est pas saisie
-            //    valeur = false;
-            //}
-            //else if (verifChampsVoitures(nouveauVehicule, ancienVehicule))
-            //{
-            //    // Affiche un message d'erreur
-            //    MessageBox.Show("Veuillez entrer un véhicule (nouveau ou ancien).", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //    // Retourne faux si une valeur est pas saisie
-            //    valeur = false;
-            //}
+            if (!verifChampsClients(civilite, nom, prenom, vendeur))
+            {
+                // Affiche un message d'erreur
+                MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valeur = false; // Retourne faux si une valeur n'est pas saisie
+            }
+            else if (!verifChampsVoitures(nouveauVehicule, ancienVehicule))
+            {
+                // Affiche un message d'erreur
+                MessageBox.Show("Veuillez entrer un véhicule (nouveau ou ancien).", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valeur = false; // Retourne faux si une valeur n'est pas saisie
+            }
 
             // Retourne la Variable
             return valeur;
@@ -155,7 +147,7 @@ namespace CreditCeleste
             // Verifie les champs obligatoires
             if (string.IsNullOrWhiteSpace(nouveauVehicule) && string.IsNullOrWhiteSpace(ancienVehicule))
             {
-                // Retourne faux si une valeur est pas saisie
+                // Retourne faux si les deux valeur sont pas saisie
                 valeur = false;
             }
 
