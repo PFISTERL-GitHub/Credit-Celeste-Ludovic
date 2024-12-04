@@ -14,7 +14,7 @@ namespace CreditCeleste
 {
     public partial class frmTestBDD : Form
     {
-        private string connectionString = "Data Source=192.168.194.65; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
+        private string connectionString = "Data Source=10.129.184.127; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
 
         public frmTestBDD()
         {
@@ -25,7 +25,6 @@ namespace CreditCeleste
         {
 
         }
-
         private void cmdLire_Click(object sender, EventArgs e)
         {
             lstTest.Items.Clear(); // Nettoie la ListBox
@@ -79,7 +78,7 @@ namespace CreditCeleste
                 {
                     oConnexion.Open();
 
-                    using (SqlCommand cmd = new SqlCommand(query, oConnexion)) // VOIR AUTRE METHODE //
+                    using (SqlCommand cmd = new SqlCommand(query, oConnexion))
                     {
                         // Ajouter les paramètres avec les bons types
                         cmd.Parameters.Add(new SqlParameter("@Value1", SqlDbType.NVarChar) { Value = value1 });
@@ -116,7 +115,7 @@ namespace CreditCeleste
                 lstTest.Items.Clear(); // Nettoie la ListBox
 
                 // Requête SQL pour supprimer toutes les lignes de la table
-                string query = "DELETE FROM TEST";
+                string query = "DELETE FROM ASSURANCE";
 
                 using (SqlConnection oConnexion = new SqlConnection(connectionString))
                 {
