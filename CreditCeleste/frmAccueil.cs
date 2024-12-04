@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,23 +26,7 @@ namespace CreditCeleste
             lblRegion.Text = Globales.region;
 
             Globales.uneConcession = new Concession("Garage Soares", "66 rue des Voyages");
-
-            // un vendeur
-            Vendeur unVendeur = new Vendeur("M.", "SOARES", "Daniels");
-            Vendeur un2Vendeur = new Vendeur("M.", "BELLER", "Thierry");
-            Vendeur un3Vendeur = new Vendeur("M.", "PFISTER", "Ludo");
-            Vendeur un4Vendeur = new Vendeur("M.", "CIOBOTARU", "Alexandru");
-            Vendeur un5Vendeur = new Vendeur("M.", "BIRD", "Gemini");
-
-            // à stocker dans la liste des vendeurs.
-            //      (une manière de faire)
-            Globales.uneConcession.ajoutVendeur(unVendeur);
-            Globales.uneConcession.ajoutVendeur(un2Vendeur);
-            Globales.uneConcession.ajoutVendeur(un3Vendeur);
-            Globales.uneConcession.ajoutVendeur(un4Vendeur);
-            Globales.uneConcession.ajoutVendeur(un5Vendeur);
-
-            // boucle, select depuis la base de données ?
+            ajoutVendeur();
         }
 
         private void btnIntro_Click(object sender, EventArgs e)
@@ -77,5 +62,36 @@ namespace CreditCeleste
 
             this.Hide();
         }
+
+        private void ajoutVendeur()
+        {
+            using (SqlConnection connection = new SqlConnection(Globales.connectionString))
+            {
+                connection.Open();
+                string query = "SELECT civV, nomV, prenomV FROM VENDEUR"; // Récupère uniquement les infos nécessaires
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Récupération des données et concaténation dans le format souhaité
+                        string civV = reader.GetString(0);
+                        string nomV = reader.GetString(1);
+                        string prenomV = reader.GetString(2);
+
+                        // Création du vendeur avec les données récupérées
+                        Vendeur unVendeur = new Vendeur(civV, nomV, prenomV);
+
+                        // Ajout du vendeur dans la concession
+                        Globales.uneConcession.ajoutVendeur(unVendeur);
+                    }
+                }
+            }
+        }
+
+
+
+
     }
 }
