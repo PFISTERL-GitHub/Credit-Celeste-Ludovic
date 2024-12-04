@@ -14,6 +14,7 @@ namespace CreditCeleste
         private string marque = "Peugeot";
         private string adrGarage = "4 rue Schoch";
         private string telGarage = "012456789";
+        private string rdDuree;
 
         public Assurance()
         {
@@ -26,7 +27,7 @@ namespace CreditCeleste
             datePermis = dtP;
         }
 
-        public Assurance(string dtN, string dtP, string numI, string mrq, string adrG, string telG)
+        public Assurance(string dtN, string dtP, string numI, string mrq, string adrG, string telG, string rdDuree)
         {
             dateNaissance = dtN;
             datePermis = dtP;
@@ -34,6 +35,8 @@ namespace CreditCeleste
             marque = mrq;
             adrGarage = adrG;
             telGarage = telG;
+
+            this.rdDuree = rdDuree;
         }
 
         public string getDateNaissance() { return dateNaissance; }
