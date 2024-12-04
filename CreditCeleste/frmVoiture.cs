@@ -23,20 +23,20 @@ namespace CreditCeleste
 
             if (Globales.uneVoiture != null)
             {
-                //foreach (Control xControl in gpbAgeVehicule.Controls)
-                //{
-                //    if (xControl is RadioButton radioButton)
-                //    {
+                foreach (Control xControl in gpbAgeVehicule.Controls)
+                {
+                    if (xControl is RadioButton radioButton)
+                    {
 
-                //        if (radioButton.Name == Globales.btnAgeCocher)
-                //        {
-                //            radioButton.Checked = true;
-                //            break; // Sort de la boucle une fois trouvé
-                //        }
-                //    }
-                //}
+                        if (radioButton.Name == Globales.btnAgeCocher)
+                        {
+                            radioButton.Checked = true;
+                            break; // Sort de la boucle une fois trouvé
+                        }
+                    }
+                }
 
-                txtNouveauVhc.Text = Globales.uneVoiture.getNomVehicule();
+                txtNouvVhc.Text = Globales.uneVoiture.getNomVehicule();
 
                 if (Globales.uneVoiture.getNumImmat() != "44458884AE")
                 {
@@ -50,154 +50,172 @@ namespace CreditCeleste
             }
             else if (!String.IsNullOrEmpty(Globales.btnAgeCocher))
             {
-                //foreach (Control xControl in gpbAgeVehicule.Controls)
-                //{
-                //    if (xControl is RadioButton radioButton)
-                //    {
+                foreach (Control xControl in gpbAgeVehicule.Controls)
+                {
+                    if (xControl is RadioButton radioButton)
+                    {
 
-                //        if (radioButton.Name == Globales.btnAgeCocher)
-                //        {
-                //            radioButton.Checked = true;
-                //            break; // Sort de la boucle une fois trouvé
-                //        }
-                //    }
-                //}
+                        if (radioButton.Name == Globales.btnAgeCocher)
+                        {
+                            radioButton.Checked = true;
+                            break; // Sort de la boucle une fois trouvé
+                        }
+                    }
+                }
 
             }
+
+            // Desactive le bouton Valider
+            btnValider.Enabled = false;
         }
 
         private void btnIntro_Click(object sender, EventArgs e)
         {
+            // Fermeture de la page VoitureNeuve
             this.Close();
         }
 
-        // Fonction pour vérifier si les saisies sont valides
-        private bool VerifierSaisie()
+        // Fonction pour vérifier les champs obligatoires dans VoitureNeuve
+        private bool verifChampsVoitures(string unNouvVhc)
         {
-            if (string.IsNullOrWhiteSpace(txtNouveauVhc.Text) || string.IsNullOrWhiteSpace(txtDate1ereImmat.Text) || string.IsNullOrWhiteSpace(txtNumImmat.Text) ||  string.IsNullOrWhiteSpace(txtNumSerie.Text) || string.IsNullOrWhiteSpace(txtPuissance.Text))
+            // Variable
+            bool valeur = true;
+
+            // Verifie les champs obligatoires (méthode "est nul ou vide")
+            if (string.IsNullOrWhiteSpace(unNouvVhc))
             {
-                MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false; 
+                // Retourne faux si la valeur n'est pas saisie
+                valeur = false;
             }
-  
-            //bool radioSelected = false;
 
-            //foreach (Control xControl in gpbAgeVehicule.Controls)
-            //{
-            //    if (xControl is RadioButton radioButton && radioButton.Checked)
-            //    {
-            //        radioSelected = true;
-            //        break;
-            //    }
-            //}
-
-            // if (!radioSelected)
-            // {
-            //     MessageBox.Show("Veuillez sélectionner une option d'âge pour le véhicule.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //     return false; 
-            // }
-
-            return true; 
+            // Retourne la variable
+            return valeur;
         }
 
+        // Fonction pour vérifier si les saisies sont valides
+        private bool verifierSaisie(string unNouvVhc)
+        {
+            // Variable
+            bool valeur = true;
+
+            //if (string.IsNullOrWhiteSpace(txtNouvVhc.Text) || string.IsNullOrWhiteSpace(txtDate1ereImmat.Text) || string.IsNullOrWhiteSpace(txtNumImmat.Text) ||  string.IsNullOrWhiteSpace(txtNumSerie.Text) || string.IsNullOrWhiteSpace(txtPuissance.Text))
+            if (!verifChampsVoitures(unNouvVhc))
+            {
+                MessageBox.Show("Veuillez choisir un véhicule.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valeur = false; // Retourne faux si une valeur n'est pas saisie
+            }
+
+            // Retourne la variable
+            return valeur;
+        }
+
+        // Fonction pour le bouton Enregistrer
         private void btnEnregistre_Click(object sender, EventArgs e)
         {
-            if (VerifierSaisie())
+            // Sauvegarde le texte saisi dans des variables
+            string nouvVhc = txtNouvVhc.Text;
+            string date1ereImmat = txtDate1ereImmat.Text;
+            string numImmat = txtNumImmat.Text;
+            string numSerie = txtNumSerie.Text;
+            string puissance = txtPuissance.Text;
+
+            // On vérifie la saisie avant de continuer
+            if (verifierSaisie(nouvVhc))
             {
-                // Si la saisie est valide, exécute le reste du code
+                foreach (Control xControl in gpbAgeVehicule.Controls)
+                {
+                    if (xControl is RadioButton)
+                    {
+                        RadioButton radioButton = xControl as RadioButton;
+                        if (radioButton.Checked)
+                        {
+                            Globales.btnAgeCocher = radioButton.Name;
+                            break;
+                        }
+                    }
+                }
+
+                // Création nouvelle voiture
+                if (!string.IsNullOrEmpty(nouvVhc))
+                {
+                    Globales.uneVoiture = new Voiture(nouvVhc, Globales.btnAgeCocher); // Globales.btnAgeCocher ???
+                }
+
+                // Affiche un message
                 string affichage = "Détails du Nouveau Véhicule : " +
-                                   Environment.NewLine + "Nom du véhicule : " + txtNouveauVhc.Text +
+                                   Environment.NewLine + "Nom du véhicule : " + txtNouvVhc.Text +
                                    Environment.NewLine + "Date de première immatriculation : " + txtDate1ereImmat.Text +
                                    Environment.NewLine + "Numéro d'immatriculation : " + txtNumImmat.Text +
                                    Environment.NewLine + "Numéro de série : " + txtNumSerie.Text +
                                    Environment.NewLine + "Puissance : " + txtPuissance.Text;
 
-                string nouveauVhc = txtNouveauVhc.Text;
-                string date1ereImmat = txtDate1ereImmat.Text;
-                string numImmat = txtNumImmat.Text;
-                string numSerie = txtNumSerie.Text;
-                string puissance = txtPuissance.Text;
-
-                //foreach (Control xControl in gpbAgeVehicule.Controls)
-                //{
-                //    if (xControl is RadioButton)
-                //    {
-                //        RadioButton radioButton = xControl as RadioButton;
-
-                //        if (radioButton.Checked)
-                //        {
-                //            Globales.btnAgeCocher = radioButton.Name;
-                //            break;
-                //        }
-                //    }
-                //}
-
-                Globales.uneVoiture = new Voiture(nouveauVhc, date1ereImmat, numImmat, numSerie, puissance, Globales.btnAgeCocher);
-
+                // L'affichage de la boîte de dialogue
                 MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Active le bouton Valider
+                btnValider.Enabled = true;
             }
         }
 
+        // Fonction pour le bouton Valider
         private void btnValider_Click(object sender, EventArgs e)
         {
+            // Ferme l'application
             Application.Exit();
         }
 
+        // Redirection vers la page Assurance
         private void btnAssurance_Click(object sender, EventArgs e)
         {
-            // creation et ouverture de Assurance
+            // Création et ouverture de Assurance
             Globales.fenAssurance = new frmAssurance();
             Globales.fenAssurance.FormClosed += new FormClosedEventHandler(FenAssurance_FormClosed);
-            Globales.fenAssurance.Show();
 
+            // Masquer Voiture
             this.Hide();
+
+            // Ouverture de la page Assurance
+            Globales.fenAssurance.Show();
         }
 
         void FenAssurance_FormClosed(object sender, FormClosedEventArgs e)  // que faire a la fermeture de Assurance
         {
+            // Affiche VoitureNeuve à la fermeture de Assurance
             this.Show();
 
             if (Globales.uneVoiture != null)
             {
-                //foreach (Control xControl in gpbAgeVehicule.Controls)
-                //{
-                //    if (xControl is RadioButton radioButton)
-                //    {
-
-                //        if (radioButton.Name == Globales.btnAgeCocher)
-                //        {
-                //            radioButton.Checked = true;
-                //            break; // Sort de la boucle une fois trouvé
-                //        }
-                //    }
-                //}
+                foreach (Control xControl in gpbAgeVehicule.Controls)
+                {
+                    if (xControl is RadioButton radioButton)
+                    {
+                        if (radioButton.Name == Globales.btnAgeCocher)
+                        {
+                            radioButton.Checked = true;
+                            break; // Sort de la boucle une fois trouvé
+                        }
+                    }
+                }
 
                 if (!String.IsNullOrEmpty(Globales.uneVoiture.getNomVehicule()))
                 {
-                    txtNouveauVhc.Text = Globales.uneVoiture.getNomVehicule();
+                    txtNouvVhc.Text = Globales.uneVoiture.getNomVehicule();
                 }
             }
             else if (!String.IsNullOrEmpty(Globales.btnAgeCocher))
             {
-                //foreach (Control xControl in gpbAgeVehicule.Controls)
-                //{
-                //    if (xControl is RadioButton radioButton)
-                //    {
-
-                //        if (radioButton.Name == Globales.btnAgeCocher)
-                //        {
-                //            radioButton.Checked = true;
-                //            break; // Sort de la boucle une fois trouvé
-                //        }
-                //    }
-                //}
-
+                foreach (Control xControl in gpbAgeVehicule.Controls)
+                {
+                    if (xControl is RadioButton radioButton)
+                    {
+                        if (radioButton.Name == Globales.btnAgeCocher)
+                        {
+                            radioButton.Checked = true;
+                            break; // Sort de la boucle une fois trouvé
+                        }
+                    }
+                }
             }
-        }
-
-        private void txtDate1ereImmat_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
