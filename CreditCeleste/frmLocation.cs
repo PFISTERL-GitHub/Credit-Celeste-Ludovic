@@ -37,6 +37,9 @@ namespace CreditCeleste
             string adrGarage = txtAdrGarage.Text;
             string telGarage = txtTelGarage.Text;
 
+            Globales.uneVoitureLocation = new VoitureLocation(vhcLocation, kilometrage);
+
+
             // Verification de la saisie
             if (verifierSaisie(civilite, nom, prenom, dateNaissance, datePermis, vhcLocation, kilometrage, adrGarage, telGarage))
             {
@@ -59,7 +62,7 @@ namespace CreditCeleste
                 Globales.unClient = new Client(civilite, nom, prenom);
 
                 // Création d'une assurance
-                Globales.uneAssurance = new Assurance(dateNaissance, datePermis, vhcLocation, kilometrage, adrGarage, telGarage, Globales.btnDureeCocher);
+                Globales.uneLocation = new Location(dateNaissance, datePermis, vhcLocation, kilometrage, adrGarage, telGarage, Globales.btnDureeCocher);
 
                 // Affiche un message
                 string affichage =

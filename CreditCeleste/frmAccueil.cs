@@ -89,9 +89,5 @@ namespace CreditCeleste
                 }
             }
         }
-
-
-
-
     }
 }

@@ -126,7 +126,7 @@ namespace CreditCeleste
                 }
 
                 // Recupere numImmat
-                if (Globales.uneVoiture.getNumImmat() != "44458884AE")
+                if (Globales.uneVoitureOccasion.getNumImmat() != "44458884AE")
                 {
                     txtNumImmat.Text = Globales.uneVoitureOccasion.getNumImmat();
                 }
