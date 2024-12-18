@@ -184,37 +184,19 @@ namespace CreditCeleste
                 string prenomC = txtPrenom.Text;
                 int numV = cboVendeur.SelectedIndex + 1;
 
-
                 // Requête SQL pour insérer les données
                 string query = "INSERT INTO CLIENT (civ, nom, prenom, numV) Values (@civC, @nomC, @prenomC, @numV) ";
 
-                using (SqlConnection oConnexion = new SqlConnection(Globales.connectionString))
+                // Utilisation de DatabaseManager pour exécuter la requête
+                Globales.dbManager.ExecuteQuery(query, cmd =>
                 {
-                    oConnexion.Open();
+                    cmd.Parameters.Add(new SqlParameter("@civC", SqlDbType.NVarChar) { Value = civiliteC });
+                    cmd.Parameters.Add(new SqlParameter("@nomC", SqlDbType.NVarChar) { Value = nomC });
+                    cmd.Parameters.Add(new SqlParameter("@prenomC", SqlDbType.NVarChar) { Value = prenomC });
+                    cmd.Parameters.Add(new SqlParameter("@numV", SqlDbType.Int) { Value = numV });
+                });
 
-                    using (SqlCommand cmd = new SqlCommand(query, oConnexion))
-                    {
-
-                        cmd.Parameters.Add(new SqlParameter("@civC", SqlDbType.NVarChar) { Value = civiliteC });
-                        cmd.Parameters.Add(new SqlParameter("@nomC", SqlDbType.NVarChar) { Value = nomC });
-                        cmd.Parameters.Add(new SqlParameter("@prenomC", SqlDbType.NVarChar) { Value = prenomC });
-                        cmd.Parameters.Add(new SqlParameter("@numV", SqlDbType.Int) { Value = numV });
-
-
-                        // Exécuter la commande
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        // Retour utilisateur
-                        if (rowsAffected > 0) {
-                            MessageBox.Show("Les données ont été enregistrées avec succès !");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Aucune donnée n'a été enregistrée.");
-                        }
-                    }
-                }
-
+                MessageBox.Show("Les données ont été enregistrées avec succès !");
             }
             catch (Exception ex)
             {
