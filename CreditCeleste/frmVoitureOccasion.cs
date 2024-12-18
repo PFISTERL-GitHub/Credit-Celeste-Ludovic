@@ -25,61 +25,70 @@ namespace CreditCeleste
         {
             this.Close();
         }
-        private void btnEnregistre_Click(object sender, EventArgs e)
+
+        private bool VerifierSaisie()
         {
-            // Sauvegarde le texte saisi dans des variables
-            string nvVhcOccasion = txtChoixVhcOcca.Text;
-            string Date1ereImmat = txtDate1ereImat.Text;
-            string numImmat = txtNumImmat.Text;
-            string numSerie = txtNumSerie.Text;
-            string Puissance = txtPuissance.Text;
-            string vendeur = Globales.nomVendeur;
+            //if (string.IsNullOrWhiteSpace(txtNouveauVhc.Text) || string.IsNullOrWhiteSpace(txtDate1ereImat.Text) || string.IsNullOrWhiteSpace(txtNumImmat.Text) || string.IsNullOrWhiteSpace(txtNumSerie.Text) || string.IsNullOrWhiteSpace(txtPuissance.Text))
+            //{
+            //    MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
 
-            // On verifie la saisie avant de continuer
-            if (verifierSaisie(nvVhcOccasion))
+            bool radioSelected = false;
+            foreach (Control xControl in gpbAgeVehicule.Controls)
             {
-                // Sauvegarde dans Globales
-                Globales.uneVoitureOccasion = new VoitureOccasion(nvVhcOccasion, Date1ereImmat, numImmat, numSerie, Puissance, Globales.btnAgeCocher);
-
-                // Création nouvelle voiture d'occasion
-                if (!string.IsNullOrEmpty(nvVhcOccasion))
+                if (xControl is RadioButton radioButton && radioButton.Checked)
                 {
-                    Globales.uneVoitureOccasion = new VoitureOccasion(nvVhcOccasion, Globales.btnAgeCocher); // Globales.btnAgeCocher ???
+                    radioSelected = true;
+                    break;
                 }
-
-                // Affiche nom vendeur dans le label
-                lblVendeur.Text = vendeur;
-
-                // Affiche un message
-                string affichage = "Détails du Nouveau Véhicule : " +
-                Environment.NewLine + "Choix Vehicule Occasion : " + txtChoixVhcOcca.Text +
-                Environment.NewLine + "Date de Première Immatriculation : " + txtDate1ereImat.Text +
-                Environment.NewLine + "Numéro d'Immatriculation : " + txtNumImmat.Text +
-                Environment.NewLine + "Numéro de Série : " + txtNumSerie.Text +
-                Environment.NewLine + "Puissance : " + txtPuissance.Text;
-
-                MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Active le bouton Valider
-                btnValider.Enabled = true;
             }
+
+            if (!radioSelected)
+            {
+                MessageBox.Show("Veuillez sélectionner une option d'âge pour le véhicule.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
 
-        private bool verifierSaisie(string unNvVhcOcca) // FAIT AU PROPRE //
+        private void btnEnregistre_Click(object sender, EventArgs e)
         {
-            // Variable
-            bool valeur = true;
-
-            // Verifie les champs obligatoires
-            if (string.IsNullOrWhiteSpace(unNvVhcOcca))
+            if (VerifierSaisie())
             {
-                // Affiche un message d'erreur
-                MessageBox.Show("Veuiller choisir un nouveau véhicule d'occasion.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                valeur = false; // Retourne faux si une valeur n'est pas saisie
-            }
+                // Si la saisie est valide, exécute le reste du code
+                string affichage = "Détails du Nouveau Véhicule : " +
+                                   Environment.NewLine + "Choix Vehicule Occasion : " + txtChoixVhcOcca.Text +
+                                   Environment.NewLine + "Date de Première Immatriculation : " + txtDate1ereImat.Text +
+                                   Environment.NewLine + "Numéro d'Immatriculation : " + txtNumImmat.Text +
+                                   Environment.NewLine + "Numéro de Série : " + txtNumSerie.Text +
+                                   Environment.NewLine + "Puissance : " + txtPuissance.Text;
 
-            // Retourne la Variable
-            return valeur;
+                string nvVhcOcca = txtChoixVhcOcca.Text;
+                string Date1ereImmat = txtDate1ereImat.Text;
+                string numImmat = txtNumImmat.Text;
+                string numSerie = txtNumSerie.Text;
+                string Puissance = txtPuissance.Text;
+
+                foreach (Control xControl in gpbAgeVehicule.Controls)
+                {
+                    if (xControl is RadioButton)
+                    {
+                        RadioButton radioButton = xControl as RadioButton;
+
+                        if (radioButton.Checked)
+                        {
+                            Globales.btnAgeCocher = radioButton.Name;
+                            break;
+                        }
+                    }
+                }
+
+                Globales.uneVoiture = new Voiture(nvVhcOcca, Date1ereImmat, numImmat, numSerie, Puissance, Globales.btnAgeCocher);
+
+                MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnValider_Click(object sender, EventArgs e)
@@ -108,8 +117,7 @@ namespace CreditCeleste
 
                 txtChoixVhcOcca.Text = Globales.uneVoitureOccasion.getNomVehicule();
 
-                // récupération des éléments du véhicule d'occasion
-                if (Globales.uneVoitureOccasion != null)
+                if (Globales.uneVoitureOccasion.getNumImmat() != "44458884AE")
                 {
                     txtDate1ereImat.Text = Globales.uneVoitureOccasion.getDate1ereImmat();
                     txtNumImmat.Text = Globales.uneVoitureOccasion.getNumImmat();
@@ -133,6 +141,7 @@ namespace CreditCeleste
                         }
                     }
                 }
+
             }
         }
 
