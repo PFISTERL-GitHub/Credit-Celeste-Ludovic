@@ -43,6 +43,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnVoitureOccasion = new System.Windows.Forms.Button();
             this.btnInfo = new System.Windows.Forms.Button();
+            this.btnLocation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cboCiv
@@ -185,11 +186,22 @@
             this.btnInfo.UseVisualStyleBackColor = true;
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
+            // btnLocation
+            // 
+            this.btnLocation.Location = new System.Drawing.Point(346, 134);
+            this.btnLocation.Name = "btnLocation";
+            this.btnLocation.Size = new System.Drawing.Size(110, 28);
+            this.btnLocation.TabIndex = 30;
+            this.btnLocation.Text = "Location";
+            this.btnLocation.UseVisualStyleBackColor = true;
+            this.btnLocation.Click += new System.EventHandler(this.btnLocation_Click_1);
+            // 
             // frmIntro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 271);
+            this.Controls.Add(this.btnLocation);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.btnVoitureOccasion);
             this.Controls.Add(this.lblVendeur);
@@ -234,5 +246,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnVoitureOccasion;
         private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Button btnLocation;
     }
 }

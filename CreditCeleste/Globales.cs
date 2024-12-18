@@ -6,41 +6,38 @@ using System.Threading.Tasks;
 
 namespace CreditCeleste
 {
-    static class Globales
+    static class Globales   // pas la peine de faire un new, classe statique
     {
-        // Variables globales de l'application
-        public static string nomUtilisateur = "TLAD";
+        // DTLA = Daniels, Thierry, Ludo, Alexandru
+
+        // public string nomUtilisateur = "DTLA";      // un seul ;    attribut de l'objet
+
+        // utilisateur et region
+        public static string nomUtilisateur = "TLAD";   // un seul ;    attribut de classe
         public static string region = "Alsace";
 
-        // Références des formulaires
+        // forms
         public static frmAccueil fenAccueil;
         public static frmIntro fenIntro;
         public static frmVoiture fenVoiture;
         public static frmVoitureOccasion fenVoitureOccasion;
         public static frmAssurance fenAssurance;
+        public static frmLocation fenLocation;
         public static frmTestBDD fenTestBDD;
 
-        // Objets principaux
+        // autre
         public static Concession uneConcession;
         public static Client unClient;
         public static Voiture uneVoiture;
         public static VoitureOccasion uneVoitureOccasion;
+        public static VoitureLocation uneVoitureLocation;
         public static Assurance uneAssurance;
+        public static Location uneLocation;
 
-        // Autres variables globales
         public static string nomVendeur;
         public static string btnAgeCocher;
         public static string btnDureeCocher;
+        public static string connectionString = "Data Source=192.168.2.65; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
 
-        // Chaîne de connexion à la base de données
-        private static string connectionString =
-            "Data Source=192.168.2.65; " +
-            "Initial Catalog=CreditCelesteProjet; " +
-            "User Id=cnxDaniels; " +
-            "password=mdpDaniels@;";
-
-        // Instance unique de DatabaseManager
-        public static DatabaseManager dbManager =
-            new DatabaseManager(connectionString);
     }
 }
