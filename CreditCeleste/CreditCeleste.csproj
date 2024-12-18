@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClientCC">
-      <HintPath>..\..\ClientCC-Alexandru\ClientCC\bin\Debug\ClientCC.dll</HintPath>
+      <HintPath>..\..\ClientCC Alexandru\ClientCC\bin\Debug\ClientCC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Assurance.cs" />
     <Compile Include="Concession.cs" />
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="frmAccueil.cs">
       <SubType>Form</SubType>
     </Compile>
