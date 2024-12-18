@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace CreditCeleste
 {
-    static class Globales   // pas la peine de faire un new, classe statique
+    static class Globales
     {
-        // DTLA = Daniels, Thierry, Ludo, Alexandru
-
-        // public string nomUtilisateur = "DTLA";      // un seul ;    attribut de l'objet
-
-        // utilisateur et region
-        public static string nomUtilisateur = "TLAD";   // un seul ;    attribut de classe
+        // Variables globales de l'application
+        public static string nomUtilisateur = "TLAD";
         public static string region = "Alsace";
 
-        // forms
+        // Références des formulaires
         public static frmAccueil fenAccueil;
         public static frmIntro fenIntro;
         public static frmVoiture fenVoiture;
@@ -24,17 +20,27 @@ namespace CreditCeleste
         public static frmAssurance fenAssurance;
         public static frmTestBDD fenTestBDD;
 
-        // autre
+        // Objets principaux
         public static Concession uneConcession;
         public static Client unClient;
         public static Voiture uneVoiture;
         public static VoitureOccasion uneVoitureOccasion;
         public static Assurance uneAssurance;
 
+        // Autres variables globales
         public static string nomVendeur;
         public static string btnAgeCocher;
         public static string btnDureeCocher;
-        public static string connectionString = "Data Source=192.168.194.65; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
 
+        // Chaîne de connexion à la base de données
+        private static string connectionString =
+            "Data Source=192.168.2.65; " +
+            "Initial Catalog=CreditCelesteProjet; " +
+            "User Id=cnxDaniels; " +
+            "password=mdpDaniels@;";
+
+        // Instance unique de DatabaseManager
+        public static DatabaseManager dbManager =
+            new DatabaseManager(connectionString);
     }
 }

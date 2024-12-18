@@ -65,33 +65,23 @@ namespace CreditCeleste
 
         private void ajoutVendeur()
         {
-            using (SqlConnection connection = new SqlConnection(Globales.connectionString))
+            // Utilisation de DatabaseManager pour exécuter la requête
+            string query = "SELECT civV, nomV, prenomV FROM VENDEUR"; // Récupère uniquement les infos nécessaires
+            DataTable resultTable = Globales.dbManager.ExecuteReader(query);
+
+            foreach (DataRow row in resultTable.Rows)
             {
-                connection.Open();
-                string query = "SELECT civV, nomV, prenomV FROM VENDEUR"; // Récupère uniquement les infos nécessaires
+                // Récupération des données et concaténation dans le format souhaité
+                string civV = row["civV"].ToString();
+                string nomV = row["nomV"].ToString();
+                string prenomV = row["prenomV"].ToString();
 
-                using (SqlCommand command = new SqlCommand(query, connection))
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        // Récupération des données et concaténation dans le format souhaité
-                        string civV = reader.GetString(0);
-                        string nomV = reader.GetString(1);
-                        string prenomV = reader.GetString(2);
+                // Création du vendeur avec les données récupérées
+                Vendeur unVendeur = new Vendeur(civV, nomV, prenomV);
 
-                        // Création du vendeur avec les données récupérées
-                        Vendeur unVendeur = new Vendeur(civV, nomV, prenomV);
-
-                        // Ajout du vendeur dans la concession
-                        Globales.uneConcession.ajoutVendeur(unVendeur);
-                    }
-                }
+                // Ajout du vendeur dans la concession
+                Globales.uneConcession.ajoutVendeur(unVendeur);
             }
         }
-
-
-
-
     }
 }
