@@ -1,16 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CreditCeleste
 {
-    public partial class frmAssurance : Form
+    public partial class frmLocation : Form
     {
-        public frmAssurance()
+        public frmLocation()
         {
             InitializeComponent();
         }
 
-        private void btnRetour_Click(object sender, EventArgs e)
+        private void btnIntro_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -24,17 +31,17 @@ namespace CreditCeleste
             string dateNaissance = txtDtn.Text;
 
             string datePermis = txtDtp.Text;
-            string numImmatriculation = txtNumImmat.Text;
-            string marqueVoiture = txtMarque.Text;
+            string vhcLocation = txtChoixVhcLoc.Text;
+            string kilometrage = txtKilometrage.Text;
 
             string adrGarage = txtAdrGarage.Text;
             string telGarage = txtTelGarage.Text;
 
             // Verification de la saisie
-            if (verifierSaisie(civilite, nom, prenom, dateNaissance, datePermis, numImmatriculation, marqueVoiture, adrGarage, telGarage))
+            if (verifierSaisie(civilite, nom, prenom, dateNaissance, datePermis, vhcLocation, kilometrage, adrGarage, telGarage))
             {
                 // Sauvegarde radiobouton
-                foreach (Control xControl in gpbDureeAssurance.Controls)
+                foreach (Control xControl in gpbDureeLocation.Controls)
                 {
                     if (xControl is RadioButton)
                     {
@@ -52,13 +59,13 @@ namespace CreditCeleste
                 Globales.unClient = new Client(civilite, nom, prenom);
 
                 // Création d'une assurance
-                Globales.uneAssurance = new Assurance(dateNaissance, datePermis, numImmatriculation, marqueVoiture, adrGarage, telGarage, Globales.btnDureeCocher);
+                Globales.uneAssurance = new Assurance(dateNaissance, datePermis, vhcLocation, kilometrage, adrGarage, telGarage, Globales.btnDureeCocher);
 
                 // Affiche un message
                 string affichage =
                     "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
                     "Date de Naissance: " + dateNaissance + Environment.NewLine +
-                    "Info Voiture: " + datePermis + " " + numImmatriculation + " " + marqueVoiture + Environment.NewLine +
+                    "Info Voiture: " + datePermis + " " + vhcLocation + " " + kilometrage + Environment.NewLine +
                     "Infos Garage: " + adrGarage + " " + telGarage;
 
                 MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -98,7 +105,7 @@ namespace CreditCeleste
             Application.Exit();
         }
 
-        private void frmAssurance_Load(object sender, EventArgs e)
+        private void frmLocation_Load(object sender, EventArgs e)
         {
             // Recuperation des informations
             if (Globales.unClient != null)
@@ -110,9 +117,9 @@ namespace CreditCeleste
             }
 
             // Si il y a une Assurance
-            if (Globales.uneAssurance != null)
+            if (Globales.uneLocation != null)
             {
-                foreach (Control xControl in gpbDureeAssurance.Controls)
+                foreach (Control xControl in gpbDureeLocation.Controls)
                 {
                     if (xControl is RadioButton radioButton)
                     {
@@ -126,15 +133,15 @@ namespace CreditCeleste
                 }
 
                 // Recupere numImmat
-                if (Globales.uneVoiture.getNumImmat() != "44458884AE")
+                if (Globales.uneVoitureLocation.getNumImmat() != "44458884AE")
                 {
-                    txtNumImmat.Text = Globales.uneVoitureOccasion.getNumImmat();
+                    txtChoixVhcLoc.Text = Globales.uneVoitureLocation.getNumImmat();
                 }
 
             }
             else if (!String.IsNullOrEmpty(Globales.btnAgeCocher))
             {
-                foreach (Control xControl in gpbDureeAssurance.Controls)
+                foreach (Control xControl in gpbDureeLocation.Controls)
                 {
                     if (xControl is RadioButton radioButton)
                     {
@@ -148,18 +155,11 @@ namespace CreditCeleste
                 }
             }
 
-            // FAIRE AUSSI POUR ANCIEN VEHICULE //
-
             // Affiche nom vendeur dans le label
             lblVendeur.Text = Globales.nomVendeur;
 
             // Desactive le bouton Valider
             btnValider.Enabled = false;
-        }
-
-        private void gpbDureeAssurance_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
