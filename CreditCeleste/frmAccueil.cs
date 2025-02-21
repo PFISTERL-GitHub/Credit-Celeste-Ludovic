@@ -18,6 +18,11 @@ namespace CreditCeleste
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Instancie une concession au chargement
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmAccueil_Load(object sender, EventArgs e)
         {
             // Globales unGlobal = new Globales();
@@ -29,13 +34,13 @@ namespace CreditCeleste
             ajoutVendeur();
         }
 
+        /// <summary>
+        /// Instancie et affiche fenIntroduction. Masque fenAccueil
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnIntro_Click(object sender, EventArgs e)
         {
-            //if(Globales.fenIntro == null)
-            //{
-            //}
-
-            // creation et ouverture de Introduction
             Globales.fenIntro = new frmIntro();
             Globales.fenIntro.FormClosed += new FormClosedEventHandler(FenIntro_FormClosed);
             Globales.fenIntro.Show();
@@ -43,7 +48,12 @@ namespace CreditCeleste
             this.Hide();
         }
 
-        void FenIntro_FormClosed(object sender, FormClosedEventArgs e)  // que faire a la fermeture de Introduction
+        /// <summary>
+        /// Affiche fenAccueil à la fermeture de fenIntro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void FenIntro_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Show();
         }
@@ -53,9 +63,13 @@ namespace CreditCeleste
 
         }
 
-        private void cmdTest_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Instancie et affiche fenTest. Masque fenAccueil
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTest_Click(object sender, EventArgs e)
         {
-            // creation et ouverture de Introduction
             Globales.fenTestBDD = new frmTestBDD();
             Globales.fenTestBDD.FormClosed += new FormClosedEventHandler(FenIntro_FormClosed);
             Globales.fenTestBDD.Show();
@@ -65,8 +79,10 @@ namespace CreditCeleste
 
         private void ajoutVendeur()
         {
+            // Récupère les données de la table Vendeur
+            string query = "SELECT civV, nomV, prenomV FROM VENDEUR";
+
             // Utilisation de DatabaseManager pour exécuter la requête
-            string query = "SELECT civV, nomV, prenomV FROM VENDEUR"; // Récupère uniquement les infos nécessaires
             DataTable resultTable = Globales.dbManager.ExecuteReader(query);
 
             foreach (DataRow row in resultTable.Rows)

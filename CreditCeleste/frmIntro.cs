@@ -19,19 +19,23 @@ namespace CreditCeleste
             InitializeComponent();
         }
 
-        // Ce lance a l'ouverture du le page
+        /// <summary>
+        /// Au chargement
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmIntro_Load(object sender, EventArgs e)
         {
             // Recuperation des informations
             if (Globales.unClient != null)
             {
-                // récupération des éléments du client
+                // Récupération des éléments du client
                 cboCiv.Text = Globales.unClient.getCivClient();
                 txtNom.Text = Globales.unClient.getNomClient();
                 txtPrenom.Text = Globales.unClient.getPrenomClient();
             }
 
-            // FAIRE AUSSI POUR ANCIEN VEHICULE //
+            // TODO FAIRE AUSSI POUR ANCIEN VEHICULE 
 
             // Affiche nom vendeur dans le label
             lblVendeur.Text = Globales.nomVendeur;
@@ -46,7 +50,11 @@ namespace CreditCeleste
             btnValider.Enabled = false;
         }
 
-        // Fonction pour le bouton Enregistrer
+        /// <summary>
+        /// Enregistre la saisie du client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEnregistre_Click(object sender, EventArgs e)
         {
             // Sauvegarde les saisie dans des variables
@@ -58,7 +66,7 @@ namespace CreditCeleste
 
 
             // Verification de la saisie
-            if (verifierSaisie(civilite, nom, prenom, vendeur ))
+            if (verifierSaisie(civilite, nom, prenom, vendeur))
             {
                 // Sauvegarde dans Globales
                 Globales.unClient = new Client(civilite, nom, prenom);
@@ -71,7 +79,7 @@ namespace CreditCeleste
                 // Affiche un message
                 string affichage =
                     "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
-                    "Vendeur: " + vendeur + Environment.NewLine; 
+                    "Vendeur: " + vendeur + Environment.NewLine;
 
                 MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -80,10 +88,16 @@ namespace CreditCeleste
             }
         }
 
-        // Fonction pour vérifier si les saisies sont valides
+        /// <summary>
+        /// Verifie la saisie du client
+        /// </summary>
+        /// <param name="civilite"></param>
+        /// <param name="nom"></param>
+        /// <param name="prenom"></param>
+        /// <param name="vendeur"></param>
+        /// <returns>Faux si une valeur n'est pas saisie, sinon vrai</returns>
         private bool verifierSaisie(string civilite, string nom, string prenom, string vendeur)
         {
-            // Variable
             bool valeur = true;
 
             // Verifie les champs obligatoires
@@ -91,89 +105,107 @@ namespace CreditCeleste
             {
                 // Affiche un message d'erreur
                 MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                valeur = false; // Retourne faux si une valeur n'est pas saisie
+                valeur = false;
             }
 
-            // Retourne la Variable
             return valeur;
         }
 
-        // Fonction pour le bouton Voiture
+        /// <summary>
+        /// Instancie et affiche fenVoiture. Masque fenIntro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVoiture_Click(object sender, EventArgs e)
         {
-            // Creation d'une page VoitureNeuve
             Globales.fenVoiture = new frmVoiture();
             Globales.fenVoiture.FormClosed += new FormClosedEventHandler(FenVoiture_FormClosed);
-
-            // Masquer Intro
-            this.Hide();
-
-            // Ouverture de la page VoitureNeuve
             Globales.fenVoiture.Show();
+
+            this.Hide(); // TODO vérifier l'ordre pour les fonctions Click : d'abord hide ou show ?
         }
 
-        // Que faire a la fermeture de Voiture
+        /// <summary>
+        /// Affiche fenIntro à la fermeture de fenVoiture
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void FenVoiture_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Affiche Intro a la fermeture de VoitureNeuve
             this.Show();
         }
 
-        //Fonction pour le bouton VoitureOccasion
+        /// <summary>
+        /// Instancie et affiche fenVoitureOccasion. Masque fenIntro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVoitureOccasion_Click(object sender, EventArgs e)
         {
-            // Creation d'une page VoitureNeuve
             Globales.fenVoitureOccasion = new frmVoitureOccasion();
             Globales.fenVoitureOccasion.FormClosed += new FormClosedEventHandler(FenVoitureOccasion_FormClosed);
-
-            // Masque Intro
-            this.Hide();
-
-            // Ouverture de la page VoitureNeuve
             Globales.fenVoitureOccasion.Show();
+
+            this.Hide();
         }
 
-        // Que faire a la fermeture de VoitureOccasion
+        /// <summary>
+        /// Affiche fenIntro à la fermeture de fenVoitureOccasion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void FenVoitureOccasion_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Affiche Intro a la fermeture de VoitureOccasion
             this.Show();
         }
 
-        //Fonction pour le bouton Location
+        /// <summary>
+        /// Instancie et affiche fenLocation. Masque fenIntro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLocation_Click(object sender, EventArgs e)
         {
-            // Creation d'une page Location
             Globales.fenLocation = new frmLocation();
             Globales.fenLocation.FormClosed += new FormClosedEventHandler(FenLocation_FormClosed);
-
-            // Masque Intro
-            this.Hide();
-
-            // Ouverture de la page Location
             Globales.fenLocation.Show();
+
+            this.Hide();
         }
 
-        // Que faire a la fermeture de Location
+        /// <summary>
+        /// Affiche fenIntro à la fermeture de fenLocation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void FenLocation_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Affiche Intro a la fermeture de Location
             this.Show();
         }
 
+        /// <summary>
+        /// Met à jour le nom du vendeur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboVendeur_SelectedIndexChanged(object sender, EventArgs e) // A FAIRE AU PROPRE //
         {
-            // Que faire a la selection d'un item dans le combobox
-            lblVendeur.Text = Globales.uneConcession.getLesVendeurs()[cboVendeur.SelectedIndex].getInfoVendeur(); // CA PEUT ETRE SIMPLIFIER?
+            lblVendeur.Text = Globales.uneConcession.getLesVendeurs()[cboVendeur.SelectedIndex].getInfoVendeur(); // TODO CA PEUT ETRE SIMPLIFIER?
         }
 
-        //Fonction pour le bouton Valider
-        private void btnValider_Click(object sender, EventArgs e) // A FAIRE //
+        /// <summary>
+        /// Se connecte à la base de données à la validation du formulaire
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnValider_Click(object sender, EventArgs e) // TODO Fonction Valider, connexion à la BDD
         {
             CnxBDD();
         }
 
-        //Fonction pour la connexion à la base de donnée
+        /// <summary>
+        /// Connexion à la base de données
+        /// </summary>
         private void CnxBDD()
         {
             try
@@ -203,24 +235,29 @@ namespace CreditCeleste
                 MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}");
             }
         }
-                
-        // Bouton Retour
-        private void btnInfo_Click(object sender, EventArgs e)
-        {
-            this.Close(); // afficher Intro, retour en arrière, on affiche un écran à la fois 
-        }
 
+        /// <summary>
+        /// Instancie et affiche fenLocation. Masque fenIntro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLocation_Click_1(object sender, EventArgs e)
         {
-            // Creation d'une page Location
             Globales.fenLocation = new frmLocation();
             Globales.fenLocation.FormClosed += new FormClosedEventHandler(FenLocation_FormClosed);
-
-            // Masque Intro
-            this.Hide();
-
-            // Ouverture de la page Location
             Globales.fenLocation.Show();
+
+            this.Hide();
+        }
+
+        /// <summary>
+        /// Fermer fenInfo au clic sur le bouton Retour
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

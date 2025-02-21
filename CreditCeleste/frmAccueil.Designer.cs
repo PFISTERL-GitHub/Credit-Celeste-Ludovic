@@ -33,7 +33,7 @@
             this.btnRelance = new System.Windows.Forms.Button();
             this.lblMonApplication = new System.Windows.Forms.Label();
             this.lblRegion = new System.Windows.Forms.Label();
-            this.cmdTest = new System.Windows.Forms.Button();
+            this.btnTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnIntro
@@ -90,21 +90,21 @@
             // 
             // cmdTest
             // 
-            this.cmdTest.Location = new System.Drawing.Point(352, 39);
-            this.cmdTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cmdTest.Name = "cmdTest";
-            this.cmdTest.Size = new System.Drawing.Size(100, 34);
-            this.cmdTest.TabIndex = 5;
-            this.cmdTest.Text = "&Test";
-            this.cmdTest.UseVisualStyleBackColor = true;
-            this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
+            this.btnTest.Location = new System.Drawing.Point(352, 39);
+            this.btnTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTest.Name = "cmdTest";
+            this.btnTest.Size = new System.Drawing.Size(100, 34);
+            this.btnTest.TabIndex = 5;
+            this.btnTest.Text = "&Test";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.cmdTest_Click);
             // 
             // frmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(468, 89);
-            this.Controls.Add(this.cmdTest);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblMonApplication);
             this.Controls.Add(this.btnRelance);
@@ -130,7 +130,7 @@
         private System.Windows.Forms.Button btnRelance;
         private System.Windows.Forms.Label lblMonApplication;
         private System.Windows.Forms.Label lblRegion;
-        private System.Windows.Forms.Button cmdTest;
+        private System.Windows.Forms.Button btnTest;
     }
 }
 
