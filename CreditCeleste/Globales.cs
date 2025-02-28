@@ -19,7 +19,7 @@ namespace CreditCeleste
         // forms
         public static frmAccueil fenAccueil;
         public static frmIntro fenIntro;
-        public static frmVoiture fenVoiture;
+        public static frmVoitureNeuve fenVoiture;
         public static frmVoitureOccasion fenVoitureOccasion;
         public static frmAssurance fenAssurance;
         public static frmTestBDD fenTestBDD;
@@ -37,7 +37,7 @@ namespace CreditCeleste
         public static int IdClient;
         public static string btnAgeCocher;
         public static string btnDureeCocher;
-        public static string connectionString = "Data Source=10.129.184.127; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
+        public static string connectionString = "Data Source=192.168.1.13; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
 
     }
 }

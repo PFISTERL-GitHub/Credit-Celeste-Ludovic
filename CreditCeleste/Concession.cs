@@ -16,6 +16,10 @@ namespace CreditCeleste
 
         // Collection de vendeurs
         private List<Vendeur> lesVendeurs = new List<Vendeur>();
+        private List<Client> lesClients = new List<Client>();
+        private List<Client> lesClientsID = new List<Client>();
+        private List<Client> lesVendeursC = new List<Client>();
+
         private List<VoitureOccasion> lesVoituresOcas = new List<VoitureOccasion>();
         private List<VoitureOccasion> lesNumSeriesOcas = new List<VoitureOccasion>();
 
@@ -45,6 +49,38 @@ namespace CreditCeleste
         {
             lesVendeurs.Add(oVendeur);
         }
+
+
+        public List<Client> getLesClients()
+        {
+            return lesClients;
+        }
+
+        public List<Client> GetClientsID()
+        {
+            return lesClientsID;
+        }
+
+
+
+        // ajouter un vendeur
+        public void ajoutClients(Client oClient)
+        {
+            lesClients.Add(oClient);
+        }
+
+
+        public void ajoutClientsID(Client oClientID)
+        {
+            lesClientsID.Add(oClientID);
+        }
+
+
+        public void ajoutVendeurClient(Client oVendeurC)
+        {
+            lesVendeursC.Add(oVendeurC);
+        }
+
 
         public List<VoitureOccasion> GetVoitureOccasions()
         {

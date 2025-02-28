@@ -67,7 +67,7 @@ namespace CreditCeleste
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 185);
+            this.label6.Location = new System.Drawing.Point(12, 185);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 13);
             this.label6.TabIndex = 40;
@@ -76,7 +76,7 @@ namespace CreditCeleste
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 110);
+            this.label5.Location = new System.Drawing.Point(10, 122);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 39;
@@ -85,7 +85,7 @@ namespace CreditCeleste
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 86);
+            this.label4.Location = new System.Drawing.Point(10, 98);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 38;
@@ -94,7 +94,7 @@ namespace CreditCeleste
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 61);
+            this.label3.Location = new System.Drawing.Point(10, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 13);
             this.label3.TabIndex = 37;
@@ -103,7 +103,7 @@ namespace CreditCeleste
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 37);
+            this.label2.Location = new System.Drawing.Point(10, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 13);
             this.label2.TabIndex = 36;
@@ -120,9 +120,9 @@ namespace CreditCeleste
             // 
             // btnValider
             // 
-            this.btnValider.Location = new System.Drawing.Point(454, 258);
+            this.btnValider.Location = new System.Drawing.Point(266, 250);
             this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(131, 28);
+            this.btnValider.Size = new System.Drawing.Size(220, 28);
             this.btnValider.TabIndex = 34;
             this.btnValider.Text = "Acheter";
             this.btnValider.UseVisualStyleBackColor = true;
@@ -130,7 +130,7 @@ namespace CreditCeleste
             // 
             // btnInfo
             // 
-            this.btnInfo.Location = new System.Drawing.Point(13, 258);
+            this.btnInfo.Location = new System.Drawing.Point(12, 250);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Size = new System.Drawing.Size(75, 28);
             this.btnInfo.TabIndex = 33;
@@ -140,28 +140,28 @@ namespace CreditCeleste
             // 
             // txtNumSerie
             // 
-            this.txtNumSerie.Location = new System.Drawing.Point(142, 83);
+            this.txtNumSerie.Location = new System.Drawing.Point(142, 95);
             this.txtNumSerie.Name = "txtNumSerie";
             this.txtNumSerie.Size = new System.Drawing.Size(206, 20);
             this.txtNumSerie.TabIndex = 31;
             // 
             // txtNumImmat
             // 
-            this.txtNumImmat.Location = new System.Drawing.Point(142, 59);
+            this.txtNumImmat.Location = new System.Drawing.Point(142, 71);
             this.txtNumImmat.Name = "txtNumImmat";
             this.txtNumImmat.Size = new System.Drawing.Size(206, 20);
             this.txtNumImmat.TabIndex = 30;
             // 
             // txtDate1ereImat
             // 
-            this.txtDate1ereImat.Location = new System.Drawing.Point(142, 35);
+            this.txtDate1ereImat.Location = new System.Drawing.Point(142, 47);
             this.txtDate1ereImat.Name = "txtDate1ereImat";
             this.txtDate1ereImat.Size = new System.Drawing.Size(206, 20);
             this.txtDate1ereImat.TabIndex = 28;
             // 
             // txtPuissance
             // 
-            this.txtPuissance.Location = new System.Drawing.Point(142, 108);
+            this.txtPuissance.Location = new System.Drawing.Point(142, 120);
             this.txtPuissance.Name = "txtPuissance";
             this.txtPuissance.Size = new System.Drawing.Size(206, 20);
             this.txtPuissance.TabIndex = 27;
@@ -171,9 +171,9 @@ namespace CreditCeleste
             this.gpbAgeVehicule.Controls.Add(this.rdbOccas5OuPlus);
             this.gpbAgeVehicule.Controls.Add(this.rdbOccas3a5);
             this.gpbAgeVehicule.Controls.Add(this.rdbOccasMoins3);
-            this.gpbAgeVehicule.Location = new System.Drawing.Point(379, 35);
+            this.gpbAgeVehicule.Location = new System.Drawing.Point(363, 49);
             this.gpbAgeVehicule.Name = "gpbAgeVehicule";
-            this.gpbAgeVehicule.Size = new System.Drawing.Size(206, 98);
+            this.gpbAgeVehicule.Size = new System.Drawing.Size(123, 101);
             this.gpbAgeVehicule.TabIndex = 26;
             this.gpbAgeVehicule.TabStop = false;
             this.gpbAgeVehicule.Text = "Age du véhicule";
@@ -210,7 +210,7 @@ namespace CreditCeleste
             // 
             // btnAssurance
             // 
-            this.btnAssurance.Location = new System.Drawing.Point(94, 258);
+            this.btnAssurance.Location = new System.Drawing.Point(93, 250);
             this.btnAssurance.Name = "btnAssurance";
             this.btnAssurance.Size = new System.Drawing.Size(75, 28);
             this.btnAssurance.TabIndex = 42;
@@ -230,7 +230,7 @@ namespace CreditCeleste
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 212);
+            this.label7.Location = new System.Drawing.Point(12, 208);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 13);
             this.label7.TabIndex = 44;
@@ -239,7 +239,7 @@ namespace CreditCeleste
             // lblClient
             // 
             this.lblClient.AutoSize = true;
-            this.lblClient.Location = new System.Drawing.Point(88, 212);
+            this.lblClient.Location = new System.Drawing.Point(84, 208);
             this.lblClient.Name = "lblClient";
             this.lblClient.Size = new System.Drawing.Size(12, 13);
             this.lblClient.TabIndex = 45;
@@ -248,7 +248,7 @@ namespace CreditCeleste
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 134);
+            this.label8.Location = new System.Drawing.Point(10, 146);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 13);
             this.label8.TabIndex = 46;
@@ -256,7 +256,7 @@ namespace CreditCeleste
             // 
             // txtPrixV
             // 
-            this.txtPrixV.Location = new System.Drawing.Point(142, 134);
+            this.txtPrixV.Location = new System.Drawing.Point(142, 146);
             this.txtPrixV.Name = "txtPrixV";
             this.txtPrixV.Size = new System.Drawing.Size(206, 20);
             this.txtPrixV.TabIndex = 47;
@@ -265,7 +265,7 @@ namespace CreditCeleste
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 301);
+            this.ClientSize = new System.Drawing.Size(498, 290);
             this.Controls.Add(this.txtPrixV);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblClient);

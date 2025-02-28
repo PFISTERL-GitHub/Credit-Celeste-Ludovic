@@ -29,6 +29,7 @@ namespace CreditCeleste
             ajoutVendeur();
             ajoutVoitureOccas();
             ajoutVoitureNeuve();
+            ajoutAncienClient();
         }
 
         private void btnIntro_Click(object sender, EventArgs e)
@@ -110,13 +111,13 @@ namespace CreditCeleste
                         string marque = reader.GetString(1);
                         string modele = reader.GetString(2);
 
-                        foreach(VoitureOccasion xlistNumSeriesOcas in Globales.uneConcession.GetNumSeriesOcas())
+                        foreach (VoitureOccasion xlistNumSeriesOcas in Globales.uneConcession.GetNumSeriesOcas())
                         {
                             Globales.uneConcession.ajoutNumSeriesOcas(xlistNumSeriesOcas);
                         }
 
                         // Création du vendeur avec les données récupérées
-                        VoitureOccasion uneVoitureOccasion = new VoitureOccasion(NumS,marque, modele);
+                        VoitureOccasion uneVoitureOccasion = new VoitureOccasion(NumS, marque, modele);
 
                         // Ajout du vendeur dans la concession
                         Globales.uneConcession.ajoutVoiture(uneVoitureOccasion);
@@ -165,5 +166,41 @@ namespace CreditCeleste
                 }
             }
         }
+
+
+        private void ajoutAncienClient()
+        {
+            using (SqlConnection connection = new SqlConnection(Globales.connectionString))
+            {
+                connection.Open();
+                string query = "SELECT numC, civ, nom, prenom FROM CLIENT"; // Récupère uniquement les infos nécessaires
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Récupération des données
+                        int numC = reader.GetInt32(0);
+                        string civC = reader.GetString(1);
+                        string nomC = reader.GetString(2);
+                        string prenomC = reader.GetString(3);
+
+                        // Création du client avec les données récupérées
+                        Client unClient = new Client(civC,nomC,prenomC);
+                        Client unClientID = new Client(numC);
+
+
+                        // Ajout du client dans la concession
+                        Globales.uneConcession.ajoutClients(unClient);
+                        Globales.uneConcession.ajoutClientsID(unClientID);
+
+
+
+                    }
+                }
+            }
+        }
     }
+
 }
