@@ -22,6 +22,7 @@ namespace CreditCeleste
         public static frmVoiture fenVoiture;
         public static frmVoitureOccasion fenVoitureOccasion;
         public static frmAssurance fenAssurance;
+        public static frmLocation fenLocation;
         public static frmTestBDD fenTestBDD;
 
         // autre
@@ -31,6 +32,7 @@ namespace CreditCeleste
         public static VoitureOccasion uneVoitureOccasion;
         public static VoitureNeuve uneVoitureNeuve;
         public static Assurance uneAssurance;
+        public static Location uneLocation;
 
         public static string nomVendeur;
         public static string nomClient;

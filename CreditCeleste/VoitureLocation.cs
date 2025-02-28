@@ -1,14 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CreditCeleste
 {
-    class Voiture
+    class VoitureLocation
     {
         private string nouveauVhc = "PG 208";
         private string date1ereImmat = "17/07/2005";
@@ -17,24 +15,19 @@ namespace CreditCeleste
         private string puissance = "17ch";
         private string rdAge;
 
-        private string marque;
-        private string modele;
-
-        private List<Voiture> lesVoituresNv = new List<Voiture>();
-
-        public Voiture()
+        public VoitureLocation()
         {
 
         }
 
-        //public Voiture(string nvVH, string rdAge)
-        //{
-        //    nouveauVhc = nvVH;
+        public VoitureLocation(string nvVH, string rdAge)
+        {
+            nouveauVhc = nvVH;
 
-        //    this.rdAge = rdAge;
-        //}
+            this.rdAge = rdAge;
+        }
 
-        public Voiture(string nvVH, string date1Immat, string numI, string numS, string xPuissance, string rdAge)
+        public VoitureLocation(string nvVH, string date1Immat, string numI, string numS, string xPuissance, string rdAge)
         {
             nouveauVhc = nvVH;
             date1ereImmat = date1Immat;
@@ -44,31 +37,11 @@ namespace CreditCeleste
 
             this.rdAge = rdAge;
         }
-
-
-        public Voiture(string nvMarque, string nvModele)
-        {
-            marque = nvMarque;
-            modele = nvModele;
-        }
-
-        public string getNomVehicule() { return nouveauVhc; }  
+        public string getNomVehicule() { return nouveauVhc; }
         public string getDate1ereImmat() { return date1ereImmat; }
         public string getNumImmat() { return numImmat; }
         public string getnumSerie() { return numSerie; }
         public string getPuissance() { return puissance; }
         public string getrdAge() { return rdAge; }
-
-
-
-
-        public void ajoutVoiture(Voiture nVoiture)
-        {
-            lesVoituresNv.Add(nVoiture);
-
-
-        }
-
     }
-
 }
