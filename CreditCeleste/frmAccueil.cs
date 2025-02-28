@@ -27,6 +27,8 @@ namespace CreditCeleste
 
             Globales.uneConcession = new Concession("Garage Soares", "66 rue des Voyages");
             ajoutVendeur();
+            ajoutVoitureOccas();
+            ajoutVoitureNeuve();
         }
 
         private void btnIntro_Click(object sender, EventArgs e)
@@ -91,7 +93,77 @@ namespace CreditCeleste
         }
 
 
+        private void ajoutVoitureOccas()
+        {
+            using (SqlConnection connection = new SqlConnection(Globales.connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM VOITURE v INNER JOIN VOITURE_OCCASION vo ON v.numSerie = vo.numSerie WHERE v.stock = 'En Stock'"; // Récupère uniquement les infos nécessaires
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Récupération des données et concaténation dans le format souhaité
+                        string NumS = reader.GetString(0);
+                        string marque = reader.GetString(1);
+                        string modele = reader.GetString(2);
+
+                        foreach(VoitureOccasion xlistNumSeriesOcas in Globales.uneConcession.GetNumSeriesOcas())
+                        {
+                            Globales.uneConcession.ajoutNumSeriesOcas(xlistNumSeriesOcas);
+                        }
+
+                        // Création du vendeur avec les données récupérées
+                        VoitureOccasion uneVoitureOccasion = new VoitureOccasion(NumS,marque, modele);
+
+                        // Ajout du vendeur dans la concession
+                        Globales.uneConcession.ajoutVoiture(uneVoitureOccasion);
 
 
+                    }
+                }
+            }
+
+
+        }
+
+
+
+        private void ajoutVoitureNeuve()
+        {
+            using (SqlConnection connection = new SqlConnection(Globales.connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM VOITURE v INNER JOIN VOITURE_NEUVE vo ON v.numSerie = vo.numSerie WHERE v.stock = 'En Stock'"; // Récupère uniquement les infos nécessaires
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Récupération des données et concaténation dans le format souhaité
+                        string NumS = reader.GetString(0);
+                        string marque = reader.GetString(1);
+                        string modele = reader.GetString(2);
+
+
+                        foreach (VoitureNeuve xlistNumSeriesNeuve in Globales.uneConcession.GetNumSeriesNeuve())
+                        {
+                            Globales.uneConcession.ajoutNumSeriesNeuve(xlistNumSeriesNeuve);
+                        }
+
+                        // Création du vendeur avec les données récupérées
+                        VoitureNeuve uneVoitureNeuve = new VoitureNeuve(NumS, marque, modele);
+
+                        // Ajout du vendeur dans la concession
+                        Globales.uneConcession.ajoutVoiture(uneVoitureNeuve);
+
+
+                    }
+                }
+            }
+        }
     }
 }

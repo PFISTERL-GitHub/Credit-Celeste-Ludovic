@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CreditCeleste
 {
-    class Voiture
+    class VoitureNeuve
     {
-        private string nouveauVhc = "PG 208";
+
+        private string nvVhcOcca = "W Polo TDI";
         private string date1ereImmat = "17/07/2005";
         private string numImmat = "44458884AE";
         private string numSerie = "12345777";
@@ -18,24 +18,37 @@ namespace CreditCeleste
 
         private string marque;
         private string modele;
+        private string NumS;
 
-        private List<Voiture> lesVoituresNv = new List<Voiture>();
 
-        public Voiture()
+
+
+
+
+
+        public VoitureNeuve(string nvNumS, string nvMarque, string nvModele)
+        {
+            NumS = nvNumS;
+            marque = nvMarque;
+            modele = nvModele;
+        }
+
+
+        public VoitureNeuve()
         {
 
         }
 
-        //public Voiture(string nvVH, string rdAge)
+        //public VoitureOccasion(string nvVH, string rdAge)
         //{
-        //    nouveauVhc = nvVH;
+        //    nvVhcOcca = nvVH;
 
         //    this.rdAge = rdAge;
         //}
 
-        public Voiture(string nvVH, string date1Immat, string numI, string numS, string xPuissance, string rdAge)
+        public VoitureNeuve(string nvVHOcc, string date1Immat, string numI, string numS, string xPuissance, string rdAge)
         {
-            nouveauVhc = nvVH;
+            nvVhcOcca = nvVHOcc;
             date1ereImmat = date1Immat;
             numImmat = numI;
             numSerie = numS;
@@ -45,13 +58,9 @@ namespace CreditCeleste
         }
 
 
-        public Voiture(string nvMarque, string nvModele)
-        {
-            marque = nvMarque;
-            modele = nvModele;
-        }
 
-        public string getNomVehicule() { return nouveauVhc; }  
+
+        public string getNomVehicule() { return nvVhcOcca; }
         public string getDate1ereImmat() { return date1ereImmat; }
         public string getNumImmat() { return numImmat; }
         public string getnumSerie() { return numSerie; }
@@ -59,15 +68,11 @@ namespace CreditCeleste
         public string getrdAge() { return rdAge; }
 
 
-
-
-        public void ajoutVoiture(Voiture nVoiture)
+        public string getInfoVoiture()
         {
-            lesVoituresNv.Add(nVoiture);
-
-
+            return NumS + " " + marque + " " + modele;
         }
 
-    }
 
+    }
 }

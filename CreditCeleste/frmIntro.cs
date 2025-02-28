@@ -140,9 +140,8 @@ namespace CreditCeleste
                 string prenomC = txtPrenom.Text;
                 int numV = cboVendeur.SelectedIndex + 1;
 
-
-                // Requête SQL pour insérer les données
-                string query = "INSERT INTO CLIENT (civ, nom, prenom, numV) Values (@civC, @nomC, @prenomC, @numV) ";
+                // Requête SQL avec OUTPUT pour récupérer l'ID auto-incrémenté
+                string query = "INSERT INTO CLIENT (civ, nom, prenom, numV) OUTPUT INSERTED.NumC VALUES (@civC, @nomC, @prenomC, @numV)";
 
                 using (SqlConnection oConnexion = new SqlConnection(Globales.connectionString))
                 {
@@ -150,19 +149,17 @@ namespace CreditCeleste
 
                     using (SqlCommand cmd = new SqlCommand(query, oConnexion))
                     {
-
                         cmd.Parameters.Add(new SqlParameter("@civC", SqlDbType.NVarChar) { Value = civiliteC });
                         cmd.Parameters.Add(new SqlParameter("@nomC", SqlDbType.NVarChar) { Value = nomC });
                         cmd.Parameters.Add(new SqlParameter("@prenomC", SqlDbType.NVarChar) { Value = prenomC });
                         cmd.Parameters.Add(new SqlParameter("@numV", SqlDbType.Int) { Value = numV });
 
-
-                        // Exécuter la commande
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        // Retour utilisateur
-                        if (rowsAffected > 0) {
-                            MessageBox.Show("Les données ont été enregistrées avec succès !");
+                        // Exécuter la commande et récupérer l'ID inséré
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            Globales.IdClient = Convert.ToInt32(result);
+                            MessageBox.Show($"Les données ont été enregistrées avec succès !\nNumC : {Globales.IdClient}");
                         }
                         else
                         {
@@ -171,12 +168,14 @@ namespace CreditCeleste
                     }
                 }
 
+                Globales.nomClient = nomC + " " + prenomC;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}");
             }
         }
+
 
         //Fonction pour le bouton VoitureOccasion
         private void btnVoitureOccasion_Click(object sender, EventArgs e)
