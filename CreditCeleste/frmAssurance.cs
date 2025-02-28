@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CreditCeleste
@@ -126,7 +133,7 @@ namespace CreditCeleste
                 }
 
                 // Recupere numImmat
-                if (Globales.uneVoitureOccasion.getNumImmat() != "44458884AE")
+                if (Globales.uneVoiture.getNumImmat() != "44458884AE")
                 {
                     txtNumImmat.Text = Globales.uneVoitureOccasion.getNumImmat();
                 }

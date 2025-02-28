@@ -1,11 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CreditCeleste
 {
     public partial class frmTestBDD : Form
     {
+        private string connectionString = "Data Source=10.129.184.127; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
+
         public frmTestBDD()
         {
             InitializeComponent();
@@ -13,74 +23,88 @@ namespace CreditCeleste
 
         private void frmTestBDD_Load(object sender, EventArgs e)
         {
-            // Initialisation si nécessaire
-        }
 
+        }
         private void cmdLire_Click(object sender, EventArgs e)
         {
-            try
+            lstTest.Items.Clear(); // Nettoie la ListBox
+
+            using (SqlConnection oConnexion = new SqlConnection(connectionString))
             {
-                // Effacer la liste
-                lstTest.Items.Clear();
+                string query = "SELECT * FROM TEST"; // Assurez-vous que la table est correcte
+                SqlCommand cmd = new SqlCommand(query, oConnexion);
 
-                // Exécuter la requête SELECT sur la table TEST
-                string query = "SELECT * FROM TEST";
-                DataTable resultTable = Globales.dbManager.ExecuteReader(query);
-
-                // Parcourir les résultats et les ajouter à la liste
-                foreach (DataRow row in resultTable.Rows)
+                try
                 {
-                    string creditInfo = $"Test1: {row["test1"]} - Test2: {row["test2"]}";
-                    lstTest.Items.Add(creditInfo);
+                    oConnexion.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        // Crée une chaîne lisible pour afficher dans la ListBox
+                        string creditInfo = $"Test1: {reader["test1"]} - Test2: {reader["test2"]}" + "\n";
+
+                        lstTest.Items.Add(creditInfo); // Ajoute l'info à la ListBox
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                // Afficher un message d'erreur à l'utilisateur
-                MessageBox.Show($"Erreur lors de la lecture des données : {ex.Message}",
-                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erreur lors du chargement des crédits : {ex.Message}");
+                }
             }
         }
 
         private void cmdEnregistrer_Click(object sender, EventArgs e)
         {
-            // Vérifier que les champs sont remplis
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
-            {
-                MessageBox.Show("Veuillez remplir tous les champs avant d'enregistrer.");
-                return;
-            }
-
             try
             {
-                // Récupérer les valeurs des champs
+
+
+                // Vérifiez et récupérez les valeurs des TextBox
+                if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
+                {
+                    MessageBox.Show("Veuillez remplir tous les champs avant d'enregistrer.");
+                    return;
+                }
+
+
                 string value1 = textBox1.Text;
                 string value2 = textBox2.Text;
 
-                // Exécuter la requête d'insertion
+                // Requête SQL pour insérer les données
                 string query = "INSERT INTO TEST (test1, test2) VALUES (@Value1, @Value2)";
-                Globales.dbManager.ExecuteQuery(query, cmd =>
+
+                using (SqlConnection oConnexion = new SqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@Value1", value1);
-                    cmd.Parameters.AddWithValue("@Value2", value2);
-                });
+                    oConnexion.Open();
 
-                // Afficher un message de confirmation
-                MessageBox.Show("Les données ont été enregistrées avec succès !",
-                    "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    using (SqlCommand cmd = new SqlCommand(query, oConnexion))
+                    {
+                        // Ajouter les paramètres avec les bons types
+                        cmd.Parameters.Add(new SqlParameter("@Value1", SqlDbType.NVarChar) { Value = value1 });
+                        cmd.Parameters.Add(new SqlParameter("@Value2", SqlDbType.NVarChar) { Value = value2 });
 
-                // Effacer les champs
+                        // Exécuter la commande
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Retour utilisateur
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Les données ont été enregistrées avec succès !");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Aucune donnée n'a été enregistrée.");
+                        }
+                    }
+                }
+
                 textBox1.Clear();
                 textBox2.Clear();
-
-                // Rafraîchir la liste
-                cmdLire_Click(sender, e);
             }
             catch (Exception ex)
             {
-                // Afficher un message d'erreur à l'utilisateur
-                MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}",
-                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}");
             }
         }
 
@@ -88,21 +112,39 @@ namespace CreditCeleste
         {
             try
             {
-                // Exécuter la requête de suppression
-                string query = "DELETE FROM TEST";
-                Globales.dbManager.ExecuteQuery(query);
+                lstTest.Items.Clear(); // Nettoie la ListBox
 
-                // Afficher un message de confirmation
-                MessageBox.Show("Toutes les données ont été supprimées.");
+                // Requête SQL pour supprimer toutes les lignes de la table
+                string query = "DELETE FROM ASSURANCE";
 
-                // Rafraîchir la liste
-                cmdLire_Click(sender, e);
+                using (SqlConnection oConnexion = new SqlConnection(connectionString))
+                {
+                    oConnexion.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(query, oConnexion))
+                    {
+                        // Exécute la commande
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Vérifie combien de lignes ont été supprimées
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show($"Toutes les données ont été supprimées. {rowsAffected} ligne(s) affectée(s).");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Aucune donnée n'a été supprimée.");
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
-                // Afficher un message d'erreur à l'utilisateur
                 MessageBox.Show($"Erreur lors de la suppression des données : {ex.Message}");
             }
         }
+
+
+
     }
 }

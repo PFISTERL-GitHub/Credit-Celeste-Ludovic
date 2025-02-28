@@ -67,9 +67,31 @@ namespace CreditCeleste
 
         private void ajoutVendeur()
         {
-            // Utilisation de DatabaseManager pour exécuter la requête
-            string query = "SELECT civV, nomV, prenomV FROM VENDEUR"; // Récupère uniquement les infos nécessaires
-            DataTable resultTable = Globales.dbManager.ExecuteReader(query);
+            using (SqlConnection connection = new SqlConnection(Globales.connectionString))
+            {
+                connection.Open();
+                string query = "SELECT civV, nomV, prenomV FROM VENDEUR"; // Récupère uniquement les infos nécessaires
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Récupération des données et concaténation dans le format souhaité
+                        string civV = reader.GetString(0);
+                        string nomV = reader.GetString(1);
+                        string prenomV = reader.GetString(2);
+
+                        // Création du vendeur avec les données récupérées
+                        Vendeur unVendeur = new Vendeur(civV, nomV, prenomV);
+
+                        // Ajout du vendeur dans la concession
+                        Globales.uneConcession.ajoutVendeur(unVendeur);
+                    }
+                }
+            }
+        }
+
 
         private void ajoutVoitureOccas()
         {
@@ -107,8 +129,7 @@ namespace CreditCeleste
 
         }
 
-                // Création du vendeur avec les données récupérées
-                Vendeur unVendeur = new Vendeur(civV, nomV, prenomV);
+
 
         private void ajoutVoitureNeuve()
         {

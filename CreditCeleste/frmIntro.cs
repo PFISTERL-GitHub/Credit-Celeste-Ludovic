@@ -98,7 +98,6 @@ namespace CreditCeleste
             return valeur;
         }
 
-        // Fonction pour le bouton Voiture
         private void btnVoiture_Click(object sender, EventArgs e)
         {
             // Creation d'une page VoitureNeuve
@@ -112,52 +111,9 @@ namespace CreditCeleste
             Globales.fenVoiture.Show();
         }
 
-        // Que faire a la fermeture de Voiture
         void FenVoiture_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Affiche Intro a la fermeture de VoitureNeuve
-            this.Show();
-        }
-
-        //Fonction pour le bouton VoitureOccasion
-        private void btnVoitureOccasion_Click(object sender, EventArgs e)
-        {
-            // Creation d'une page VoitureNeuve
-            Globales.fenVoitureOccasion = new frmVoitureOccasion();
-            Globales.fenVoitureOccasion.FormClosed += new FormClosedEventHandler(FenVoitureOccasion_FormClosed);
-
-            // Masque Intro
-            this.Hide();
-
-            // Ouverture de la page VoitureNeuve
-            Globales.fenVoitureOccasion.Show();
-        }
-
-        // Que faire a la fermeture de VoitureOccasion
-        void FenVoitureOccasion_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Affiche Intro a la fermeture de VoitureOccasion
-            this.Show();
-        }
-
-        //Fonction pour le bouton Location
-        private void btnLocation_Click(object sender, EventArgs e)
-        {
-            // Creation d'une page Location
-            Globales.fenLocation = new frmLocation();
-            Globales.fenLocation.FormClosed += new FormClosedEventHandler(FenLocation_FormClosed);
-
-            // Masque Intro
-            this.Hide();
-
-            // Ouverture de la page Location
-            Globales.fenLocation.Show();
-        }
-
-        // Que faire a la fermeture de Location
-        void FenLocation_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Affiche Intro a la fermeture de Location
+            // Affiche intro a la fermeture de VoitureNeuve
             this.Show();
         }
 
@@ -187,8 +143,7 @@ namespace CreditCeleste
                 // Requête SQL avec OUTPUT pour récupérer l'ID auto-incrémenté
                 string query = "INSERT INTO CLIENT (civ, nom, prenom, numV) OUTPUT INSERTED.NumC VALUES (@civC, @nomC, @prenomC, @numV)";
 
-                // Utilisation de DatabaseManager pour exécuter la requête
-                Globales.dbManager.ExecuteQuery(query, cmd =>
+                using (SqlConnection oConnexion = new SqlConnection(Globales.connectionString))
                 {
                     oConnexion.Open();
 
@@ -222,24 +177,31 @@ namespace CreditCeleste
         }
 
 
-
         //Fonction pour le bouton VoitureOccasion
         private void btnVoitureOccasion_Click(object sender, EventArgs e)
         {
-            this.Close(); // afficher Intro, retour en arrière, on affiche un écran à la fois 
-        }
+            // Creation d'une page VoitureNeuve
+            Globales.fenVoitureOccasion = new frmVoitureOccasion();
+            Globales.fenVoitureOccasion.FormClosed += new FormClosedEventHandler(FenVoitureOccasion_FormClosed);
 
-        private void btnLocation_Click_1(object sender, EventArgs e)
-        {
-            // Creation d'une page Location
-            Globales.fenLocation = new frmLocation();
-            Globales.fenLocation.FormClosed += new FormClosedEventHandler(FenLocation_FormClosed);
-
-            // Masque Intro
+            // Masquer Intro
             this.Hide();
 
-            // Ouverture de la page Location
-            Globales.fenLocation.Show();
+            // Ouverture de la page VoitureNeuve
+            Globales.fenVoitureOccasion.Show();
+        }
+
+        // Que faire a la fermeture de VoitureOccasion
+        void FenVoitureOccasion_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Afficher Intro si VoitureOccasion est fermée
+            this.Show();
+        }
+
+        // Bouton Retour
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            this.Close(); // afficher Intro, retour en arrière, on affiche un écran à la fois 
         }
     }
 }
