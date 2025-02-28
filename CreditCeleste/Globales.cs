@@ -30,14 +30,16 @@ namespace CreditCeleste
         public static Client unClient;
         public static Voiture uneVoiture;
         public static VoitureOccasion uneVoitureOccasion;
-        public static VoitureLocation uneVoitureLocation;
+        public static VoitureNeuve uneVoitureNeuve;
         public static Assurance uneAssurance;
         public static Location uneLocation;
 
         public static string nomVendeur;
+        public static string nomClient;
+        public static int IdClient;
         public static string btnAgeCocher;
         public static string btnDureeCocher;
-        public static string connectionString = "Data Source=192.168.2.65; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
+        public static string connectionString = "Data Source=10.129.184.127; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
 
     }
 }
