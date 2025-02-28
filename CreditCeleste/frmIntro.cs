@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,6 +43,14 @@ namespace CreditCeleste
                 cboVendeur.Items.Add(unVendeur.getInfoVendeur());
             }
 
+            // Rajout des vendeurs au combobox
+            foreach (Client unClient in Globales.uneConcession.getLesClients())
+            {
+                cboChoixC.Items.Add(unClient.getInfoClients());
+            }
+
+
+
             // Desactive le bouton Valider
             btnValider.Enabled = false;
         }
@@ -58,7 +67,7 @@ namespace CreditCeleste
 
 
             // Verification de la saisie
-            if (verifierSaisie(civilite, nom, prenom, vendeur ))
+            if (verifierSaisie(civilite, nom, prenom, vendeur))
             {
                 // Sauvegarde dans Globales
                 Globales.unClient = new Client(civilite, nom, prenom);
@@ -71,7 +80,7 @@ namespace CreditCeleste
                 // Affiche un message
                 string affichage =
                     "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
-                    "Vendeur: " + vendeur + Environment.NewLine; 
+                    "Vendeur: " + vendeur + Environment.NewLine;
 
                 MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -101,7 +110,7 @@ namespace CreditCeleste
         private void btnVoiture_Click(object sender, EventArgs e)
         {
             // Creation d'une page VoitureNeuve
-            Globales.fenVoiture = new frmVoiture();
+            Globales.fenVoiture = new frmVoitureNeuve();
             Globales.fenVoiture.FormClosed += new FormClosedEventHandler(FenVoiture_FormClosed);
 
             // Masquer Intro
@@ -122,6 +131,8 @@ namespace CreditCeleste
             // Que faire a la selection d'un item dans le combobox
             lblVendeur.Text = Globales.uneConcession.getLesVendeurs()[cboVendeur.SelectedIndex].getInfoVendeur(); // CA PEUT ETRE SIMPLIFIER?
         }
+
+
 
         //Fonction pour le bouton Valider
         private void btnValider_Click(object sender, EventArgs e) // A FAIRE //
@@ -203,5 +214,89 @@ namespace CreditCeleste
         {
             this.Close(); // afficher Intro, retour en arrière, on affiche un écran à la fois 
         }
+
+        private void cboChoixC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Vérifie si un client est sélectionné
+                if (cboChoixC.SelectedIndex >= 0)
+                {
+                    // Récupération directe des données affichées dans le ComboBox
+                    string[] infosClient = cboChoixC.SelectedItem.ToString().Split(' '); // Supposons que c'est "Nom Prénom"
+
+                    if (infosClient.Length >= 2)
+                    {
+                        // Mise à jour des TextBox avec les infos sélectionnées
+                        txtNom.Text = infosClient[1]; // Nom
+                        txtPrenom.Text = infosClient[2]; // Prénom
+
+
+                        // Récupération de l'ID correspondant via la liste des IDs
+                        int idClient = Globales.uneConcession.GetClientsID()[cboChoixC.SelectedIndex].getIDClient();
+                        Globales.IdClient = idClient;
+
+                        // Connexion à la base de données pour récupérer le numV du vendeur (index dans la combo)
+                        using (SqlConnection connection = new SqlConnection(Globales.connectionString))
+                        {
+                            connection.Open();
+                            string query = "SELECT numV FROM CLIENT WHERE numC = @numC"; // Récupère le numV du vendeur
+
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@numC", idClient); // numC = ID client
+
+                                // Exécute la commande et récupère un SqlDataReader
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    if (reader.Read()) // Lire la première ligne de résultat
+                                    {
+                                        // Récupérer le numV du vendeur à partir du premier champ
+                                        int numV = reader.GetInt32(0);
+
+                                        // Ajustement de l'index (si numV commence à 1 et que la ComboBox commence à 0)
+                                        int adjustedIndex = numV - 1;
+
+                                        // Sélectionner l'index du vendeur dans la ComboBox
+                                        if (adjustedIndex >= 0 && adjustedIndex < cboVendeur.Items.Count)
+                                        {
+                                            cboVendeur.SelectedIndex = adjustedIndex;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Mise à jour de la combo box de civilité si nécessaire
+                        string civClient = Globales.uneConcession.getLesClients()[cboChoixC.SelectedIndex].getCivClient();
+                        if (cboCiv.Items.Contains(civClient))
+                        {
+                            cboCiv.SelectedItem = civClient;
+                        }
+
+                        btnValider.Enabled = false;
+                        btnEnregistre.Enabled = false;
+                        Globales.nomVendeur = cboVendeur.Text;
+                        Globales.nomClient = txtNom.Text + " " + txtPrenom.Text;
+
+                        MessageBox.Show("Veuillez passer à la suite.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur : {ex.Message}");
+            }
+        }
+
+
+
+
+
+
+
+
     }
+
+
 }

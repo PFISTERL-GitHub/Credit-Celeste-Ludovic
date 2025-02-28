@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClientCC">
-      <HintPath>..\..\ClientCC-Alexandru\ClientCC\bin\Debug\ClientCC.dll</HintPath>
+      <HintPath>..\..\ClientCC\ClientCC\bin\Debug\ClientCC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -76,11 +76,11 @@
     <Compile Include="frmTestBDD.Designer.cs">
       <DependentUpon>frmTestBDD.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmVoiture.cs">
+    <Compile Include="frmVoitureNeuve.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmVoiture.Designer.cs">
-      <DependentUpon>frmVoiture.cs</DependentUpon>
+    <Compile Include="frmVoitureNeuve.Designer.cs">
+      <DependentUpon>frmVoitureNeuve.cs</DependentUpon>
     </Compile>
     <Compile Include="frmVoitureOccasion.cs">
       <SubType>Form</SubType>
@@ -107,8 +107,8 @@
     <EmbeddedResource Include="frmTestBDD.resx">
       <DependentUpon>frmTestBDD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVoiture.resx">
-      <DependentUpon>frmVoiture.cs</DependentUpon>
+    <EmbeddedResource Include="frmVoitureNeuve.resx">
+      <DependentUpon>frmVoitureNeuve.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVoitureOccasion.resx">
       <DependentUpon>frmVoitureOccasion.cs</DependentUpon>
@@ -135,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\ClientCC\ClientCC\bin\Debug\ClientCC.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

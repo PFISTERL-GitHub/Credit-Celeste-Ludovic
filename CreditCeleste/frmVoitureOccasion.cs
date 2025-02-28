@@ -235,8 +235,6 @@ namespace CreditCeleste
 
 
 
-
-        //Fonction pour le bouton Valider
         private void btnValider_Click(object sender, EventArgs e)
         {
             try
@@ -263,37 +261,43 @@ namespace CreditCeleste
                 {
                     oConnexion.Open();
 
-                    using (SqlTransaction transaction = oConnexion.BeginTransaction()) // Ajout d'une transaction pour éviter les erreurs partielles
+                    using (SqlTransaction transaction = oConnexion.BeginTransaction()) // Ajout d'une transaction
                     {
                         try
                         {
-                            // 1️⃣ Associer le client au véhicule
-                            string queryAssocier = "UPDATE VOITURE SET numC = @numC WHERE numSerie = @numSerie";
+                            // Mise à jour sécurisée en une seule requête avec vérification
+                            string query = @"
+                                IF EXISTS (SELECT 1 FROM VOITURE WHERE numSerie = @numSerie AND stock = 'Acquis') 
+                                BEGIN 
+                                    THROW 50000, 'Impossible de mettre à jour numC car la voiture est déjà acquise.', 1; 
+                                END 
+                                ELSE 
+                                BEGIN 
+                                    UPDATE VOITURE 
+                                    SET numC = @numC, stock = 'Acquis'
+                                    WHERE numSerie = @numSerie; 
+                                END";
 
-                            using (SqlCommand cmdAssocier = new SqlCommand(queryAssocier, oConnexion, transaction))
+                            using (SqlCommand cmd = new SqlCommand(query, oConnexion, transaction))
                             {
-                                cmdAssocier.Parameters.Add(new SqlParameter("@numC", SqlDbType.Int) { Value = numC });
-                                cmdAssocier.Parameters.Add(new SqlParameter("@numSerie", SqlDbType.NVarChar) { Value = numSerie });
-                                cmdAssocier.ExecuteNonQuery();
+                                cmd.Parameters.Add(new SqlParameter("@numC", SqlDbType.Int) { Value = numC });
+                                cmd.Parameters.Add(new SqlParameter("@numSerie", SqlDbType.NVarChar) { Value = numSerie });
+                                cmd.ExecuteNonQuery();
                             }
 
-                            // 2️⃣ Mettre à jour le stock à "Acquis"
-                            string queryStock = "UPDATE VOITURE SET stock = 'Acquis' WHERE numSerie = @numSerie";
-
-                            using (SqlCommand cmdStock = new SqlCommand(queryStock, oConnexion, transaction))
-                            {
-                                cmdStock.Parameters.Add(new SqlParameter("@numSerie", SqlDbType.NVarChar) { Value = numSerie });
-                                cmdStock.ExecuteNonQuery();
-                            }
-
-                            transaction.Commit(); // ✅ Tout est OK, on valide la transaction
+                            transaction.Commit(); // Valider la transaction
 
                             MessageBox.Show("Le véhicule a été attribué au client et marqué comme acquis !");
                         }
-                        catch (Exception ex)
+                        catch (SqlException ex) // Catch spécifique aux erreurs SQL
                         {
-                            transaction.Rollback(); // ❌ Annule tout en cas d'erreur
-                            MessageBox.Show($"Erreur lors de l'association du véhicule : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            transaction.Rollback(); // Annule tout en cas d'erreur SQL
+                            MessageBox.Show($"Erreur SQL : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        catch (Exception ex) // Catch global
+                        {
+                            transaction.Rollback(); // Annule tout en cas d'erreur générale
+                            MessageBox.Show($"Erreur : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
