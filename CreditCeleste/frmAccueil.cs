@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CreditCeleste
@@ -24,6 +17,7 @@ namespace CreditCeleste
 
             lblMonApplication.Text = Globales.nomUtilisateur;
             lblRegion.Text = Globales.region;
+            lblV.Text = Globales.Version;
 
             Globales.uneConcession = new Concession("Garage Soares", "66 rue des Voyages");
             ajoutVendeur();
@@ -187,7 +181,7 @@ namespace CreditCeleste
                         string prenomC = reader.GetString(3);
 
                         // Création du client avec les données récupérées
-                        Client unClient = new Client(civC,nomC,prenomC);
+                        Client unClient = new Client(civC, nomC, prenomC);
                         Client unClientID = new Client(numC);
 
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CreditCeleste
+﻿namespace CreditCeleste
 {
     static class Globales   // pas la peine de faire un new, classe statique
     {
@@ -15,6 +9,7 @@ namespace CreditCeleste
         // utilisateur et region
         public static string nomUtilisateur = "TLAD";   // un seul ;    attribut de classe
         public static string region = "Alsace";
+        public static string Version = "V2.0.1-Beta";
 
         // forms
         public static frmAccueil fenAccueil;

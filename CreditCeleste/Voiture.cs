@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
 
 namespace CreditCeleste
 {
@@ -51,7 +46,7 @@ namespace CreditCeleste
             modele = nvModele;
         }
 
-        public string getNomVehicule() { return nouveauVhc; }  
+        public string getNomVehicule() { return nouveauVhc; }
         public string getDate1ereImmat() { return date1ereImmat; }
         public string getNumImmat() { return numImmat; }
         public string getnumSerie() { return numSerie; }

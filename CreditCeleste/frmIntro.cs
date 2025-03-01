@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CreditCeleste
 {
@@ -274,10 +266,21 @@ namespace CreditCeleste
                             cboCiv.SelectedItem = civClient;
                         }
 
+                        // Sauvegarde les saisie dans des variables
+                        string civilite = cboCiv.Text;
+                        string nom = txtNom.Text;
+                        string prenom = txtPrenom.Text;
+                        string vendeur = cboVendeur.Text;
+                        string nomprenom = txtNom.Text + " " + txtPrenom.Text;
+
+                        // Sauvegarde dans Globales
+                        Globales.unClient = new Client(civilite, nom, prenom);
+                        Globales.nomVendeur = vendeur;
+                        Globales.nomClient = nomprenom;
+
                         btnValider.Enabled = false;
                         btnEnregistre.Enabled = false;
-                        Globales.nomVendeur = cboVendeur.Text;
-                        Globales.nomClient = txtNom.Text + " " + txtPrenom.Text;
+
 
                         MessageBox.Show("Veuillez passer à la suite.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
