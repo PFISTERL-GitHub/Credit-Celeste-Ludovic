@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CreditCeleste
+﻿namespace CreditCeleste
 {
     class VoitureOccasion
     {
@@ -26,7 +19,7 @@ namespace CreditCeleste
 
 
 
-        public VoitureOccasion(string nvNumS,string nvMarque, string nvModele)
+        public VoitureOccasion(string nvNumS, string nvMarque, string nvModele)
         {
             NumS = nvNumS;
             marque = nvMarque;

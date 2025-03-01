@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CreditCeleste
+﻿namespace CreditCeleste
 {
     class Vendeur
     {
@@ -26,6 +20,6 @@ namespace CreditCeleste
             return monCcivVendeur + " " + monNomVendeur + " " + monPrenomVendeur;
         }
 
-      
+
     }
 }

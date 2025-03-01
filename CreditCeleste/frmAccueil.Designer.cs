@@ -34,14 +34,14 @@
             this.lblMonApplication = new System.Windows.Forms.Label();
             this.lblRegion = new System.Windows.Forms.Label();
             this.cmdTest = new System.Windows.Forms.Button();
+            this.lblV = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnIntro
             // 
-            this.btnIntro.Location = new System.Drawing.Point(13, 39);
-            this.btnIntro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIntro.Location = new System.Drawing.Point(12, 74);
             this.btnIntro.Name = "btnIntro";
-            this.btnIntro.Size = new System.Drawing.Size(100, 34);
+            this.btnIntro.Size = new System.Drawing.Size(75, 28);
             this.btnIntro.TabIndex = 0;
             this.btnIntro.Text = "&Introduction";
             this.btnIntro.UseVisualStyleBackColor = true;
@@ -49,10 +49,10 @@
             // 
             // btnEtude
             // 
-            this.btnEtude.Location = new System.Drawing.Point(229, 39);
-            this.btnEtude.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEtude.Enabled = false;
+            this.btnEtude.Location = new System.Drawing.Point(197, 74);
             this.btnEtude.Name = "btnEtude";
-            this.btnEtude.Size = new System.Drawing.Size(100, 34);
+            this.btnEtude.Size = new System.Drawing.Size(75, 28);
             this.btnEtude.TabIndex = 1;
             this.btnEtude.Text = "&Etude";
             this.btnEtude.UseVisualStyleBackColor = true;
@@ -60,10 +60,10 @@
             // 
             // btnRelance
             // 
-            this.btnRelance.Location = new System.Drawing.Point(121, 39);
-            this.btnRelance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRelance.Enabled = false;
+            this.btnRelance.Location = new System.Drawing.Point(278, 74);
             this.btnRelance.Name = "btnRelance";
-            this.btnRelance.Size = new System.Drawing.Size(100, 34);
+            this.btnRelance.Size = new System.Drawing.Size(75, 28);
             this.btnRelance.TabIndex = 2;
             this.btnRelance.Text = "&Relance";
             this.btnRelance.UseVisualStyleBackColor = true;
@@ -71,39 +71,47 @@
             // lblMonApplication
             // 
             this.lblMonApplication.AutoSize = true;
-            this.lblMonApplication.Location = new System.Drawing.Point(13, 9);
-            this.lblMonApplication.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMonApplication.Location = new System.Drawing.Point(12, 29);
             this.lblMonApplication.Name = "lblMonApplication";
-            this.lblMonApplication.Size = new System.Drawing.Size(37, 17);
+            this.lblMonApplication.Size = new System.Drawing.Size(29, 13);
             this.lblMonApplication.TabIndex = 3;
             this.lblMonApplication.Text = "Nom";
             // 
             // lblRegion
             // 
             this.lblRegion.AutoSize = true;
-            this.lblRegion.Location = new System.Drawing.Point(168, 9);
-            this.lblRegion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRegion.Location = new System.Drawing.Point(127, 29);
             this.lblRegion.Name = "lblRegion";
-            this.lblRegion.Size = new System.Drawing.Size(53, 17);
+            this.lblRegion.Size = new System.Drawing.Size(41, 13);
             this.lblRegion.TabIndex = 4;
             this.lblRegion.Text = "Région";
             // 
             // cmdTest
             // 
-            this.cmdTest.Location = new System.Drawing.Point(352, 39);
-            this.cmdTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdTest.Location = new System.Drawing.Point(93, 74);
             this.cmdTest.Name = "cmdTest";
-            this.cmdTest.Size = new System.Drawing.Size(100, 34);
+            this.cmdTest.Size = new System.Drawing.Size(75, 28);
             this.cmdTest.TabIndex = 5;
-            this.cmdTest.Text = "&Test";
+            this.cmdTest.Text = "&BDD TEST";
             this.cmdTest.UseVisualStyleBackColor = true;
             this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
             // 
+            // lblV
+            // 
+            this.lblV.AutoSize = true;
+            this.lblV.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblV.Location = new System.Drawing.Point(292, 9);
+            this.lblV.Name = "lblV";
+            this.lblV.Size = new System.Drawing.Size(44, 12);
+            this.lblV.TabIndex = 6;
+            this.lblV.Text = "Version";
+            // 
             // frmAccueil
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 89);
+            this.ClientSize = new System.Drawing.Size(365, 110);
+            this.Controls.Add(this.lblV);
             this.Controls.Add(this.cmdTest);
             this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblMonApplication);
@@ -111,7 +119,6 @@
             this.Controls.Add(this.btnEtude);
             this.Controls.Add(this.btnIntro);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "frmAccueil";
             this.ShowIcon = false;
@@ -131,6 +138,7 @@
         private System.Windows.Forms.Label lblMonApplication;
         private System.Windows.Forms.Label lblRegion;
         private System.Windows.Forms.Button cmdTest;
+        private System.Windows.Forms.Label lblV;
     }
 }
 
