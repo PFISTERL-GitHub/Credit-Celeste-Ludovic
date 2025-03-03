@@ -5,10 +5,6 @@ using System.Windows.Forms;
 
 namespace CreditCeleste
 {
-    //                                     INFORMATION IMPORTANTE                                    //
-    // J'ai juste copié colé inteligament a la sauvegarde et validation il y a pas les bonnes valeurs //
-    //                                     INFORMATION IMPORTANTE                                    //
-
     public partial class frmVoitureOccasion : Form
     {
         public frmVoitureOccasion()
@@ -16,12 +12,7 @@ namespace CreditCeleste
             InitializeComponent();
         }
 
-        private void btnInfo_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private bool VerifierSaisie()
+        private bool VerifierSaisie() // TODO toujours besoin de VerifierSaisie ?
         {
             //if (string.IsNullOrWhiteSpace(txtNouveauVhc.Text) || string.IsNullOrWhiteSpace(txtDate1ereImat.Text) || string.IsNullOrWhiteSpace(txtNumImmat.Text) || string.IsNullOrWhiteSpace(txtNumSerie.Text) || string.IsNullOrWhiteSpace(txtPuissance.Text))
             //{
@@ -44,23 +35,22 @@ namespace CreditCeleste
                 MessageBox.Show("Veuillez sélectionner une option d'âge pour le véhicule.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             return true;
         }
 
-        private void btnEnregistre_Click(object sender, EventArgs e)
+        private void btnEnregistre_Click(object sender, EventArgs e) // TODO plus de bouton Enregistre
         {
             if (VerifierSaisie())
             {
                 // Si la saisie est valide, exécute le reste du code
                 string affichage = "Détails du Nouveau Véhicule : " +
-                                   Environment.NewLine + "Choix Vehicule Occasion : " + cbxChoixVhcOcca.Text +
+                                   Environment.NewLine + "Choix Vehicule Occasion : " + cboChoixVhcOcca.Text +
                                    Environment.NewLine + "Date de Première Immatriculation : " + txtDate1ereImat.Text +
                                    Environment.NewLine + "Numéro d'Immatriculation : " + txtNumImmat.Text +
                                    Environment.NewLine + "Numéro de Série : " + txtNumSerie.Text +
                                    Environment.NewLine + "Puissance : " + txtPuissance.Text;
 
-                string nvVhcOcca = cbxChoixVhcOcca.Text;
+                string nvVhcOcca = cboChoixVhcOcca.Text;
                 string Date1ereImmat = txtDate1ereImat.Text;
                 string numImmat = txtNumImmat.Text;
                 string numSerie = txtNumSerie.Text;
@@ -87,8 +77,7 @@ namespace CreditCeleste
             }
         }
 
-
-        private void frmVoitureOccasion_Load(object sender, EventArgs e)
+        private void frmVoitureOccasion_Load(object sender, EventArgs e) // TODO ajoutVoitureOccas ?
         {
             lblVendeur.Text = Globales.nomVendeur;
             lblClient.Text = Globales.nomClient;
@@ -96,10 +85,15 @@ namespace CreditCeleste
             // Rajout des vendeurs au combobox
             foreach (VoitureOccasion uneVoitureOccasion in Globales.uneConcession.GetVoitureOccasions())
             {
-                cbxChoixVhcOcca.Items.Add(uneVoitureOccasion.getInfoVoiture());
-            }
+                cboChoixVhcOcca.Items.Add(uneVoitureOccasion.getInfoVoiture());
+            }         
         }
 
+        /// <summary>
+        /// Instancie et affiche fenAssurance. Masque fenVoitureOccasion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAssurance_Click(object sender, EventArgs e)
         {
             Globales.fenAssurance = new frmAssurance();
@@ -109,6 +103,11 @@ namespace CreditCeleste
             this.Hide();
         }
 
+        /// <summary>
+        /// Affiche fenVoitureOccasion à la fermeture de fenAssurance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void FenAssurance_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Show();
@@ -150,11 +149,16 @@ namespace CreditCeleste
             }
         }
 
-        private void cbxChoixVhcOcca_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Met à jour le choix du véhicule 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboChoixVhcOcca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxChoixVhcOcca.SelectedIndex == -1) return; // Éviter une erreur si aucun élément n'est sélectionné
+            if (cboChoixVhcOcca.SelectedIndex == -1) return; // Éviter une erreur si aucun élément n'est sélectionné
 
-            string choixOcasText = cbxChoixVhcOcca.Text; // Exemple : "NumSerie Marque Modele"
+            string choixOcasText = cboChoixVhcOcca.Text; // Exemple : "NumSerie Marque Modele"
             string[] parts = choixOcasText.Split(' ');
 
             if (parts.Length < 1) // Vérification minimale
@@ -226,9 +230,12 @@ namespace CreditCeleste
             }
         }
 
-
-
-        private void btnValider_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Enregistre l'achat du client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAcheter_Click(object sender, EventArgs e)
         {
             try
             {
@@ -301,12 +308,14 @@ namespace CreditCeleste
             }
         }
 
-
-
-
-
-
-
-
+        /// <summary>
+        /// Fermer la fenêtre au clic sur le bouton Retour
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

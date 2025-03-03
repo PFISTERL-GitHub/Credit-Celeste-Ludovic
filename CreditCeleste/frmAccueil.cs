@@ -11,13 +11,18 @@ namespace CreditCeleste
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Charge l'application : instancie une concession et appelle les fonctions liées à la BDD
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmAccueil_Load(object sender, EventArgs e)
         {
             // Globales unGlobal = new Globales();
 
             lblMonApplication.Text = Globales.nomUtilisateur;
             lblRegion.Text = Globales.region;
-            lblV.Text = Globales.Version;
+            lblV.Text = Globales.version;
 
             Globales.uneConcession = new Concession("Garage Soares", "66 rue des Voyages");
             ajoutVendeur();
@@ -26,13 +31,13 @@ namespace CreditCeleste
             ajoutAncienClient();
         }
 
+        /// <summary>
+        /// Instancie et affiche fenIntroduction. Masque fenAccueil
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnIntro_Click(object sender, EventArgs e)
         {
-            //if(Globales.fenIntro == null)
-            //{
-            //}
-
-            // creation et ouverture de Introduction
             Globales.fenIntro = new frmIntro();
             Globales.fenIntro.FormClosed += new FormClosedEventHandler(FenIntro_FormClosed);
             Globales.fenIntro.Show();
@@ -40,6 +45,11 @@ namespace CreditCeleste
             this.Hide();
         }
 
+        /// <summary>
+        /// Affiche fenAccueil à la fermeture de fenIntro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void FenIntro_FormClosed(object sender, FormClosedEventArgs e)  // que faire a la fermeture de Introduction
         {
             this.Show();
@@ -50,9 +60,13 @@ namespace CreditCeleste
 
         }
 
-        private void cmdTest_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Instancie et affiche fenTest. Masque fenAccueil
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTest_Click(object sender, EventArgs e)
         {
-            // creation et ouverture de Introduction
             Globales.fenTestBDD = new frmTestBDD();
             Globales.fenTestBDD.FormClosed += new FormClosedEventHandler(FenIntro_FormClosed);
             Globales.fenTestBDD.Show();
@@ -60,6 +74,9 @@ namespace CreditCeleste
             this.Hide();
         }
 
+        /// <summary>
+        /// Récupère les données de la table Vendeur pour créer tous les vendeurs
+        /// </summary>
         private void ajoutVendeur()
         {
             using (SqlConnection connection = new SqlConnection(Globales.connectionString))
@@ -86,7 +103,6 @@ namespace CreditCeleste
                 }
             }
         }
-
 
         private void ajoutVoitureOccas()
         {
@@ -115,16 +131,10 @@ namespace CreditCeleste
 
                         // Ajout du vendeur dans la concession
                         Globales.uneConcession.ajoutVoiture(uneVoitureOccasion);
-
-
                     }
                 }
             }
-
-
         }
-
-
 
         private void ajoutVoitureNeuve()
         {
@@ -154,13 +164,10 @@ namespace CreditCeleste
 
                         // Ajout du vendeur dans la concession
                         Globales.uneConcession.ajoutVoiture(uneVoitureNeuve);
-
-
                     }
                 }
             }
         }
-
 
         private void ajoutAncienClient()
         {
@@ -188,13 +195,9 @@ namespace CreditCeleste
                         // Ajout du client dans la concession
                         Globales.uneConcession.ajoutClients(unClient);
                         Globales.uneConcession.ajoutClientsID(unClientID);
-
-
-
                     }
                 }
             }
         }
     }
-
 }

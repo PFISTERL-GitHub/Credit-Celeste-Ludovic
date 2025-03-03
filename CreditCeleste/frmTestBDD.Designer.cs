@@ -32,10 +32,10 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmdLire = new System.Windows.Forms.Button();
-            this.cmdEnregistrer = new System.Windows.Forms.Button();
+            this.btnLire = new System.Windows.Forms.Button();
+            this.btnEnregistrer = new System.Windows.Forms.Button();
             this.lstTest = new System.Windows.Forms.ListBox();
-            this.cmdSupprimer = new System.Windows.Forms.Button();
+            this.btnSupprimer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -70,25 +70,25 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "2";
             // 
-            // cmdLire
+            // btnLire
             // 
-            this.cmdLire.Location = new System.Drawing.Point(87, 190);
-            this.cmdLire.Name = "cmdLire";
-            this.cmdLire.Size = new System.Drawing.Size(125, 69);
-            this.cmdLire.TabIndex = 6;
-            this.cmdLire.Text = "Lire";
-            this.cmdLire.UseVisualStyleBackColor = true;
-            this.cmdLire.Click += new System.EventHandler(this.cmdLire_Click);
+            this.btnLire.Location = new System.Drawing.Point(87, 190);
+            this.btnLire.Name = "btnLire";
+            this.btnLire.Size = new System.Drawing.Size(125, 69);
+            this.btnLire.TabIndex = 6;
+            this.btnLire.Text = "Lire";
+            this.btnLire.UseVisualStyleBackColor = true;
+            this.btnLire.Click += new System.EventHandler(this.btnLire_Click);
             // 
-            // cmdEnregistrer
+            // btnEnregistrer
             // 
-            this.cmdEnregistrer.Location = new System.Drawing.Point(349, 190);
-            this.cmdEnregistrer.Name = "cmdEnregistrer";
-            this.cmdEnregistrer.Size = new System.Drawing.Size(125, 69);
-            this.cmdEnregistrer.TabIndex = 7;
-            this.cmdEnregistrer.Text = "Enregistrer";
-            this.cmdEnregistrer.UseVisualStyleBackColor = true;
-            this.cmdEnregistrer.Click += new System.EventHandler(this.cmdEnregistrer_Click);
+            this.btnEnregistrer.Location = new System.Drawing.Point(349, 190);
+            this.btnEnregistrer.Name = "btnEnregistrer";
+            this.btnEnregistrer.Size = new System.Drawing.Size(125, 69);
+            this.btnEnregistrer.TabIndex = 7;
+            this.btnEnregistrer.Text = "Enregistrer";
+            this.btnEnregistrer.UseVisualStyleBackColor = true;
+            this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
             // lstTest
             // 
@@ -98,25 +98,25 @@
             this.lstTest.Size = new System.Drawing.Size(230, 147);
             this.lstTest.TabIndex = 8;
             // 
-            // cmdSupprimer
+            // btnSupprimer
             // 
-            this.cmdSupprimer.Location = new System.Drawing.Point(218, 190);
-            this.cmdSupprimer.Name = "cmdSupprimer";
-            this.cmdSupprimer.Size = new System.Drawing.Size(125, 69);
-            this.cmdSupprimer.TabIndex = 9;
-            this.cmdSupprimer.Text = "Supprimer";
-            this.cmdSupprimer.UseVisualStyleBackColor = true;
-            this.cmdSupprimer.Click += new System.EventHandler(this.cmdSupprimer_Click);
+            this.btnSupprimer.Location = new System.Drawing.Point(218, 190);
+            this.btnSupprimer.Name = "btnSupprimer";
+            this.btnSupprimer.Size = new System.Drawing.Size(125, 69);
+            this.btnSupprimer.TabIndex = 9;
+            this.btnSupprimer.Text = "Supprimer";
+            this.btnSupprimer.UseVisualStyleBackColor = true;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
             // frmTestBDD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(486, 271);
-            this.Controls.Add(this.cmdSupprimer);
+            this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.lstTest);
-            this.Controls.Add(this.cmdEnregistrer);
-            this.Controls.Add(this.cmdLire);
+            this.Controls.Add(this.btnEnregistrer);
+            this.Controls.Add(this.btnLire);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
@@ -137,9 +137,9 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button cmdLire;
-        private System.Windows.Forms.Button cmdEnregistrer;
+        private System.Windows.Forms.Button btnLire;
+        private System.Windows.Forms.Button btnEnregistrer;
         private System.Windows.Forms.ListBox lstTest;
-        private System.Windows.Forms.Button cmdSupprimer;
+        private System.Windows.Forms.Button btnSupprimer;
     }
 }

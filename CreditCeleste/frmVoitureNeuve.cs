@@ -12,6 +12,11 @@ namespace CreditCeleste
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Au chargement du formulaire
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmVoiture_Load(object sender, EventArgs e)
         {
             lblVendeur.Text = Globales.nomVendeur;
@@ -20,31 +25,27 @@ namespace CreditCeleste
             ajoutVoitureNeuve();
         }
 
-        private void btnIntro_Click(object sender, EventArgs e)
-        {
-            // Fermeture de la page VoitureNeuve
-            this.Close();
-        }
-
-
-
-        // Redirection vers la page Assurance
+        /// <summary>
+        /// Instancie et affiche fenAssurance. Masque fenVoiture
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAssurance_Click(object sender, EventArgs e)
         {
-            // Création et ouverture de Assurance
             Globales.fenAssurance = new frmAssurance();
             Globales.fenAssurance.FormClosed += new FormClosedEventHandler(FenAssurance_FormClosed);
-
-            // Masquer Voiture
-            this.Hide();
-
-            // Ouverture de la page Assurance
             Globales.fenAssurance.Show();
+
+            this.Hide();
         }
 
-        void FenAssurance_FormClosed(object sender, FormClosedEventArgs e)  // que faire a la fermeture de Assurance
+        /// <summary>
+        /// Affiche fenVoiture à la fermeture de fenAssurance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void FenAssurance_FormClosed(object sender, FormClosedEventArgs e) 
         {
-            // Affiche VoitureNeuve à la fermeture de Assurance
             this.Show();
 
             if (Globales.uneVoiture != null)
@@ -56,14 +57,12 @@ namespace CreditCeleste
                         if (radioButton.Name == Globales.btnAgeCocher)
                         {
                             radioButton.Checked = true;
-                            break; // Sort de la boucle une fois trouvé
+                            break; 
                         }
                     }
                 }
-
-
             }
-            else if (!String.IsNullOrEmpty(Globales.btnAgeCocher))
+            else if (!String.IsNullOrEmpty(Globales.btnAgeCocher)) // TODO on peut mettre un if ... or ... ?
             {
                 foreach (Control xControl in gpbAgeVehicule.Controls)
                 {
@@ -72,31 +71,34 @@ namespace CreditCeleste
                         if (radioButton.Name == Globales.btnAgeCocher)
                         {
                             radioButton.Checked = true;
-                            break; // Sort de la boucle une fois trouvé
+                            break; 
                         }
                     }
                 }
             }
         }
 
-
+        /// <summary>
+        /// Ajoute la voiture au combobox cboNouvVhc
+        /// </summary> 
         private void ajoutVoitureNeuve()
         {
-
-            // Rajout des vendeurs au combobox
             foreach (VoitureNeuve uneVoitureNeuve in Globales.uneConcession.GetVoitureNeuve())
             {
-                cbxNouvVhc.Items.Add(uneVoitureNeuve.getInfoVoiture());
+                cboNouvVhc.Items.Add(uneVoitureNeuve.getInfoVoiture());
             }
         }
 
-
-
-        private void cbxNouvVhc_SelectedIndexChanged_1(object sender, EventArgs e)
+        /// <summary>
+        /// Met à jour le choix du véhicule 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboNouvVhc_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (cbxNouvVhc.SelectedIndex == -1) return; // Éviter une erreur si aucun élément n'est sélectionné
+            if (cboNouvVhc.SelectedIndex == -1) return; // Éviter une erreur si aucun élément n'est sélectionné
 
-            string choixOcasText = cbxNouvVhc.Text; // Exemple : "NumSerie Marque Modele"
+            string choixOcasText = cboNouvVhc.Text; // Exemple : "NumSerie Marque Modele"
             string[] parts = choixOcasText.Split(' ');
 
             if (parts.Length < 1) // Vérification minimale
@@ -168,8 +170,12 @@ namespace CreditCeleste
             }
         }
 
-
-        private void btnValider_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Enregistre l'achat du client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAcheter_Click(object sender, EventArgs e)
         {
             try
             {
@@ -242,6 +248,14 @@ namespace CreditCeleste
             }
         }
 
-
+        /// <summary>
+        /// Fermer la fenêtre au clic sur le bouton Retour
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

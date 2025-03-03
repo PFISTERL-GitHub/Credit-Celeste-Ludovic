@@ -23,7 +23,6 @@ namespace CreditCeleste
         private List<VoitureNeuve> lesVoituresNeuve = new List<VoitureNeuve>();
         private List<VoitureNeuve> lesNumSeriesNeuve = new List<VoitureNeuve>();
 
-
         public Concession() { }
 
         public Concession(string nomConcession, string adresseConcession)
@@ -31,9 +30,6 @@ namespace CreditCeleste
             monNomConcession = nomConcession;
             monAdresseConcession = adresseConcession;
         }
-
-
-
 
         public List<Vendeur> getLesVendeurs()
         {
@@ -46,7 +42,6 @@ namespace CreditCeleste
             lesVendeurs.Add(oVendeur);
         }
 
-
         public List<Client> getLesClients()
         {
             return lesClients;
@@ -57,87 +52,60 @@ namespace CreditCeleste
             return lesClientsID;
         }
 
-
-
         // ajouter un vendeur
         public void ajoutClients(Client oClient)
         {
             lesClients.Add(oClient);
         }
 
-
         public void ajoutClientsID(Client oClientID)
         {
             lesClientsID.Add(oClientID);
         }
 
-
         public void ajoutVendeurClient(Client oVendeurC)
         {
             lesVendeursC.Add(oVendeurC);
         }
-
-
         public List<VoitureOccasion> GetVoitureOccasions()
         {
             return lesVoituresOcas;
         }
 
-
         public void ajoutVoiture(VoitureOccasion oVoiture)
         {
             lesVoituresOcas.Add(oVoiture);
-
-
         }
-
-
 
         public List<VoitureOccasion> GetNumSeriesOcas()
         {
             return lesNumSeriesOcas;
         }
 
-
         public void ajoutNumSeriesOcas(VoitureOccasion oNumeSeries)
         {
             lesNumSeriesOcas.Add(oNumeSeries);
-
-
         }
 
         // Voiture NEUVE
-
-
         public List<VoitureNeuve> GetVoitureNeuve()
         {
             return lesVoituresNeuve;
         }
 
-
         public void ajoutVoiture(VoitureNeuve oVoiture)
         {
             lesVoituresNeuve.Add(oVoiture);
-
-
         }
-
-
 
         public List<VoitureNeuve> GetNumSeriesNeuve()
         {
             return lesNumSeriesNeuve;
         }
 
-
         public void ajoutNumSeriesNeuve(VoitureNeuve oNumeSeries)
         {
             lesNumSeriesNeuve.Add(oNumeSeries);
-
-
         }
-
-
     }
-
 }

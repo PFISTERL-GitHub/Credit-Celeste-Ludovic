@@ -14,19 +14,12 @@
         private string modele;
         private string NumS;
 
-
-
-
-
-
-
         public VoitureNeuve(string nvNumS, string nvMarque, string nvModele)
         {
             NumS = nvNumS;
             marque = nvMarque;
             modele = nvModele;
         }
-
 
         public VoitureNeuve()
         {
@@ -39,7 +32,6 @@
 
         //    this.rdAge = rdAge;
         //}
-
         public VoitureNeuve(string nvVHOcc, string date1Immat, string numI, string numS, string xPuissance, string rdAge)
         {
             nvVhcOcca = nvVHOcc;
@@ -51,22 +43,15 @@
             this.rdAge = rdAge;
         }
 
-
-
-
         public string getNomVehicule() { return nvVhcOcca; }
         public string getDate1ereImmat() { return date1ereImmat; }
         public string getNumImmat() { return numImmat; }
         public string getnumSerie() { return numSerie; }
         public string getPuissance() { return puissance; }
         public string getrdAge() { return rdAge; }
-
-
         public string getInfoVoiture()
         {
             return NumS + " " + marque + " " + modele;
         }
-
-
     }
 }

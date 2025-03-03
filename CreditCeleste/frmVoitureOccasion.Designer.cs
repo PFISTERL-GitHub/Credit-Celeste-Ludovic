@@ -36,8 +36,8 @@ namespace CreditCeleste
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnValider = new System.Windows.Forms.Button();
-            this.btnInfo = new System.Windows.Forms.Button();
+            this.btnAcheter = new System.Windows.Forms.Button();
+            this.btnRetour = new System.Windows.Forms.Button();
             this.txtNumSerie = new System.Windows.Forms.TextBox();
             this.txtNumImmat = new System.Windows.Forms.TextBox();
             this.txtDate1ereImat = new System.Windows.Forms.TextBox();
@@ -47,7 +47,7 @@ namespace CreditCeleste
             this.rdbOccas3a5 = new System.Windows.Forms.RadioButton();
             this.rdbOccasMoins3 = new System.Windows.Forms.RadioButton();
             this.btnAssurance = new System.Windows.Forms.Button();
-            this.cbxChoixVhcOcca = new System.Windows.Forms.ComboBox();
+            this.cboChoixVhcOcca = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lblClient = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -118,25 +118,25 @@ namespace CreditCeleste
             this.label1.TabIndex = 35;
             this.label1.Text = "Choix Véhicule Occasion";
             // 
-            // btnValider
+            // btnAcheter
             // 
-            this.btnValider.Location = new System.Drawing.Point(266, 250);
-            this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(220, 28);
-            this.btnValider.TabIndex = 34;
-            this.btnValider.Text = "Acheter";
-            this.btnValider.UseVisualStyleBackColor = true;
-            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            this.btnAcheter.Location = new System.Drawing.Point(266, 250);
+            this.btnAcheter.Name = "btnAcheter";
+            this.btnAcheter.Size = new System.Drawing.Size(220, 28);
+            this.btnAcheter.TabIndex = 34;
+            this.btnAcheter.Text = "Acheter";
+            this.btnAcheter.UseVisualStyleBackColor = true;
+            this.btnAcheter.Click += new System.EventHandler(this.btnAcheter_Click);
             // 
-            // btnInfo
+            // btnRetour
             // 
-            this.btnInfo.Location = new System.Drawing.Point(12, 250);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(75, 28);
-            this.btnInfo.TabIndex = 33;
-            this.btnInfo.Text = "Retour";
-            this.btnInfo.UseVisualStyleBackColor = true;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            this.btnRetour.Location = new System.Drawing.Point(12, 250);
+            this.btnRetour.Name = "btnRetour";
+            this.btnRetour.Size = new System.Drawing.Size(75, 28);
+            this.btnRetour.TabIndex = 33;
+            this.btnRetour.Text = "Retour";
+            this.btnRetour.UseVisualStyleBackColor = true;
+            this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
             // 
             // txtNumSerie
             // 
@@ -218,14 +218,14 @@ namespace CreditCeleste
             this.btnAssurance.UseVisualStyleBackColor = true;
             this.btnAssurance.Click += new System.EventHandler(this.btnAssurance_Click);
             // 
-            // cbxChoixVhcOcca
+            // cboChoixVhcOcca
             // 
-            this.cbxChoixVhcOcca.FormattingEnabled = true;
-            this.cbxChoixVhcOcca.Location = new System.Drawing.Point(142, 12);
-            this.cbxChoixVhcOcca.Name = "cbxChoixVhcOcca";
-            this.cbxChoixVhcOcca.Size = new System.Drawing.Size(206, 21);
-            this.cbxChoixVhcOcca.TabIndex = 43;
-            this.cbxChoixVhcOcca.SelectedIndexChanged += new System.EventHandler(this.cbxChoixVhcOcca_SelectedIndexChanged);
+            this.cboChoixVhcOcca.FormattingEnabled = true;
+            this.cboChoixVhcOcca.Location = new System.Drawing.Point(142, 12);
+            this.cboChoixVhcOcca.Name = "cboChoixVhcOcca";
+            this.cboChoixVhcOcca.Size = new System.Drawing.Size(206, 21);
+            this.cboChoixVhcOcca.TabIndex = 43;
+            this.cboChoixVhcOcca.SelectedIndexChanged += new System.EventHandler(this.cboChoixVhcOcca_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -270,7 +270,7 @@ namespace CreditCeleste
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblClient);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.cbxChoixVhcOcca);
+            this.Controls.Add(this.cboChoixVhcOcca);
             this.Controls.Add(this.btnAssurance);
             this.Controls.Add(this.lblVendeur);
             this.Controls.Add(this.label6);
@@ -279,8 +279,8 @@ namespace CreditCeleste
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnValider);
-            this.Controls.Add(this.btnInfo);
+            this.Controls.Add(this.btnAcheter);
+            this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.txtNumSerie);
             this.Controls.Add(this.txtNumImmat);
             this.Controls.Add(this.txtDate1ereImat);
@@ -308,8 +308,8 @@ namespace CreditCeleste
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnValider;
-        private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Button btnAcheter;
+        private System.Windows.Forms.Button btnRetour;
         private System.Windows.Forms.TextBox txtNumSerie;
         private System.Windows.Forms.TextBox txtNumImmat;
         private System.Windows.Forms.TextBox txtDate1ereImat;
@@ -319,7 +319,7 @@ namespace CreditCeleste
         private System.Windows.Forms.RadioButton rdbOccas3a5;
         private System.Windows.Forms.RadioButton rdbOccasMoins3;
         private System.Windows.Forms.Button btnAssurance;
-        private System.Windows.Forms.ComboBox cbxChoixVhcOcca;
+        private System.Windows.Forms.ComboBox cboChoixVhcOcca;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblClient;
         private System.Windows.Forms.Label label8;

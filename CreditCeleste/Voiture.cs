@@ -39,7 +39,6 @@ namespace CreditCeleste
             this.rdAge = rdAge;
         }
 
-
         public Voiture(string nvMarque, string nvModele)
         {
             marque = nvMarque;
@@ -53,16 +52,9 @@ namespace CreditCeleste
         public string getPuissance() { return puissance; }
         public string getrdAge() { return rdAge; }
 
-
-
-
         public void ajoutVoiture(Voiture nVoiture)
         {
             lesVoituresNv.Add(nVoiture);
-
-
         }
-
     }
-
 }

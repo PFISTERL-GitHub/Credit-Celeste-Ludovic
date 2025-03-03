@@ -32,8 +32,8 @@
             this.txtDate1ereImmat = new System.Windows.Forms.TextBox();
             this.txtPuissance = new System.Windows.Forms.TextBox();
             this.txtNumSerie = new System.Windows.Forms.TextBox();
-            this.btnValider = new System.Windows.Forms.Button();
-            this.btnInfo = new System.Windows.Forms.Button();
+            this.btnAcheter = new System.Windows.Forms.Button();
+            this.btnRetour = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.rdbOccas5OuPlus = new System.Windows.Forms.RadioButton();
             this.rdbOccas3a5 = new System.Windows.Forms.RadioButton();
             this.rdbOccasMoins3 = new System.Windows.Forms.RadioButton();
-            this.cbxNouvVhc = new System.Windows.Forms.ComboBox();
+            this.cboNouvVhc = new System.Windows.Forms.ComboBox();
             this.lblClient = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -82,25 +82,25 @@
             this.txtNumSerie.Size = new System.Drawing.Size(220, 20);
             this.txtNumSerie.TabIndex = 15;
             // 
-            // btnValider
+            // btnAcheter
             // 
-            this.btnValider.Location = new System.Drawing.Point(268, 250);
-            this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(220, 28);
-            this.btnValider.TabIndex = 18;
-            this.btnValider.Text = "Acheter";
-            this.btnValider.UseVisualStyleBackColor = true;
-            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            this.btnAcheter.Location = new System.Drawing.Point(268, 250);
+            this.btnAcheter.Name = "btnAcheter";
+            this.btnAcheter.Size = new System.Drawing.Size(220, 28);
+            this.btnAcheter.TabIndex = 18;
+            this.btnAcheter.Text = "Acheter";
+            this.btnAcheter.UseVisualStyleBackColor = true;
+            this.btnAcheter.Click += new System.EventHandler(this.btnAcheter_Click);
             // 
-            // btnInfo
+            // btnRetour
             // 
-            this.btnInfo.Location = new System.Drawing.Point(12, 250);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(75, 28);
-            this.btnInfo.TabIndex = 17;
-            this.btnInfo.Text = "Retour";
-            this.btnInfo.UseVisualStyleBackColor = true;
-            this.btnInfo.Click += new System.EventHandler(this.btnIntro_Click);
+            this.btnRetour.Location = new System.Drawing.Point(12, 250);
+            this.btnRetour.Name = "btnRetour";
+            this.btnRetour.Size = new System.Drawing.Size(75, 28);
+            this.btnRetour.TabIndex = 17;
+            this.btnRetour.Text = "Retour";
+            this.btnRetour.UseVisualStyleBackColor = true;
+            this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
             // 
             // label1
             // 
@@ -217,15 +217,15 @@
             this.rdbOccasMoins3.Text = "Moins de 3 ans";
             this.rdbOccasMoins3.UseVisualStyleBackColor = true;
             // 
-            // cbxNouvVhc
+            // cboNouvVhc
             // 
-            this.cbxNouvVhc.FormattingEnabled = true;
-            this.cbxNouvVhc.Location = new System.Drawing.Point(142, 6);
-            this.cbxNouvVhc.Name = "cbxNouvVhc";
-            this.cbxNouvVhc.Size = new System.Drawing.Size(220, 21);
-            this.cbxNouvVhc.Sorted = true;
-            this.cbxNouvVhc.TabIndex = 28;
-            this.cbxNouvVhc.SelectedIndexChanged += new System.EventHandler(this.cbxNouvVhc_SelectedIndexChanged_1);
+            this.cboNouvVhc.FormattingEnabled = true;
+            this.cboNouvVhc.Location = new System.Drawing.Point(142, 6);
+            this.cboNouvVhc.Name = "cboNouvVhc";
+            this.cboNouvVhc.Size = new System.Drawing.Size(220, 21);
+            this.cboNouvVhc.Sorted = true;
+            this.cboNouvVhc.TabIndex = 28;
+            this.cboNouvVhc.SelectedIndexChanged += new System.EventHandler(this.cboNouvVhc_SelectedIndexChanged_1);
             // 
             // lblClient
             // 
@@ -271,7 +271,7 @@
             this.Controls.Add(this.txtPrixV);
             this.Controls.Add(this.lblClient);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.cbxNouvVhc);
+            this.Controls.Add(this.cboNouvVhc);
             this.Controls.Add(this.gpbAgeVehicule);
             this.Controls.Add(this.btnAssurance);
             this.Controls.Add(this.lblVendeur);
@@ -281,8 +281,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnValider);
-            this.Controls.Add(this.btnInfo);
+            this.Controls.Add(this.btnAcheter);
+            this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.txtNumSerie);
             this.Controls.Add(this.txtNumImmat);
             this.Controls.Add(this.txtDate1ereImmat);
@@ -306,8 +306,8 @@
         private System.Windows.Forms.TextBox txtDate1ereImmat;
         private System.Windows.Forms.TextBox txtPuissance;
         private System.Windows.Forms.TextBox txtNumSerie;
-        private System.Windows.Forms.Button btnValider;
-        private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Button btnAcheter;
+        private System.Windows.Forms.Button btnRetour;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -320,7 +320,7 @@
         private System.Windows.Forms.RadioButton rdbOccas5OuPlus;
         private System.Windows.Forms.RadioButton rdbOccas3a5;
         private System.Windows.Forms.RadioButton rdbOccasMoins3;
-        private System.Windows.Forms.ComboBox cbxNouvVhc;
+        private System.Windows.Forms.ComboBox cboNouvVhc;
         private System.Windows.Forms.Label lblClient;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;

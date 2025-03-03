@@ -42,7 +42,7 @@
             this.lblVendeur = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnVoitureOccasion = new System.Windows.Forms.Button();
-            this.btnInfo = new System.Windows.Forms.Button();
+            this.btnRetour = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cboChoixC = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -177,15 +177,15 @@
             this.btnVoitureOccasion.UseVisualStyleBackColor = true;
             this.btnVoitureOccasion.Click += new System.EventHandler(this.btnVoitureOccasion_Click);
             // 
-            // btnInfo
+            // btnRetour
             // 
-            this.btnInfo.Location = new System.Drawing.Point(12, 229);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(63, 28);
-            this.btnInfo.TabIndex = 29;
-            this.btnInfo.Text = "Retour";
-            this.btnInfo.UseVisualStyleBackColor = true;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            this.btnRetour.Location = new System.Drawing.Point(12, 229);
+            this.btnRetour.Name = "btnRetour";
+            this.btnRetour.Size = new System.Drawing.Size(63, 28);
+            this.btnRetour.TabIndex = 29;
+            this.btnRetour.Text = "Retour";
+            this.btnRetour.UseVisualStyleBackColor = true;
+            this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
             // 
             // label5
             // 
@@ -212,7 +212,7 @@
             this.ClientSize = new System.Drawing.Size(472, 271);
             this.Controls.Add(this.cboChoixC);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnInfo);
+            this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.btnVoitureOccasion);
             this.Controls.Add(this.lblVendeur);
             this.Controls.Add(this.label7);
@@ -255,7 +255,7 @@
         private System.Windows.Forms.Label lblVendeur;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnVoitureOccasion;
-        private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Button btnRetour;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboChoixC;
     }

@@ -6,7 +6,10 @@
         private string monNomVendeur;
         private string monPrenomVendeur;
 
-        public Vendeur() { }
+        public Vendeur() 
+        { 
+
+        }
 
         public Vendeur(string CcivVendeur, string nomVendeur, string prenomVendeur)
         {
@@ -19,7 +22,5 @@
         {
             return monCcivVendeur + " " + monNomVendeur + " " + monPrenomVendeur;
         }
-
-
     }
 }

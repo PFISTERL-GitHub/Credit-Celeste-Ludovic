@@ -8,7 +8,7 @@ namespace CreditCeleste
     public partial class frmTestBDD : Form
     {
         private string connectionString = "Data Source=10.129.184.127; Initial Catalog=CreditCelesteProjet; User Id=cnxDaniels; password=mdpDaniels@;";
-
+        //public static string connectionString = "Data Source=192.168.0.19; Initial Catalog=CreditCelesteProjet; User Id=connLudovic; password=Olympe24;";
         public frmTestBDD()
         {
             InitializeComponent();
@@ -18,7 +18,8 @@ namespace CreditCeleste
         {
 
         }
-        private void cmdLire_Click(object sender, EventArgs e)
+
+        private void btnLire_Click(object sender, EventArgs e)
         {
             lstTest.Items.Clear(); // Nettoie la ListBox
 
@@ -47,12 +48,10 @@ namespace CreditCeleste
             }
         }
 
-        private void cmdEnregistrer_Click(object sender, EventArgs e)
+        private void btnEnregistrer_Click(object sender, EventArgs e)
         {
             try
             {
-
-
                 // Vérifiez et récupérez les valeurs des TextBox
                 if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
                 {
@@ -91,7 +90,6 @@ namespace CreditCeleste
                         }
                     }
                 }
-
                 textBox1.Clear();
                 textBox2.Clear();
             }
@@ -100,8 +98,7 @@ namespace CreditCeleste
                 MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}");
             }
         }
-
-        private void cmdSupprimer_Click(object sender, EventArgs e)
+        private void btnSupprimer_Click(object sender, EventArgs e)
         {
             try
             {
@@ -136,8 +133,5 @@ namespace CreditCeleste
                 MessageBox.Show($"Erreur lors de la suppression des données : {ex.Message}");
             }
         }
-
-
-
     }
 }

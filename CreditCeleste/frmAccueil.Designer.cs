@@ -33,7 +33,7 @@
             this.btnRelance = new System.Windows.Forms.Button();
             this.lblMonApplication = new System.Windows.Forms.Label();
             this.lblRegion = new System.Windows.Forms.Label();
-            this.cmdTest = new System.Windows.Forms.Button();
+            this.btnTest = new System.Windows.Forms.Button();
             this.lblV = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -86,15 +86,15 @@
             this.lblRegion.TabIndex = 4;
             this.lblRegion.Text = "Région";
             // 
-            // cmdTest
+            // btnTest
             // 
-            this.cmdTest.Location = new System.Drawing.Point(93, 74);
-            this.cmdTest.Name = "cmdTest";
-            this.cmdTest.Size = new System.Drawing.Size(75, 28);
-            this.cmdTest.TabIndex = 5;
-            this.cmdTest.Text = "&BDD TEST";
-            this.cmdTest.UseVisualStyleBackColor = true;
-            this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
+            this.btnTest.Location = new System.Drawing.Point(93, 74);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 28);
+            this.btnTest.TabIndex = 5;
+            this.btnTest.Text = "&BDD TEST";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // lblV
             // 
@@ -112,7 +112,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 110);
             this.Controls.Add(this.lblV);
-            this.Controls.Add(this.cmdTest);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblMonApplication);
             this.Controls.Add(this.btnRelance);
@@ -137,8 +137,7 @@
         private System.Windows.Forms.Button btnRelance;
         private System.Windows.Forms.Label lblMonApplication;
         private System.Windows.Forms.Label lblRegion;
-        private System.Windows.Forms.Button cmdTest;
+        private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Label lblV;
     }
 }
-

@@ -12,7 +12,11 @@ namespace CreditCeleste
             InitializeComponent();
         }
 
-        // Ce lance a l'ouverture du le page
+        /// <summary>
+        /// Au chargement du formulaire
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmIntro_Load(object sender, EventArgs e)
         {
             // Recuperation des informations
@@ -24,7 +28,7 @@ namespace CreditCeleste
                 txtPrenom.Text = Globales.unClient.getPrenomClient();
             }
 
-            // FAIRE AUSSI POUR ANCIEN VEHICULE //
+            // TODO FAIRE AUSSI POUR ANCIEN VEHICULE //
 
             // Affiche nom vendeur dans le label
             lblVendeur.Text = Globales.nomVendeur;
@@ -40,173 +44,15 @@ namespace CreditCeleste
             {
                 cboChoixC.Items.Add(unClient.getInfoClients());
             }
-
-
-
             // Desactive le bouton Valider
             btnValider.Enabled = false;
         }
 
-        // Fonction pour le bouton Enregistrer
-        private void btnEnregistre_Click(object sender, EventArgs e)
-        {
-            // Sauvegarde les saisie dans des variables
-            string civilite = cboCiv.Text;
-            string nom = txtNom.Text;
-            string prenom = txtPrenom.Text;
-
-            string vendeur = cboVendeur.Text;
-
-
-            // Verification de la saisie
-            if (verifierSaisie(civilite, nom, prenom, vendeur))
-            {
-                // Sauvegarde dans Globales
-                Globales.unClient = new Client(civilite, nom, prenom);
-                Globales.nomVendeur = vendeur;
-
-
-                // Affiche nom vendeur
-                lblVendeur.Text = vendeur;
-
-                // Affiche un message
-                string affichage =
-                    "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
-                    "Vendeur: " + vendeur + Environment.NewLine;
-
-                MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Active le bouton Valider
-                btnValider.Enabled = true;
-            }
-        }
-
-        // Fonction pour vérifier si les saisies sont valides
-        private bool verifierSaisie(string civilite, string nom, string prenom, string vendeur)
-        {
-            // Variable
-            bool valeur = true;
-
-            // Verifie les champs obligatoires
-            if (string.IsNullOrWhiteSpace(civilite) || string.IsNullOrWhiteSpace(nom) || string.IsNullOrWhiteSpace(prenom) || string.IsNullOrWhiteSpace(vendeur))
-            {
-                // Affiche un message d'erreur
-                MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                valeur = false; // Retourne faux si une valeur n'est pas saisie
-            }
-
-            // Retourne la Variable
-            return valeur;
-        }
-
-        private void btnVoiture_Click(object sender, EventArgs e)
-        {
-            // Creation d'une page VoitureNeuve
-            Globales.fenVoiture = new frmVoitureNeuve();
-            Globales.fenVoiture.FormClosed += new FormClosedEventHandler(FenVoiture_FormClosed);
-
-            // Masquer Intro
-            this.Hide();
-
-            // Ouverture de la page VoitureNeuve
-            Globales.fenVoiture.Show();
-        }
-
-        void FenVoiture_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Affiche intro a la fermeture de VoitureNeuve
-            this.Show();
-        }
-
-        private void cboVendeur_SelectedIndexChanged(object sender, EventArgs e) // A FAIRE AU PROPRE //
-        {
-            // Que faire a la selection d'un item dans le combobox
-            lblVendeur.Text = Globales.uneConcession.getLesVendeurs()[cboVendeur.SelectedIndex].getInfoVendeur(); // CA PEUT ETRE SIMPLIFIER?
-        }
-
-
-
-        //Fonction pour le bouton Valider
-        private void btnValider_Click(object sender, EventArgs e) // A FAIRE //
-        {
-            CnxBDD();
-        }
-
-        //Fonction pour la connexion à la base de donnée
-        private void CnxBDD()
-        {
-            try
-            {
-                // Sauvegarde le texte saisi dans des variables
-                string civiliteC = cboCiv.Text;
-                string nomC = txtNom.Text;
-                string prenomC = txtPrenom.Text;
-                int numV = cboVendeur.SelectedIndex + 1;
-
-                // Requête SQL avec OUTPUT pour récupérer l'ID auto-incrémenté
-                string query = "INSERT INTO CLIENT (civ, nom, prenom, numV) OUTPUT INSERTED.NumC VALUES (@civC, @nomC, @prenomC, @numV)";
-
-                using (SqlConnection oConnexion = new SqlConnection(Globales.connectionString))
-                {
-                    oConnexion.Open();
-
-                    using (SqlCommand cmd = new SqlCommand(query, oConnexion))
-                    {
-                        cmd.Parameters.Add(new SqlParameter("@civC", SqlDbType.NVarChar) { Value = civiliteC });
-                        cmd.Parameters.Add(new SqlParameter("@nomC", SqlDbType.NVarChar) { Value = nomC });
-                        cmd.Parameters.Add(new SqlParameter("@prenomC", SqlDbType.NVarChar) { Value = prenomC });
-                        cmd.Parameters.Add(new SqlParameter("@numV", SqlDbType.Int) { Value = numV });
-
-                        // Exécuter la commande et récupérer l'ID inséré
-                        object result = cmd.ExecuteScalar();
-                        if (result != null)
-                        {
-                            Globales.IdClient = Convert.ToInt32(result);
-                            MessageBox.Show($"Les données ont été enregistrées avec succès !\nNumC : {Globales.IdClient}");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Aucune donnée n'a été enregistrée.");
-                        }
-                    }
-                }
-
-                Globales.nomClient = nomC + " " + prenomC;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}");
-            }
-        }
-
-
-        //Fonction pour le bouton VoitureOccasion
-        private void btnVoitureOccasion_Click(object sender, EventArgs e)
-        {
-            // Creation d'une page VoitureNeuve
-            Globales.fenVoitureOccasion = new frmVoitureOccasion();
-            Globales.fenVoitureOccasion.FormClosed += new FormClosedEventHandler(FenVoitureOccasion_FormClosed);
-
-            // Masquer Intro
-            this.Hide();
-
-            // Ouverture de la page VoitureNeuve
-            Globales.fenVoitureOccasion.Show();
-        }
-
-        // Que faire a la fermeture de VoitureOccasion
-        void FenVoitureOccasion_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Afficher Intro si VoitureOccasion est fermée
-            this.Show();
-        }
-
-        // Bouton Retour
-        private void btnInfo_Click(object sender, EventArgs e)
-        {
-            this.Close(); // afficher Intro, retour en arrière, on affiche un écran à la fois 
-        }
-
+        /// <summary>
+        /// Met à jour le client choisi et les informations correspondantes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboChoixC_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -222,7 +68,6 @@ namespace CreditCeleste
                         // Mise à jour des TextBox avec les infos sélectionnées
                         txtNom.Text = infosClient[1]; // Nom
                         txtPrenom.Text = infosClient[2]; // Prénom
-
 
                         // Récupération de l'ID correspondant via la liste des IDs
                         int idClient = Globales.uneConcession.GetClientsID()[cboChoixC.SelectedIndex].getIDClient();
@@ -266,7 +111,7 @@ namespace CreditCeleste
                             cboCiv.SelectedItem = civClient;
                         }
 
-                        // Sauvegarde les saisie dans des variables
+                        // Sauvegarde les saisies dans des variables
                         string civilite = cboCiv.Text;
                         string nom = txtNom.Text;
                         string prenom = txtPrenom.Text;
@@ -278,9 +123,9 @@ namespace CreditCeleste
                         Globales.nomVendeur = vendeur;
                         Globales.nomClient = nomprenom;
 
+                        // Desactive les boutons Valider et Enregistre
                         btnValider.Enabled = false;
                         btnEnregistre.Enabled = false;
-
 
                         MessageBox.Show("Veuillez passer à la suite.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -292,14 +137,189 @@ namespace CreditCeleste
             }
         }
 
+        /// <summary>
+        /// Enregistre et affiche la saisie du client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEnregistre_Click(object sender, EventArgs e)
+        {
+            // Sauvegarde les saisie dans des variables
+            string civilite = cboCiv.Text;
+            string nom = txtNom.Text;
+            string prenom = txtPrenom.Text;
 
+            string vendeur = cboVendeur.Text;
 
+            // Verification de la saisie
+            if (verifierSaisieIntro(civilite, nom, prenom, vendeur))
+            {
+                // Sauvegarde dans Globales
+                Globales.unClient = new Client(civilite, nom, prenom);
+                Globales.nomVendeur = vendeur;
 
+                // Affiche nom vendeur
+                lblVendeur.Text = vendeur;
 
+                // Affiche un message
+                string affichage =
+                    "Client: " + civilite + " " + nom + " " + prenom + " " + Environment.NewLine +
+                    "Vendeur: " + vendeur + Environment.NewLine;
 
+                MessageBox.Show(affichage, "Enregistrer", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // Active le bouton Valider
+                btnValider.Enabled = true;
+            }
+        }
 
-    }
+        /// <summary>
+        /// Verifie la saisie du client
+        /// </summary>
+        /// <param name="civilite"></param>
+        /// <param name="nom"></param>
+        /// <param name="prenom"></param>
+        /// <param name="vendeur"></param>
+        /// <returns>Faux si une valeur n'est pas saisie, sinon vrai</returns>
+        private bool verifierSaisieIntro(string civilite, string nom, string prenom, string vendeur)
+        {
+            bool valeur = true;
 
+            // Verifie les champs obligatoires
+            if (string.IsNullOrWhiteSpace(civilite) || string.IsNullOrWhiteSpace(nom) || string.IsNullOrWhiteSpace(prenom) || string.IsNullOrWhiteSpace(vendeur))
+            {
+                // Affiche un message d'erreur
+                MessageBox.Show("Veuillez remplir tous les champs obligatoires.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                valeur = false;
+            }
 
+            return valeur;
+        }
+
+        /// <summary>
+        /// Instancie et affiche fenVoiture. Masque fenIntro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnVoiture_Click(object sender, EventArgs e)
+        {
+            Globales.fenVoiture = new frmVoitureNeuve();
+            Globales.fenVoiture.FormClosed += new FormClosedEventHandler(FenVoiture_FormClosed);
+            Globales.fenVoiture.Show();
+
+            this.Hide();
+        }
+
+        /// <summary>
+        /// Affiche fenIntro à la fermeture de fenVoiture
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void FenVoiture_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+        }
+
+        /// <summary>
+        /// Instancie et affiche fenVoitureOccasion. Masque fenIntro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnVoitureOccasion_Click(object sender, EventArgs e)
+        {
+            Globales.fenVoitureOccasion = new frmVoitureOccasion();
+            Globales.fenVoitureOccasion.FormClosed += new FormClosedEventHandler(FenVoitureOccasion_FormClosed);
+            Globales.fenVoitureOccasion.Show();
+
+            this.Hide();
+        }
+
+        /// <summary>
+        /// Affiche fenIntro à la fermeture de fenVoitureOccasion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void FenVoitureOccasion_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+        }
+
+        /// <summary>
+        /// Met à jour le nom du vendeur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboVendeur_SelectedIndexChanged(object sender, EventArgs e) // TODO A FAIRE AU PROPRE
+        {
+            lblVendeur.Text = Globales.uneConcession.getLesVendeurs()[cboVendeur.SelectedIndex].getInfoVendeur(); // TODO CA PEUT ETRE SIMPLIFIER?
+        }
+
+        /// <summary>
+        /// Se connecte à la base de données à la validation du formulaire
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            CnxBDD();
+        }
+
+        /// <summary>
+        /// Connexion à la base de données
+        /// </summary>
+        private void CnxBDD()
+        {
+            try
+            {
+                // Sauvegarde le texte saisi dans des variables
+                string civiliteC = cboCiv.Text;
+                string nomC = txtNom.Text;
+                string prenomC = txtPrenom.Text;
+                int numV = cboVendeur.SelectedIndex + 1;
+
+                // Requête SQL avec OUTPUT pour récupérer l'ID auto-incrémenté
+                string query = "INSERT INTO CLIENT (civ, nom, prenom, numV) OUTPUT INSERTED.NumC VALUES (@civC, @nomC, @prenomC, @numV)";
+
+                using (SqlConnection oConnexion = new SqlConnection(Globales.connectionString))
+                {
+                    oConnexion.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(query, oConnexion))
+                    {
+                        cmd.Parameters.Add(new SqlParameter("@civC", SqlDbType.NVarChar) { Value = civiliteC });
+                        cmd.Parameters.Add(new SqlParameter("@nomC", SqlDbType.NVarChar) { Value = nomC });
+                        cmd.Parameters.Add(new SqlParameter("@prenomC", SqlDbType.NVarChar) { Value = prenomC });
+                        cmd.Parameters.Add(new SqlParameter("@numV", SqlDbType.Int) { Value = numV });
+
+                        // Exécuter la commande et récupérer l'ID inséré
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            Globales.IdClient = Convert.ToInt32(result);
+                            MessageBox.Show($"Les données ont été enregistrées avec succès !\nNumC : {Globales.IdClient}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Aucune donnée n'a été enregistrée.");
+                        }
+                    }
+                }
+                Globales.nomClient = nomC + " " + prenomC;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Fermer la fenêtre au clic sur le bouton Retour
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            this.Close(); 
+        }
+    } 
 }
